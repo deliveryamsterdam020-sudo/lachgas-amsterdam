@@ -4,7 +4,7 @@ Laatst bijgewerkt: 31 oktober 2026
 
 ## Status
 
-De site is **inhoudelijk en technisch klaar voor livegang**. Alle 33 pagina’s staan op `published` en zijn indexeerbaar; de sitemap bevat 38 URL’s en de slotcontrole is afgerond. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
+De site is **inhoudelijk en technisch klaar voor livegang**. Alle 35 pagina’s staan op `published` en zijn indexeerbaar; de sitemap bevat 40 URL’s en de slotcontrole is afgerond. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
 
 ## Afgerond
 
@@ -16,7 +16,7 @@ De site is **inhoudelijk en technisch klaar voor livegang**. Alle 33 pagina’s 
 | Publicatie | Pagina’s gecontroleerd en vrijgegeven door de uitgever (31-10-2026). Strafmaat: “wordt door het OM bepaald”, met de OM-uitleg erbij. |
 | Bronnen | 27 bronnen; alle bronnen die pagina’s gebruiken zijn volledig gelezen (o.a. Opiumwet, Stb. 2022-461, OM, RIVM CAM-notitie maart 2026, gemeente Amsterdam). De audit blokkeert publicatie op niet-volledig gecontroleerde bronnen. |
 | Correcties na broncontrole | NOS 2021 noemt geen overlastverbod → verwijderd; AEB-data (sept 2023–feb 2024, € 10 → € 5) toegevoegd; OLVG-cijfers (4 → 12, 2019); Alrijne-link dood → vervangen door peer-reviewed bron; APV-gebruiksverbod Amsterdam bevestigd via raadsinformatiebrief 9-2-2023. |
-| Nieuwe pagina’s | `/lachgas-verslaving/`, `/lachgas-overlast-amsterdam/`, `/nieuws/`, `/lachgas-gebruik/`, `/wegwerp-lachgascilinders/`, `/en/disposable-nitrous-oxide-tanks/`, `/en/privacy/`, `/en/disclaimer/`, `/en/editorial-policy/`. |
+| Nieuwe pagina’s | `/lachgas-verslaving/`, `/lachgas-overlast-amsterdam/`, `/nieuws/`, `/lachgas-gebruik/`, `/wegwerp-lachgascilinders/`, `/en/disposable-nitrous-oxide-tanks/`, `/lachgas-uitgaan-festivals/`, `/en/nitrous-oxide-festivals-nightlife/`, `/en/privacy/`, `/en/disclaimer/`, `/en/editorial-policy/`. |
 | Doelgroep | 16–35 jaar: toon, onderwerpen en cijfers daarop afgestemd (CONTENT_PLAN.md, SEO_STRATEGY.md). |
 | Design | Apple-achtige navigatie met dropdownpanelen en iconen; iOS-achtig mobiel menu; Amsterdam-sectie op de Engelse homepage. |
 | Performance | Heroscène gesplitst in statische laag + lichtlaag (statische, gecomprimeerde SVG’s: 5,6 KB + 2,5 KB gzip); camerabeweging via GPU-transform; mono-font niet meer preloaded; LCP-elementen niet meer onzichtbaar geanimeerd. |

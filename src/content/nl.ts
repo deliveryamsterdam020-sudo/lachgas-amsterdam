@@ -187,7 +187,7 @@ export const nlPages: Page[] = [
       { q: "Mag ik lachgas gebruiken in een Amsterdams park?", a: "Nee. Recreatief bezit is verboden op grond van de Opiumwet, en de Amsterdamse APV verbiedt het gebruik van lachgas." },
     ],
     sources: ["rijk-verbod", "amsterdam-rib-2023", "vng-factsheet", "nos-amsterdam-2019", "nos-amsterdam-2021", "om-lachgasverbod-2023"],
-    related: ["verbod", "overlast", "amsterdam", "cilinder-gevonden"],
+    related: ["verbod", "uitgaan", "overlast", "amsterdam"],
     translationOf: "en-is-legal",
     status: "published",
     published: D,
@@ -1057,11 +1057,82 @@ export const nlPages: Page[] = [
       },
     ],
     sources: ["rivm-cam-2026", "radar-2025", "drugsinfo-lachgas"],
-    related: ["verslaving", "gezondheid", "wegwerp", "amsterdam"],
+    related: ["verslaving", "gezondheid", "wegwerp", "uitgaan"],
     status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-04-30",
+  },
+  {
+    id: "uitgaan",
+    locale: "nl",
+    path: "/lachgas-uitgaan-festivals/",
+    category: "amsterdam",
+    eyebrow: "Uitgaan en festivals",
+    title: "Lachgas bij uitgaan en festivals",
+    metaTitle: "Lachgas op festivals en in het uitgaansleven: wat mag?",
+    metaDescription:
+      "Lachgas in clubs en op festivals in Amsterdam: de regels, wat er gebeurt als je ermee wordt betrapt en wat je doet als een vriend onwel wordt.",
+    answer:
+      "Lachgas is verboden, ook op festivals, in clubs en bij evenementen. Wie ballonnen verkoopt of uitdeelt, overtreedt de Opiumwet; wie ermee wordt aangetroffen, moet het inleveren en kan een boete of taakstraf krijgen. In het uitgaansleven is lachgas de laatste jaren sterk afgenomen. Wordt iemand onwel, haal dan de EHBO of bel 112.",
+    body: [
+      { type: "h2", id: "regels", text: "Wat zijn de regels?" },
+      {
+        type: "list",
+        items: [
+          "**Landelijk verbod:** sinds 1 januari 2023 zijn bezit, verkoop en vervoer van lachgas voor recreatief gebruik verboden — overal, dus ook op een festivalterrein of in een club. Zie [Het lachgasverbod](/lachgas-verbod/).",
+          "**Amsterdam:** al in 2019 nam de gemeente in evenementenvergunningen op dat lachgasverkoop verboden is ([NOS](https://nos.nl/artikel/2300206-amsterdam-opent-jacht-op-verkopers-van-lachgas)), en in 2021 besloot de raad tot een verkoopverbod in horeca en bij evenementen ([NOS](https://nos.nl/artikel/2378722-lachgas-wordt-ook-verboden-in-amsterdam)). De APV verbiedt ook het gebruik.",
+          "**Ballonnen zijn geen grijs gebied:** wie ballonnen met lachgas verkoopt of uitdeelt, overtreedt de Opiumwet.",
+        ],
+      },
+      { type: "h2", id: "betrapt", text: "Wat gebeurt er als je ermee wordt betrapt?" },
+      {
+        type: "p",
+        text: "Volgens het [Openbaar Ministerie](https://www.om.nl/actueel/nieuws/2023/07/01/lachgasverbod) geldt één ampul of één ballon als gebruikershoeveelheid; wie daarmee voor het eerst wordt aangetroffen, moet er afstand van doen. Bij grotere hoeveelheden volgt een geldboete of taakstraf. Wie verkoopt of handelt, riskeert een zwaardere straf. De strafmaat bepaalt het OM per zaak. Organisatoren kunnen daarnaast hun eigen huisregels hanteren.",
+      },
+      { type: "h2", id: "risico", text: "Waarom het tussen de mensen extra riskant is" },
+      {
+        type: "list",
+        items: [
+          "**Bijna buiten bewustzijn.** DrugsInfo beschrijft het effect als een gevoel van bijna buiten bewustzijn raken. In een volle zaal of op een festivalterrein kun je dan vallen of je bezeren.",
+          "**Geen veilige grens.** Volgens het RIVM kan zelfs één ballon al tintelingen in handen en voeten geven; bij veel of vaak gebruik dreigt zenuwschade. Zie [Lachgas en gezondheid](/gezondheid/).",
+          "**Grote tanks.** Ballonnen worden steeds vaker gevuld uit grote cilinders, wat de risico’s vergroot en bevriezingswonden kan geven. Zie [Wegwerpcilinders](/wegwerp-lachgascilinders/).",
+        ],
+      },
+      { type: "h2", id: "vriend", text: "Wat doe je als een vriend onwel wordt?" },
+      {
+        type: "steps",
+        items: [
+          { title: "Blijf bij diegene", text: "Laat iemand die onwel is niet alleen, en zorg dat er ruimte en frisse lucht is." },
+          { title: "Haal hulp", text: "Ga naar de EHBO-post of spreek de beveiliging aan. Is iemand bewusteloos, ademt iemand slecht of is iemand gewond geraakt? Bel direct 112." },
+          { title: "Vertel eerlijk wat er is gebruikt", text: "Hulpverleners hebben die informatie nodig om goed te kunnen helpen." },
+          { title: "Later nog klachten?", text: "Tintelingen, gevoelloosheid of krachtverlies in de dagen erna zijn een reden om dezelfde dag de huisarts te bellen. Zie [Lachgas en zenuwschade](/lachgas-zenuwschade/)." },
+        ],
+      },
+      { type: "h2", id: "naar-huis", text: "Veilig naar huis" },
+      {
+        type: "p",
+        text: "Lachgas verstoort waarneming en coördinatie; volgens [DrugsInfo](https://www.drugsinfo.nl/lachgas/wat-je-moet-weten-over-lachgas/) is de rijvaardigheid waarschijnlijk het eerste uur na gebruik verminderd. Artikel 8 van de Wegenverkeerswet verbiedt rijden onder invloed van een middel dat je rijvaardigheid kan verminderen. Ga met het openbaar vervoer of rij mee met iemand die niets heeft gebruikt.",
+      },
+      { type: "h2", id: "trend", text: "Hoe vaak komt het nog voor?" },
+      {
+        type: "p",
+        text: "Steeds minder. Onder uitgaanders van 16 tot 35 jaar daalde het jaargebruik van 35,2% in 2020 naar 15,0% in 2023, en onder jonge Amsterdamse cafébezoekers van 35% in 2015 naar 9% in 2024. De meerderheid van een panel uitgaanders ziet nauwelijks nog lachgas in het nachtleven; het middel heeft een negatief imago gekregen ([RIVM, maart 2026](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf)). Meer cijfers op [Lachgasgebruik](/lachgas-gebruik/).",
+      },
+      {
+        type: "callout",
+        tone: "help",
+        title: "Twijfel of zorgen?",
+        text: "Bel of chat anoniem met de DrugsInfo Infolijn: 0900-1995. Meer op [Hulp bij lachgas](/hulp/).",
+      },
+    ],
+    sources: ["rijk-verbod", "nos-amsterdam-2019", "nos-amsterdam-2021", "amsterdam-rib-2023", "om-lachgasverbod-2023", "drugsinfo-lachgas", "rivm-cam-2026", "trimbos-lachgas", "wvw-1994"],
+    related: ["gebruik", "gezondheid", "regels-amsterdam", "hulp"],
+    translationOf: "en-nightlife",
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-01-31",
   },
 
   // ───────────────────────────────────────────────────────────── HULP ──

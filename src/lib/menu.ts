@@ -25,7 +25,8 @@ export type IconKey =
   | "megaphone"
   | "newspaper"
   | "chart"
-  | "flame";
+  | "flame"
+  | "ticket";
 
 export interface MenuLink {
   href: string;
@@ -103,6 +104,7 @@ export const menu: Record<Locale, Menu> = {
         links: [
           { href: "/amsterdam/", label: "Lachgas in Amsterdam", desc: "De lokale context", icon: "landmark" },
           { href: "/lachgas-regels-amsterdam/", label: "Amsterdamse regels", desc: "Opiumwet en APV", icon: "mapPin" },
+          { href: "/lachgas-uitgaan-festivals/", label: "Uitgaan en festivals", desc: "Regels en een vriend helpen", icon: "ticket" },
           { href: "/lachgas-overlast-amsterdam/", label: "Overlast melden", desc: "Wie optreedt en hoe je meldt", icon: "megaphone" },
           { href: "/nieuws/", label: "Nieuws en ontwikkelingen", desc: "Tijdlijn sinds 2019", icon: "newspaper" },
           { href: "/en/visiting-amsterdam/", label: "Visiting Amsterdam", desc: "Guide for tourists (English)", icon: "plane" },
@@ -125,6 +127,7 @@ export const menu: Record<Locale, Menu> = {
         links: [
           { href: "/en/is-laughing-gas-legal-in-amsterdam/", label: "Is it legal?", desc: "The one-minute answer", icon: "scale" },
           { href: "/en/visiting-amsterdam/", label: "Visiting Amsterdam", desc: "Five things to know", icon: "plane" },
+          { href: "/en/nitrous-oxide-festivals-nightlife/", label: "Festivals and nightlife", desc: "The rules when you go out", icon: "ticket" },
           { href: "/en/nitrous-oxide-laws-netherlands/", label: "Dutch law", desc: "The 2023 ban explained", icon: "fileText" },
         ],
       },

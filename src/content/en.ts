@@ -385,6 +385,70 @@ export const enPages: Page[] = [
     nextReview: "2027-01-31",
   },
   {
+    id: "en-nightlife",
+    locale: "en",
+    path: "/en/nitrous-oxide-festivals-nightlife/",
+    category: "toeristen",
+    eyebrow: "Festivals and nightlife",
+    title: "Nitrous oxide at festivals and in Amsterdam nightlife",
+    metaTitle: "Laughing gas at Amsterdam festivals and clubs: the rules",
+    metaDescription:
+      "Going out in Amsterdam? The rules on laughing gas at clubs, festivals and events, what happens if you’re caught, and what to do if a friend feels unwell.",
+    answer:
+      "Laughing gas is illegal at festivals, in clubs and at events, just like everywhere else in the Netherlands. Anyone selling or handing out balloons is breaking the law; if you’re caught with it you must hand it over and can be fined or given community service. Use in Dutch nightlife has dropped sharply. If someone feels unwell, get first aid or call 112.",
+    body: [
+      { type: "h2", id: "rules", text: "The rules" },
+      {
+        type: "list",
+        items: [
+          "**National ban:** since 1 January 2023, possessing, selling or transporting nitrous oxide for recreational use is illegal — on festival grounds and in clubs too. See [Dutch law](/en/nitrous-oxide-laws-netherlands/).",
+          "**Amsterdam:** event permits have explicitly banned its sale since 2019, the city council banned sales in bars and at events in 2021, and the city’s bylaws prohibit using it.",
+          "**Balloons are not a grey area:** selling or handing them out breaks the Opium Act.",
+        ],
+      },
+      { type: "h2", id: "caught", text: "What happens if you’re caught?" },
+      {
+        type: "p",
+        text: "According to the [Public Prosecution Service](https://www.om.nl/actueel/nieuws/2023/07/01/lachgasverbod), one charger or one balloon counts as a personal-use quantity, which a first-time offender must give up. Larger amounts lead to a fine or community service; selling or dealing carries heavier penalties. Organisers may also apply their own house rules.",
+      },
+      { type: "h2", id: "risks", text: "Why it’s riskier in a crowd" },
+      {
+        type: "list",
+        items: [
+          "**Near-loss of consciousness** can make you fall or get hurt in a packed venue.",
+          "**There is no safe limit:** even one balloon can cause tingling, according to the RIVM. See [health risks](/en/nitrous-oxide-health-risks/).",
+          "**Large tanks** increase the risks and can cause frostbite. See [disposable tanks](/en/disposable-nitrous-oxide-tanks/).",
+        ],
+      },
+      { type: "h2", id: "friend", text: "If a friend feels unwell" },
+      {
+        type: "steps",
+        items: [
+          { title: "Stay with them", text: "Don’t leave someone who feels unwell alone; give them space and fresh air." },
+          { title: "Get help", text: "Go to the first-aid post or ask security. If someone is unconscious, struggling to breathe or injured, call 112 straight away." },
+          { title: "Be honest about what was used", text: "Paramedics need to know to help properly." },
+        ],
+      },
+      { type: "h2", id: "home", text: "Getting home" },
+      {
+        type: "p",
+        text: "Driving ability is probably reduced for at least the first hour after use, and Dutch law prohibits driving under the influence of a substance that can impair it. Take public transport or ride with someone who hasn’t used anything.",
+      },
+      { type: "h2", id: "trend", text: "How common is it still?" },
+      {
+        type: "p",
+        text: "Less and less. Among Dutch nightlife-goers aged 16 to 35, past-year use fell from 35.2% in 2020 to 15.0% in 2023, and most say they hardly see it in nightlife any more ([RIVM, March 2026](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf)).",
+      },
+    ],
+    sources: ["rijk-verbod", "nos-amsterdam-2019", "nos-amsterdam-2021", "amsterdam-rib-2023", "om-lachgasverbod-2023", "drugsinfo-lachgas", "rivm-cam-2026", "wvw-1994"],
+    related: ["en-visiting", "en-health", "en-is-legal"],
+    translationOf: "uitgaan",
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-01-31",
+  },
+  {
     id: "en-visiting",
     locale: "en",
     path: "/en/visiting-amsterdam/",
@@ -430,7 +494,7 @@ export const enPages: Page[] = [
       },
     ],
     sources: ["rijk-verbod", "amsterdam-rib-2023", "om-lachgasverbod-2023", "rivm-cam-2026", "trimbos-lachgas", "drugsinfo-lachgas", "at5-explosies"],
-    related: ["en-is-legal", "en-health", "en-cylinders", "en-laws"],
+    related: ["en-is-legal", "en-nightlife", "en-health", "en-cylinders"],
     status: "published",
     published: D,
     reviewed: D,

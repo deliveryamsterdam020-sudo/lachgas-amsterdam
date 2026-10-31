@@ -51,6 +51,7 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
         { href: "/lachgascilinders/", label: "Cilinders en patronen" },
         { href: "/wegwerp-lachgascilinders/", label: "Wegwerpcilinders" },
         { href: "/amsterdam/", label: "Amsterdam" },
+        { href: "/lachgas-uitgaan-festivals/", label: "Uitgaan en festivals" },
         { href: "/lachgas-overlast-amsterdam/", label: "Overlast melden" },
         { href: "/nieuws/", label: "Nieuws" },
         { href: "/kennisbank/", label: "Alle artikelen" },
@@ -74,6 +75,7 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
         { href: "/en/is-laughing-gas-legal-in-amsterdam/", label: "Is it legal?" },
         { href: "/en/nitrous-oxide-laws-netherlands/", label: "Dutch law" },
         { href: "/en/visiting-amsterdam/", label: "Visiting Amsterdam" },
+        { href: "/en/nitrous-oxide-festivals-nightlife/", label: "Festivals and nightlife" },
       ],
     },
     {

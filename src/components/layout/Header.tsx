@@ -31,6 +31,7 @@ import {
   Repeat,
   Scale,
   Tag,
+  Ticket,
   type LucideIcon,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
@@ -60,6 +61,7 @@ const ICONS: Record<IconKey, LucideIcon> = {
   newspaper: Newspaper,
   chart: ChartColumn,
   flame: Flame,
+  ticket: Ticket,
 };
 
 interface Props {
