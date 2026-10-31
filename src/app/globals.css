@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Palette from the brief, plus two additions with a purpose:
+   - muted  (#5A6474): the brief's grey #737D8C is 4.1:1 on white, below
+     WCAG AA for body text. Muted is used for small text; slate stays for
+     large text and decoration.
+   - lamp   (#E8B96F): warm canal-lamp light. Only used on navy, sparingly.   */
+@theme {
+  --color-canvas: #f8f9fb;
+  --color-paper: #ffffff;
+  --color-ink: #101c32;
+  --color-navy: #172c49;
+  --color-navy-700: #1f3a5e;
+  --color-mist: #eaf2fb;
+  --color-slate: #737d8c;
+  --color-muted: #5a6474;
+  --color-graphite: #242b35;
+  --color-line: #dde3ec;
+  --color-lamp: #e8b96f;
+  --color-alert: #9a3412;
+  --color-alert-soft: #fdf3ec;
+  --color-help: #0f5f4a;
+  --color-help-soft: #eaf6f1;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-navy);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-navy-700);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-lamp);
+  }
+}
+
+/* ── Typography helpers ────────────────────────────────────────────────── */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@utility display {
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Long-form article body */
+.prose-la {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-graphite);
+}
+.prose-la h2 {
+  color: var(--color-ink);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+.prose-la h3 {
+  color: var(--color-ink);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.prose-la p {
+  margin-top: 1rem;
+}
+.prose-la ul,
+.prose-la ol {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+}
+.prose-la ul li {
+  list-style: none;
+  position: relative;
+  margin-top: 0.5rem;
+}
+.prose-la ul li::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem;
+  top: 0.72em;
+  width: 0.45rem;
+  height: 2px;
+  background: var(--color-navy-700);
+}
+.prose-la ol {
+  list-style: decimal;
+}
+.prose-la a,
+.inline-link {
+  color: var(--color-navy-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--color-navy-700) 40%, transparent);
+  transition: text-decoration-color 0.2s;
+}
+.prose-la a:hover,
+.inline-link:hover {
+  text-decoration-color: currentColor;
+}
+.prose-la strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* ── Water ripples (the hero scene carries its own animations in /canal-scene.svg) ── */
+.ripple-lines {
+  animation: ripple 9s linear infinite;
+}
+@keyframes ripple {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-120px); }
+}
+
+/* ── Scroll reveal ─────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.9s var(--ease-out-soft), transform 0.9s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance */
+.rise {
+  animation: rise 1.2s var(--ease-out-soft) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translate3d(0, 28px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Navigation flyout: panel slides in, items follow in a short cascade */
+.flyout-in {
+  animation: flyout 0.45s var(--ease-out-soft) both;
+}
+.flyout-item {
+  animation: flyout 0.5s var(--ease-out-soft) both;
+  animation-delay: calc(var(--i, 0) * 35ms + 60ms);
+}
+@keyframes flyout {
+  from { opacity: 0; transform: translate3d(0, -8px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Grain overlay for photographic depth on dark surfaces */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Number tiles of the ban counter */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ripple-lines,
+  .rise,
+  .flyout-in,
+  .flyout-item {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

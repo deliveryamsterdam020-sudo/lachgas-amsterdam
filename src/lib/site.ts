@@ -1,0 +1,191 @@
+import type { Locale } from "@/content/types";
+
+/**
+ * The production domain is not decided yet. Set NEXT_PUBLIC_SITE_URL before
+ * deploying; canonicals, hreflang, the sitemap and structured data all derive
+ * from it.
+ */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
+export const SITE_NAME = "Lachgas Amsterdam";
+
+/** Publisher details are a launch requirement; null renders a visible notice. */
+export const PUBLISHER: { legalName: string | null } = { legalName: null };
+
+export const absoluteUrl = (path: string) => `${SITE_URL}${path}`;
+
+export interface NavItem {
+  href: string;
+  label: string;
+}
+
+export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = {
+  nl: [
+    {
+      title: "Wetgeving",
+      items: [
+        { href: "/lachgas-verbod/", label: "Het lachgasverbod" },
+        { href: "/lachgas-regels-amsterdam/", label: "Regels in Amsterdam" },
+        { href: "/lachgas-bezit/", label: "Bezit en vervoer" },
+      ],
+    },
+    {
+      title: "Gezondheid & hulp",
+      items: [
+        { href: "/gezondheid/", label: "Gezondheidsrisico’s" },
+        { href: "/lachgas-zenuwschade/", label: "Zenuwschade en B12" },
+        { href: "/hulp/", label: "Hulp en ondersteuning" },
+      ],
+    },
+    {
+      title: "Kennisbank",
+      items: [
+        { href: "/lachgas-soorten-en-toepassingen/", label: "Soorten en toepassingen" },
+        { href: "/lachgas-merken/", label: "Merken" },
+        { href: "/lachgascilinders/", label: "Cilinders en patronen" },
+        { href: "/amsterdam/", label: "Amsterdam" },
+        { href: "/kennisbank/", label: "Alle artikelen" },
+      ],
+    },
+    {
+      title: "Redactie",
+      items: [
+        { href: "/over-ons/", label: "Over ons" },
+        { href: "/redactiebeleid/", label: "Redactiebeleid" },
+        { href: "/bronnen/", label: "Bronregister" },
+        { href: "/privacy/", label: "Privacy" },
+        { href: "/disclaimer/", label: "Disclaimer" },
+      ],
+    },
+  ],
+  en: [
+    {
+      title: "Guide",
+      items: [
+        { href: "/en/is-laughing-gas-legal-in-amsterdam/", label: "Is it legal?" },
+        { href: "/en/nitrous-oxide-laws-netherlands/", label: "Dutch law" },
+        { href: "/en/visiting-amsterdam/", label: "Visiting Amsterdam" },
+      ],
+    },
+    {
+      title: "Knowledge",
+      items: [
+        { href: "/en/nitrous-oxide-health-risks/", label: "Health risks" },
+        { href: "/en/nitrous-oxide-types/", label: "Types and uses" },
+        { href: "/en/nitrous-oxide-brands/", label: "Brands" },
+        { href: "/en/nitrous-oxide-cylinders/", label: "Cylinders" },
+      ],
+    },
+    {
+      title: "About",
+      items: [
+        { href: "/en/about/", label: "About us" },
+        { href: "/en/sources/", label: "Source register" },
+        { href: "/", label: "Nederlands" },
+      ],
+    },
+  ],
+};
+
+export const ui = {
+  nl: {
+    skip: "Naar de inhoud",
+    menu: "Menu",
+    close: "Sluiten",
+    langLabel: "English",
+    langShort: "EN",
+    home: "Home",
+    shortAnswer: "Kort antwoord",
+    onThisPage: "Op deze pagina",
+    faq: "Veelgestelde vragen",
+    sources: "Bronnen",
+    related: "Lees ook",
+    published: "Gepubliceerd",
+    reviewed: "Laatst gecontroleerd",
+    nextReview: "Volgende controle",
+    author: "Redactie Lachgas Amsterdam",
+    uncertainties: "Nog niet geverifieerd",
+    accessed: "geraadpleegd",
+    notGov: "Onafhankelijk en niet-commercieel. Geen website van de gemeente Amsterdam of de overheid.",
+    disclaimer:
+      "Algemene informatie, geen persoonlijk juridisch of medisch advies. Bij nood: bel 112.",
+  },
+  en: {
+    skip: "Skip to content",
+    menu: "Menu",
+    close: "Close",
+    langLabel: "Nederlands",
+    langShort: "NL",
+    home: "Home",
+    shortAnswer: "Short answer",
+    onThisPage: "On this page",
+    faq: "Frequently asked questions",
+    sources: "Sources",
+    related: "Read next",
+    published: "Published",
+    reviewed: "Last checked",
+    nextReview: "Next review",
+    author: "Lachgas Amsterdam editorial team",
+    uncertainties: "Not yet verified",
+    accessed: "accessed",
+    notGov: "Independent and non-commercial. Not a website of the City of Amsterdam or any government body.",
+    disclaimer: "General information, not personal legal or medical advice. In an emergency, call 112.",
+  },
+} as const;
+
+export const statusLabel: Record<Locale, Record<string, string>> = {
+  nl: {
+    draft: "Concept",
+    "fact-check": "In feitencheck",
+    "legal-review": "Wacht op juridische controle",
+    "medical-review": "Wacht op medische controle",
+    approved: "Goedgekeurd",
+    published: "Gepubliceerd",
+    "needs-update": "Update nodig",
+  },
+  en: {
+    draft: "Draft",
+    "fact-check": "Being fact-checked",
+    "legal-review": "Awaiting legal review",
+    "medical-review": "Awaiting medical review",
+    approved: "Approved",
+    published: "Published",
+    "needs-update": "Update needed",
+  },
+};
+
+export const categoryLabel: Record<Locale, Record<string, string>> = {
+  nl: {
+    wetgeving: "Wetgeving",
+    gezondheid: "Gezondheid",
+    soorten: "Soorten",
+    merken: "Merken",
+    cilinders: "Cilinders",
+    amsterdam: "Amsterdam",
+    hulp: "Hulp",
+    toeristen: "Toeristen",
+    redactie: "Redactie",
+  },
+  en: {
+    wetgeving: "Law",
+    gezondheid: "Health",
+    soorten: "Types",
+    merken: "Brands",
+    cilinders: "Cylinders",
+    amsterdam: "Amsterdam",
+    hulp: "Help",
+    toeristen: "Visitors",
+    redactie: "About",
+  },
+};
+
+export function formatDate(iso: string, locale: Locale) {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!d) return iso;
+  return new Intl.DateTimeFormat(locale === "nl" ? "nl-NL" : "en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Amsterdam",
+  }).format(new Date(Date.UTC(y, m - 1, d, 12)));
+}
