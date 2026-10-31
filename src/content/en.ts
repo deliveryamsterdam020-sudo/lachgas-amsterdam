@@ -218,7 +218,6 @@ export const enPages: Page[] = [
           { label: "Chemical name", value: "Dinitrogen monoxide" },
           { label: "Formula", value: "N₂O" },
           { label: "CAS number", value: "10024-97-2" },
-          { label: "Food additive number", value: "E942" },
         ],
       },
       { type: "h2", id: "medical", text: "Medical nitrous oxide" },
@@ -304,7 +303,7 @@ export const enPages: Page[] = [
     metaDescription:
       "Nitrous oxide cylinders are hazardous waste and can explode in incinerators. What to do if you find one in Amsterdam, and why it matters.",
     answer:
-      "Don’t put a nitrous oxide cylinder in a normal bin — it can explode in the waste incinerator. Don’t open or heat it. Report a cylinder in a public space via meldingen.amsterdam.nl (the city’s reporting service); residents can take empty cylinders to one of Amsterdam’s waste points (Afvalpunten).",
+      "Don’t put a nitrous oxide cylinder in a normal bin — it can explode in the waste incinerator. Don’t open or heat it. Report a cylinder in a public space via meldingen.amsterdam.nl (the city’s reporting service); residents can take empty cylinders to one of Amsterdam’s recycling points (Recyclepunten).",
     body: [
       { type: "h2", id: "why", text: "Why it matters" },
       {
@@ -318,12 +317,12 @@ export const enPages: Page[] = [
           { title: "Leave it intact", text: "Don’t open, puncture or heat it." },
           { title: "Not in the bin", text: "Not in household waste, recycling or bulky waste." },
           { title: "Report it", text: "Report cylinders in public spaces via [meldingen.amsterdam.nl](https://meldingen.amsterdam.nl). City services collect them; full cylinders are removed by city enforcement officers or the police." },
-          { title: "Or drop it off", text: "Residents can take empty cylinders to an Amsterdam Afvalpunt (waste point) — see [amsterdam.nl](https://www.amsterdam.nl)." },
+          { title: "Or drop it off", text: "Residents can hand in gas cylinders free of charge at one of Amsterdam’s seven [Recyclepunten](https://www.amsterdam.nl/afval/spullen-wegbrengen-naar-een-recyclepunt/) (recycling points), bringing ID and proof of an Amsterdam address. Visitors: just report it." },
         ],
       },
       { type: "p", text: "Suspect dealing or storage? Call the police non-emergency line on **0900-8844**. Emergencies: **112**." },
     ],
-    sources: ["rijk-verbod", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods", "nos-nieuwsuur-afval"],
+    sources: ["rijk-verbod", "amsterdam-meldingen", "amsterdam-recyclepunt", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods", "nos-nieuwsuur-afval"],
     related: ["en-visiting", "en-is-legal", "en-brands"],
     translationOf: "cilinders",
     status: "published",

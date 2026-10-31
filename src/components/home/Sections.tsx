@@ -155,6 +155,7 @@ export function BanExplainer({
   official,
   officialTitle,
   more,
+  dateLabel,
 }: {
   index: string;
   eyebrow: string;
@@ -167,6 +168,8 @@ export function BanExplainer({
   official: { href: string; label: string }[];
   officialTitle: string;
   more: { href: string; label: string };
+  /** Spoken form of the big start date, e.g. "1 januari 2023". */
+  dateLabel: string;
 }) {
   return (
     <section className="bg-paper py-24 sm:py-32">
@@ -174,8 +177,9 @@ export function BanExplainer({
         <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
           <SectionHead index={index} eyebrow={eyebrow} title={title} intro={intro} />
           <Reveal className="flex items-baseline gap-4 lg:justify-end">
-            <span className="tabular text-[clamp(4.5rem,3rem+6vw,9rem)] font-semibold leading-none tracking-[-0.06em] text-ink">1.1</span>
-            <span className="tabular text-[clamp(1.8rem,1.3rem+2vw,3rem)] font-semibold tracking-[-0.04em] text-slate">2023</span>
+            <span className="sr-only">{dateLabel}</span>
+            <span aria-hidden="true" className="tabular text-[clamp(4.5rem,3rem+6vw,9rem)] font-semibold leading-none tracking-[-0.06em] text-ink">1.1</span>
+            <span aria-hidden="true" className="tabular text-[clamp(1.8rem,1.3rem+2vw,3rem)] font-semibold tracking-[-0.04em] text-slate">2023</span>
           </Reveal>
         </div>
 

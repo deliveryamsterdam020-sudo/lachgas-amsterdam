@@ -43,7 +43,7 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             const t = tones[b.tone];
             const Icon = t.icon;
             return (
-              <aside key={i} className={`not-prose my-8 flex gap-4 rounded-2xl border p-5 sm:p-6 ${t.box}`}>
+              <div key={i} role="note" className={`not-prose my-8 flex gap-4 rounded-2xl border p-5 sm:p-6 ${t.box}`}>
                 <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${t.icn}`} aria-hidden="true" />
                 <div>
                   <p className="!mt-0 font-semibold text-ink">{b.title}</p>
@@ -51,7 +51,7 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                     <Inline text={b.text} />
                   </p>
                 </div>
-              </aside>
+              </div>
             );
           }
           case "facts":

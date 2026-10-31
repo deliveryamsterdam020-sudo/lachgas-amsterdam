@@ -104,10 +104,17 @@ export function Header({ locale, menu, altMap, labels }: Props) {
       }
     };
     document.addEventListener("keydown", onKey);
-    if (mobileOpen) document.body.style.overflow = "hidden";
+    // While the mobile sheet is open, the page behind it can't scroll or take focus.
+    const behind = mobileOpen ? [...document.querySelectorAll("main, footer")] : [];
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      behind.forEach((el) => el.setAttribute("inert", ""));
+      document.querySelector<HTMLElement>("#mobile-menu a")?.focus();
+    }
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      behind.forEach((el) => el.removeAttribute("inert"));
     };
   }, [mobileOpen, panel]);
 
@@ -128,7 +135,6 @@ export function Header({ locale, menu, altMap, labels }: Props) {
   // Frosted white whenever the page is scrolled or a menu is open; otherwise it floats over the dark hero.
   const light = scrolled || mobileOpen || panel !== null;
   const activeGroup = menu.groups.find((g) => g.links.some((l) => pathOf(l.href) === pathname))?.id;
-  const openGroup = menu.groups.find((g) => g.id === panel);
 
   return (
     <>
@@ -179,6 +185,9 @@ export function Header({ locale, menu, altMap, labels }: Props) {
                       {g.label}
                       <ChevronDown className={`h-3.5 w-3.5 opacity-60 transition-transform duration-300 ${open ? "rotate-180" : ""}`} aria-hidden="true" />
                     </button>
+                    {/* Rendered right after its button so Tab moves straight into the panel;
+                        it is positioned against the fixed header. */}
+                    {open && <Flyout group={g} onNavigate={closeAll} pathname={pathname} />}
                   </li>
                 );
               })}
@@ -225,7 +234,6 @@ export function Header({ locale, menu, altMap, labels }: Props) {
           </div>
         </div>
 
-        {openGroup && <Flyout group={openGroup} onNavigate={closeAll} pathname={pathname} />}
       </header>
 
       {/* Dim and blur the page behind an open flyout */}

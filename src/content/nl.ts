@@ -19,7 +19,7 @@ export const nlPages: Page[] = [
     metaDescription:
       "Sinds 1 januari 2023 staat lachgas op lijst II van de Opiumwet. Wat verboden is, welke uitzonderingen gelden en wie handhaaft — met officiële bronnen.",
     answer:
-      "Sinds 1 januari 2023 staat lachgas (distikstofmonoxide, N₂O) op lijst II van de Opiumwet. Bezit, verkoop, vervoer en productie voor recreatief gebruik zijn verboden, net als het binnen- of buitenbrengen van Nederland. Medisch, culinair en technisch gebruik blijven toegestaan. Het verbod geldt in heel Nederland, dus ook in Amsterdam en ook voor toeristen.",
+      "Sinds 1 januari 2023 staat lachgas (distikstofmonoxide, N₂O) op lijst II van de Opiumwet. Bezit, verkoop, vervoer en productie voor recreatief gebruik zijn verboden, net als in- en uitvoer. Medisch, culinair en technisch gebruik blijven toegestaan. Het verbod geldt in heel Nederland, dus ook in Amsterdam en ook voor toeristen.",
     body: [
       { type: "h2", id: "wat-is-verboden", text: "Wat is er precies verboden?" },
       {
@@ -82,7 +82,7 @@ export const nlPages: Page[] = [
       { type: "h2", id: "afval", text: "Ook de afvalfase is geregeld" },
       {
         type: "p",
-        text: "Lachgascilinders gelden als **gevaarlijk afval**. Ze mogen niet bij het gewone afval en horen bij een milieustraat — in Amsterdam een Afvalpunt. Lees hoe je dat veilig doet op [Lachgascilinder gevonden](/lachgascilinder-gevonden/).",
+        text: "Lachgascilinders gelden als **gevaarlijk afval**. Ze mogen niet bij het gewone afval en horen bij een milieustraat — in Amsterdam heet dat een Recyclepunt. Lees hoe je dat veilig doet op [Lachgascilinder gevonden](/lachgascilinder-gevonden/).",
       },
       { type: "h2", id: "officiele-informatie", text: "Waar vind je officiële informatie?" },
       {
@@ -230,7 +230,7 @@ export const nlPages: Page[] = [
       {
         type: "steps",
         items: [
-          { title: "Inbeslagname", text: "Bij strafrechtelijke handhaving wordt het lachgas in beslag genomen. Wie voor het eerst met één ampul of ballon wordt aangetroffen, moet er afstand van doen." },
+          { title: "Inbeslagname", text: "De politie kan het lachgas in beslag nemen. Wie voor het eerst met één ampul of ballon wordt aangetroffen, moet er volgens het OM afstand van doen." },
           { title: "Boete of taakstraf", text: "Bij grotere hoeveelheden volgt een geldboete of taakstraf, afhankelijk van de hoeveelheid en de omstandigheden." },
           { title: "Gevangenisstraf", text: "Bij zeer grote hoeveelheden kan een gevangenisstraf volgen. Herhaling kan leiden tot een onvoorwaardelijke gevangenisstraf van enkele maanden. Handel of een bedrijfsmatige aanpak weegt zwaarder." },
         ],
@@ -358,10 +358,8 @@ export const nlPages: Page[] = [
         type: "list",
         items: [
           "tintelingen of een doof gevoel in handen en voeten;",
-          "krachtverlies in armen of benen;",
-          "onzeker lopen of evenwichtsproblemen;",
-          "problemen met plassen of ontlasting;",
-          "concentratie- en geheugenproblemen.",
+          "krachtverlies of uitvalsverschijnselen in armen of benen;",
+          "onzeker lopen of evenwichtsproblemen.",
         ],
       },
       {
@@ -443,12 +441,12 @@ export const nlPages: Page[] = [
         items: [
           { label: "Anoniem advies", value: "DrugsInfo Infolijn: 0900-1995 (€ 0,10 per minuut), maandag t/m vrijdag 9.00–17.00 uur. Chatten kan gratis van 13.00–17.00 uur." },
           { label: "Huisarts", value: "Eerste aanspreekpunt voor behandeling en verwijzing; de huisarts heeft een beroepsgeheim." },
-          { label: "Amsterdam", value: "Jellinek is de verslavingszorgorganisatie in de regio Amsterdam." },
+          { label: "Amsterdam", value: "Jellinek biedt verslavingszorg en preventie, met meerdere locaties in Amsterdam." },
         ],
       },
       { type: "p", text: "Meer adressen en tips voor ouders en naasten staan op [Hulp bij lachgas](/hulp/)." },
     ],
-    sources: ["rivm-cam-2026", "drugsinfo-lachgas", "drugsinfo-contact"],
+    sources: ["rivm-cam-2026", "drugsinfo-lachgas", "drugsinfo-contact", "jellinek-locaties"],
     related: ["hulp", "gezondheid", "zenuwschade"],
     status: "published",
     published: D,
@@ -477,7 +475,6 @@ export const nlPages: Page[] = [
           { label: "Scheikundige naam", value: "Distikstofmonoxide" },
           { label: "Formule", value: "N₂O — twee stikstofatomen, één zuurstofatoom" },
           { label: "CAS-nummer", value: "10024-97-2" },
-          { label: "Als voedingsadditief", value: "E942" },
         ],
       },
       {
@@ -660,7 +657,7 @@ export const nlPages: Page[] = [
     metaDescription:
       "Het verschil tussen lachgaspatronen en -cilinders, waarom wegwerpcilinders ontploffen in de Amsterdamse verbrandingsovens en hoe je ze veilig afvoert.",
     answer:
-      "Patronen zijn kleine capsules voor slagroomspuiten; cilinders zijn grote drukhouders. Lachgascilinders zijn gevaarlijk afval: in de verbrandingsoven kunnen ze ontploffen. Gooi ze nooit bij het restafval of PMD, maar breng ze naar een Afvalpunt of meld een gevonden cilinder bij de gemeente.",
+      "Patronen zijn kleine capsules voor slagroomspuiten; cilinders zijn grote drukhouders. Lachgascilinders zijn gevaarlijk afval: in de verbrandingsoven kunnen ze ontploffen. Gooi ze nooit bij het restafval of PMD. Meld een gevonden cilinder bij de gemeente of breng een lege cilinder naar een Amsterdams Recyclepunt.",
     body: [
       { type: "h2", id: "verschil", text: "Patroon of cilinder?" },
       {
@@ -696,12 +693,12 @@ export const nlPages: Page[] = [
         items: [
           { title: "Niet bij het gewone afval", text: "Nooit in de restafvalcontainer, de PMD-bak of het grofvuil." },
           { title: "Niet openmaken of verhitten", text: "Probeer een cilinder niet open te boren, door te prikken of in de buurt van vuur te leggen." },
-          { title: "Naar het Afvalpunt", text: "Lachgascilinders zijn gevaarlijk afval en horen bij de milieustraat; in Amsterdam zijn dat de Afvalpunten. Locaties en openingstijden staan op [amsterdam.nl](https://www.amsterdam.nl)." },
+          { title: "Naar een Recyclepunt", text: "Amsterdammers kunnen gasflessen gratis inleveren bij een van de zeven [Recyclepunten](https://www.amsterdam.nl/afval/spullen-wegbrengen-naar-een-recyclepunt/); neem een identiteitsbewijs en een bewijs van je Amsterdamse adres mee. Lachgascilinders worden daar niet apart genoemd — vraag het bij twijfel ter plekke." },
           { title: "Of melden", text: "Ligt de cilinder op straat? Meld hem via [meldingen.amsterdam.nl](https://meldingen.amsterdam.nl). Gemeentelijke diensten nemen gevonden cilinders mee; volle cilinders worden verwijderd door THOR of de politie." },
         ],
       },
     ],
-    sources: ["rijk-verbod", "rivm-cam-2026", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods", "nos-nieuwsuur-afval"],
+    sources: ["rijk-verbod", "amsterdam-recyclepunt", "amsterdam-meldingen", "rivm-cam-2026", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods", "nos-nieuwsuur-afval"],
     related: ["cilinder-gevonden", "amsterdam", "merken", "soorten"],
     translationOf: "en-cylinders",
     status: "published",
@@ -720,7 +717,7 @@ export const nlPages: Page[] = [
     metaDescription:
       "Lachgascilinder gevonden op straat of in je portiek? Stap voor stap wat je wel en niet doet, en waar je hem in Amsterdam inlevert of meldt.",
     answer:
-      "Gooi een gevonden lachgascilinder niet bij het restafval: hij kan in de verbrandingsoven ontploffen. Maak hem niet open en houd hem uit de buurt van warmte. Meld een cilinder op straat via meldingen.amsterdam.nl, of breng een lege cilinder naar een Amsterdams Afvalpunt.",
+      "Gooi een gevonden lachgascilinder niet bij het restafval: hij kan in de verbrandingsoven ontploffen. Maak hem niet open en houd hem uit de buurt van warmte. Meld een cilinder op straat via meldingen.amsterdam.nl, of breng een lege cilinder naar een Amsterdams Recyclepunt.",
     body: [
       { type: "h2", id: "stappen", text: "Stap voor stap" },
       {
@@ -729,7 +726,7 @@ export const nlPages: Page[] = [
           { title: "Laat de cilinder heel", text: "Niet openmaken, doorprikken, verhitten of in de zon laten liggen." },
           { title: "Niet in de container", text: "Ook niet in de PMD-bak of bij het grofvuil. In de verbrandingsoven kan een cilinder ontploffen." },
           { title: "Melden", text: "Ligt de cilinder in de openbare ruimte? Meld hem via [meldingen.amsterdam.nl](https://meldingen.amsterdam.nl). Gemeentelijke diensten — reinigers, Stadswerken, afvalinzamelaars, THOR en politie — nemen gevonden cilinders mee." },
-          { title: "Of zelf wegbrengen", text: "Een lege cilinder kun je naar een Amsterdams Afvalpunt (milieustraat) brengen. Volle cilinders laat je liggen en meld je: die worden verwijderd door THOR of de politie." },
+          { title: "Of zelf wegbrengen", text: "Een lege cilinder kun je naar een Amsterdams [Recyclepunt](https://www.amsterdam.nl/afval/spullen-wegbrengen-naar-een-recyclepunt/) brengen; daar kunnen bewoners gratis gasflessen inleveren met een identiteits- en adresbewijs. Volle cilinders laat je liggen en meld je: die worden verwijderd door THOR of de politie." },
         ],
       },
       { type: "h2", id: "veel-cilinders", text: "Veel cilinders of vermoeden van handel?" },
@@ -744,7 +741,7 @@ export const nlPages: Page[] = [
         text: "Cilinders in het restafval veroorzaken explosies in de ovens van AEB. Dat leidt tot schade en hogere kosten, die via de gemeentelijke belastingen bij bewoners terechtkomen. Meer achtergrond op [Lachgascilinders en patronen](/lachgascilinders/).",
       },
     ],
-    sources: ["rijk-verbod", "at5-dumping", "at5-explosies", "nos-nieuwsuur-afval"],
+    sources: ["rijk-verbod", "amsterdam-meldingen", "amsterdam-recyclepunt", "at5-dumping", "at5-explosies", "nos-nieuwsuur-afval"],
     related: ["cilinders", "overlast", "regels-amsterdam"],
     status: "published",
     published: D,
@@ -851,7 +848,7 @@ export const nlPages: Page[] = [
       },
       {
         type: "p",
-        text: "Volgens het [RIVM](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) vindt gebruik steeds minder plaats in het uitgaansleven en vaker thuis, in hotelkamers en in auto’s; lachgas heeft inmiddels een negatief imago. Het aantal lachgasgerelateerde politie-incidenten nam na een flinke daling in 2023 in 2024 en 2025 weer toe.",
+        text: "Volgens het [RIVM](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) vindt gebruik steeds minder plaats in het uitgaansleven en vaker thuis, in hotelkamers en in auto’s; lachgas heeft inmiddels een negatief imago. Het aantal lachgasgerelateerde politie-incidenten lijkt na een flinke daling in 2023 in 2024 en 2025 weer te zijn toegenomen.",
       },
       {
         type: "callout",
@@ -860,7 +857,7 @@ export const nlPages: Page[] = [
         text: "Achter overlast zit soms een persoon die hulp nodig heeft. Lees op [Hulp bij lachgas](/hulp/) waar je anoniem advies krijgt.",
       },
     ],
-    sources: ["amsterdam-rib-2023", "nos-amsterdam-2019", "nos-nieuwsuur-afval", "at5-dumping", "rivm-cam-2026", "om-lachgasverbod-2023"],
+    sources: ["amsterdam-rib-2023", "amsterdam-meldingen", "nos-amsterdam-2019", "nos-nieuwsuur-afval", "at5-dumping", "rivm-cam-2026", "om-lachgasverbod-2023"],
     related: ["regels-amsterdam", "cilinder-gevonden", "amsterdam", "hulp"],
     status: "published",
     published: D,
@@ -880,7 +877,7 @@ export const nlPages: Page[] = [
     metaDescription:
       "Hulp bij lachgasgebruik voor jezelf of een ander: anoniem advies via de DrugsInfo Infolijn, de huisarts, verslavingszorg in Amsterdam en 112 bij nood.",
     answer:
-      "Bij acute nood bel je 112. Voor medische klachten zoals tintelingen of krachtverlies ga je naar de huisarts. Anonieme vragen over je eigen gebruik of dat van een ander kun je stellen aan de DrugsInfo Infolijn: 0900-1995, maandag tot en met vrijdag van 9.00 tot 17.00 uur. In Amsterdam biedt Jellinek verslavingszorg.",
+      "Bij acute nood bel je 112. Voor medische klachten zoals tintelingen of krachtverlies ga je naar de huisarts. Anonieme vragen over je eigen gebruik of dat van een ander kun je stellen aan de DrugsInfo Infolijn: 0900-1995, maandag tot en met vrijdag van 9.00 tot 17.00 uur. In Amsterdam biedt onder meer Jellinek verslavingszorg.",
     body: [
       { type: "h2", id: "nood", text: "Acute nood" },
       {
@@ -908,7 +905,7 @@ export const nlPages: Page[] = [
       { type: "h2", id: "amsterdam", text: "Verslavingszorg in Amsterdam" },
       {
         type: "p",
-        text: "[Jellinek](https://www.jellinek.nl) is de verslavingszorgorganisatie in de regio Amsterdam. Voor behandeling is meestal een verwijzing van de huisarts nodig; de huisarts is daarom een goed eerste aanspreekpunt. Meer over afhankelijkheid lees je op [Lachgas en verslaving](/lachgas-verslaving/).",
+        text: "[Jellinek](https://www.jellinek.nl) biedt verslavingszorg en preventie, met meerdere [locaties in Amsterdam](https://www.jellinek.nl/locaties/). Je kunt je via de website aanmelden voor een intake; ook je huisarts kan je verwijzen en is een goed eerste aanspreekpunt. Meer over afhankelijkheid lees je op [Lachgas en verslaving](/lachgas-verslaving/).",
       },
       { type: "h2", id: "ouders", text: "Voor ouders en naasten" },
       {
@@ -921,7 +918,7 @@ export const nlPages: Page[] = [
         text: "Twijfel je over je eigen gebruik, of merk je dat stoppen moeilijk is? Je hoeft het niet alleen uit te zoeken. Chat of bel anoniem met DrugsInfo of praat met je huisarts — die heeft een beroepsgeheim.",
       },
     ],
-    sources: ["drugsinfo-lachgas", "drugsinfo-contact", "trimbos-lachgas", "rivm-cam-2026"],
+    sources: ["drugsinfo-lachgas", "drugsinfo-contact", "jellinek-locaties", "trimbos-lachgas", "rivm-cam-2026"],
     related: ["verslaving", "gezondheid", "zenuwschade", "amsterdam"],
     status: "published",
     published: D,

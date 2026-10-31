@@ -58,3 +58,35 @@ Eerdere ronde (zie Git-historie): titels, og:image, beschrijvingen, dubbele id�
 npm run check
 npm run build && npx next start -p 3100
 ```
+
+## Slotcontrole (regel voor regel)
+
+Alle code en alle teksten opnieuw doorgelopen; alle beweringen tegen de bronnen gelegd.
+
+| Controle | Resultaat |
+|---|---|
+| Externe links (32) | ✅ alle 200 |
+| axe-core (WCAG 2.2 AA + best practices), 35 pagina’s × desktop en mobiel | ✅ 0 overtredingen |
+| html-validate, 35 pagina’s | ✅ geen fouten (alleen React-camelCase-attributen en een stijlregel over spaties in de 112-knop) |
+| Crawl | ✅ 35 URL’s, 0 problemen |
+| Toetsenbord | ✅ Tab loopt van menuknop direct het paneel in (Firefox); mobiel menu zet focus op het eerste item en maakt de pagina erachter inert |
+
+### Gevonden en opgelost
+
+| # | Probleem | Oplossing |
+|---|---|---|
+| 1 | Amsterdam noemt de inleverlocaties **Recyclepunten**, niet Afvalpunten | Overal gecorrigeerd, met link, ID- en adresbewijs; lachgascilinders worden daar niet apart genoemd — zo staat het er nu ook |
+| 2 | “het binnen- of buitenbrengen van Nederland” (onjuist Nederlands) | “net als in- en uitvoer” |
+| 3 | Twee klachten (plassen/ontlasting, concentratie) niet door gelezen bron gedekt | Verwijderd; lijst volgt nu RIVM en de medische publicatie |
+| 4 | “wordt altijd in beslag genomen” niet geverifieerd | “De politie kan het lachgas in beslag nemen” |
+| 5 | Politie-incidenten 2024–2025 stelliger dan de bron | “lijkt … weer te zijn toegenomen”, zoals het RIVM schrijft |
+| 6 | “Jellinek is dé verslavingszorg in de regio”, “verwijzing nodig” | Jellinek heeft meerdere Amsterdamse locaties; aanmelden kan zelf of via de huisarts |
+| 7 | E942 niet herleidbaar tot een gelezen officiële bron | Verwijderd |
+| 8 | Article-structured data verwees naar een node in een ander script en had geen afbeelding | Zelfstandige Organization-verwijzing en `image` toegevoegd |
+| 9 | Dropdownpaneel stond in de DOM ná alle knoppen (tabvolgorde) | Paneel direct na zijn knop |
+| 10 | Pagina achter het mobiele menu bleef focusbaar | `inert` op main en footer, focus naar het eerste menu-item |
+| 11 | Callouts en inhoudsopgave als `<aside>` binnen `<main>` | `role="note"` / gewone container |
+| 12 | Kaartnummers “01”, “02” in de naam van hubkaarten voor schermlezers | Nummers `aria-hidden` |
+| 13 | “1.1 2023” werd niet als datum voorgelezen | Verborgen tekst “Ingangsdatum: 1 januari 2023” |
+| 14 | Footer-landmark in NL heette “Footer”; uitgever ontbrak in de footer | “Voettekst” en uitgeversregel |
+| 15 | Verouderde `interest-cohort` in Permissions-Policy gaf consolewaarschuwingen | Verwijderd |

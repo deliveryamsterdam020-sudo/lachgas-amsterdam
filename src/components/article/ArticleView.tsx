@@ -76,7 +76,7 @@ export function ArticleView({ page }: { page: Page }) {
             <Blocks blocks={page.body} />
 
             {page.uncertainties?.length ? (
-              <aside className="mt-12 rounded-2xl border border-dashed border-slate/50 p-5 text-[14.5px] text-graphite">
+              <div role="note" className="mt-12 rounded-2xl border border-dashed border-slate/50 p-5 text-[14.5px] text-graphite">
                 <p className="flex items-center gap-2 font-semibold text-ink">
                   <CircleDashed className="h-4 w-4 text-muted" aria-hidden="true" />
                   {t.uncertainties}
@@ -86,7 +86,7 @@ export function ArticleView({ page }: { page: Page }) {
                     <li key={u}>{u}</li>
                   ))}
                 </ul>
-              </aside>
+              </div>
             ) : null}
 
             {page.faq?.length ? (
@@ -116,7 +116,7 @@ export function ArticleView({ page }: { page: Page }) {
           </div>
 
           {toc.length > 2 && (
-            <aside className="hidden lg:block">
+            <div className="hidden lg:block">
               <nav aria-label={t.onThisPage} className="sticky top-28">
                 <p className="eyebrow text-muted">{t.onThisPage}</p>
                 <ol className="mt-4 space-y-1 border-l border-line">
@@ -131,7 +131,7 @@ export function ArticleView({ page }: { page: Page }) {
                   )}
                 </ol>
               </nav>
-            </aside>
+            </div>
           )}
         </div>
       </div>

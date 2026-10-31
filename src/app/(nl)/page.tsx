@@ -74,6 +74,7 @@ export default function Home() {
           { href: "https://zoek.officielebekendmakingen.nl/stb-2022-461", label: "Staatsblad 2022, 461" },
         ]}
         more={{ href: "/lachgas-verbod/", label: "Lees de volledige uitleg" }}
+        dateLabel="Ingangsdatum: 1 januari 2023"
       />
 
       <CounterSection

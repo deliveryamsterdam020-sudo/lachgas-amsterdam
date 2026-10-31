@@ -57,6 +57,9 @@ export const pageMetadata = (page: Page) =>
 
 const ORG_ID = `${SITE_URL}/#organization`;
 
+// Each JSON-LD block must stand on its own, so references carry name and url too.
+const orgRef = () => ({ "@type": "Organization", "@id": ORG_ID, name: SITE_NAME, url: absoluteUrl("/") });
+
 export function organizationLd() {
   return {
     "@type": "Organization",
@@ -83,7 +86,7 @@ export function websiteLd(locale: Locale) {
     name: SITE_NAME,
     url: absoluteUrl(locale === "nl" ? "/" : "/en/"),
     inLanguage: locale === "nl" ? "nl-NL" : "en",
-    publisher: { "@id": ORG_ID },
+    publisher: orgRef(),
   };
 }
 
@@ -106,11 +109,12 @@ export function articleLd(page: Page, citations: string[]) {
     description: page.metaDescription,
     inLanguage: page.locale === "nl" ? "nl-NL" : "en",
     mainEntityOfPage: absoluteUrl(page.path),
+    image: absoluteUrl(`/og-${page.locale}.png`),
     datePublished: page.published,
     dateModified: page.reviewed,
     // The editorial team is an organisation; Person markup is reserved for real, named authors.
-    author: { "@id": ORG_ID },
-    publisher: { "@id": ORG_ID },
+    author: orgRef(),
+    publisher: orgRef(),
     ...(citations.length ? { citation: citations } : {}),
   };
 }

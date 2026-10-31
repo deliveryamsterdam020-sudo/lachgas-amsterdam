@@ -63,6 +63,7 @@ export default function EnglishHome() {
           { href: "https://www.amsterdam.nl", label: "City of Amsterdam" },
         ]}
         more={{ href: "/en/nitrous-oxide-laws-netherlands/", label: "Read the full explanation" }}
+        dateLabel="In force since 1 January 2023"
       />
 
       <CounterSection

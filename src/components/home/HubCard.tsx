@@ -95,7 +95,7 @@ export function HubCard({ item }: { item: HubItem }) {
       className={`group relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[28px] p-7 ring-1 ring-ink/[0.06] transition-[transform,box-shadow] duration-500 ease-out-soft hover:-translate-y-1 hover:shadow-[0_30px_70px_-30px_rgba(16,28,50,0.45)] sm:p-8 ${surface[item.art]}`}
     >
       <Art art={item.art} />
-      <span className={`eyebrow absolute left-7 top-7 text-[11px] sm:left-8 sm:top-8 ${dark ? "text-white/50" : "text-muted"}`}>{item.index}</span>
+      <span aria-hidden="true" className={`eyebrow absolute left-7 top-7 text-[11px] sm:left-8 sm:top-8 ${dark ? "text-white/50" : "text-muted"}`}>{item.index}</span>
       <div className="relative pr-12">
         <h3 className="text-[clamp(1.35rem,1.1rem+0.8vw,1.75rem)] font-semibold leading-tight tracking-[-0.02em]">{item.title}</h3>
         <p className={`mt-2 max-w-md text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-muted"}`}>{item.text}</p>

@@ -4,7 +4,7 @@ Laatst bijgewerkt: 31 oktober 2026
 
 ## Status
 
-De site is **inhoudelijk en technisch klaar voor livegang**. Alle 30 pagina’s staan op `published` en zijn indexeerbaar; de sitemap bevat 35 URL’s. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
+De site is **inhoudelijk en technisch klaar voor livegang**. Alle 30 pagina’s staan op `published`, de slotcontrole is afgerond en zijn indexeerbaar; de sitemap bevat 35 URL’s. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
 
 ## Afgerond
 
@@ -20,6 +20,7 @@ De site is **inhoudelijk en technisch klaar voor livegang**. Alle 30 pagina’s 
 | Design | Apple-achtige navigatie met dropdownpanelen en iconen; iOS-achtig mobiel menu; Amsterdam-sectie op de Engelse homepage. |
 | Performance | Heroscène gesplitst in statische laag + lichtlaag (statische, gecomprimeerde SVG’s: 5,6 KB + 2,5 KB gzip); camerabeweging via GPU-transform; mono-font niet meer preloaded; LCP-elementen niet meer onzichtbaar geanimeerd. |
 | Cross-browser | Chromium (Edge), Firefox en WebKit getest; CSP-directive die WebKit lokaal brak verwijderd. |
+| Slotcontrole | Alle code en teksten regel voor regel nagelopen; 15 verbeteringen (o.a. Recyclepunten, bronvaste formuleringen, toetsenbordvolgorde, structured data). axe 0 overtredingen, 32/32 externe links werken. Zie TEST_REPORT.md. |
 
 ## Gemaakte keuzes
 

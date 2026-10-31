@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { GableSkyline } from "@/components/visual/GableSkyline";
-import { footerNav, ui } from "@/lib/site";
+import { PUBLISHER, footerNav, ui } from "@/lib/site";
 import type { Locale } from "@/content/types";
 
 export function Footer({ locale }: { locale: Locale }) {
@@ -24,7 +24,7 @@ export function Footer({ locale }: { locale: Locale }) {
               {t.notGov}
             </p>
           </div>
-          <nav aria-label={locale === "nl" ? "Footer" : "Footer"} className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <nav aria-label={locale === "nl" ? "Voettekst" : "Footer"} className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {footerNav[locale].map((col) => (
               <div key={col.title}>
                 <h2 className="eyebrow text-white/60">{col.title}</h2>
@@ -42,8 +42,13 @@ export function Footer({ locale }: { locale: Locale }) {
           </nav>
         </div>
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-[12.5px] text-white/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>{t.disclaimer}</p>
-          <p className="eyebrow text-[10.5px]">52.3676° N · 4.9041° E</p>
+          <div className="space-y-1">
+            <p>{t.disclaimer}</p>
+            <p>
+              {locale === "nl" ? "Uitgave" : "Published by"}: {PUBLISHER.name} · {PUBLISHER.street}, {PUBLISHER.city}
+            </p>
+          </div>
+          <p className="eyebrow text-[10.5px]" aria-hidden="true">52.3676° N · 4.9041° E</p>
         </div>
       </div>
     </footer>
