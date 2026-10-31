@@ -23,3 +23,13 @@ Kort antwoord bovenaan · bronnen onderaan met controleniveau · onzekerheden zi
 
 ## Controlecyclus
 Wetgeving elk kwartaal, gezondheid elk halfjaar, en direct bij wetswijziging. De audit faalt bij verlopen controles.
+
+## Doelgroep: 16 tot 35 jaar
+De primaire doelgroep is 16–35 jaar: Amsterdamse jongeren en jongvolwassenen, studenten, uitgaanders en jonge toeristen. Dat is ook de groep waarin lachgas het meest is gebruikt (RIVM).
+
+Gevolgen voor de redactie:
+- **Toon:** direct en zonder oordeel, in de je-vorm; korte zinnen; het korte antwoord bovenaan.
+- **Mobiel eerst:** deze groep leest vooral op de telefoon; elke pagina is op 360 px getest.
+- **Onderwerpen die voor deze groep tellen:** gezondheid zonder bangmakerij, wat er gebeurt als je wordt aangetroffen, uitgaan en festivals, cilinders in de buurt, anonieme hulp.
+- **Nooit:** gebruik aantrekkelijk maken, gebruiksinstructies, “veiliger gebruiken”-tips, verkooppunten of prijzen.
+- **Cijfers voor deze groep** staan bovenaan op /lachgas-gebruik/ (“In één oogopslag: 16 tot 35 jaar”).

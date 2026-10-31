@@ -35,3 +35,6 @@ Hypotheses om te toetsen (Search Console, een rankingtool of handmatig op google
 1. SERP-analyse per zoekintentie: top 10, contenttype, actualiteit, gaten.
 2. Search Console koppelen na livegang; pagina’s pas laten indexeren na publicatie.
 3. Lokale autoriteit: alleen geverifieerde Amsterdamse ontwikkelingen toevoegen, met datum en bron.
+
+## Doelgroep 16–35
+Zoekgedrag van deze groep is mobiel, vraaggestuurd (“mag je lachgas…”, “is lachgas slecht”, “boete lachgas”) en deels Engelstalig (jonge toeristen). De directe antwoorden bovenaan elke pagina zijn daarop gericht. Linkbuilding: kanalen die deze groep bereiken en betrouwbaar zijn — studentenorganisaties, jongerenwerk, mbo- en hbo-instellingen, festivalvoorlichting, lokale media.

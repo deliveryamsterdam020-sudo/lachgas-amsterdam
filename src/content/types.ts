@@ -25,6 +25,7 @@ export type Category =
   | "hulp"
   | "toeristen"
   | "nieuws"
+  | "gebruik"
   | "redactie";
 
 /**

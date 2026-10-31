@@ -447,7 +447,7 @@ export const nlPages: Page[] = [
       { type: "p", text: "Meer adressen en tips voor ouders en naasten staan op [Hulp bij lachgas](/hulp/)." },
     ],
     sources: ["rivm-cam-2026", "drugsinfo-lachgas", "drugsinfo-contact", "jellinek-locaties"],
-    related: ["hulp", "gezondheid", "zenuwschade"],
+    related: ["hulp", "gebruik", "gezondheid", "zenuwschade"],
     status: "published",
     published: D,
     reviewed: D,
@@ -699,7 +699,7 @@ export const nlPages: Page[] = [
       },
     ],
     sources: ["rijk-verbod", "amsterdam-recyclepunt", "amsterdam-meldingen", "rivm-cam-2026", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods", "nos-nieuwsuur-afval"],
-    related: ["cilinder-gevonden", "amsterdam", "merken", "soorten"],
+    related: ["wegwerp", "cilinder-gevonden", "amsterdam", "merken"],
     translationOf: "en-cylinders",
     status: "published",
     published: D,
@@ -841,14 +841,45 @@ export const nlPages: Page[] = [
           { label: "Direct gevaar of ongeval", value: "112" },
         ],
       },
-      { type: "h2", id: "achtergrond", text: "Achtergrond" },
+      { type: "h2", id: "vormen", text: "Welke vormen van overlast zijn er?" },
       {
-        type: "p",
-        text: "In 2019 meldde burgemeester Halsema de gemeenteraad een ‘explosief toenemende overlast’ door straatverkoop van lachgas ([NOS](https://nos.nl/artikel/2300206-amsterdam-opent-jacht-op-verkopers-van-lachgas)). Sinds het landelijke verbod is de straatoverlast afgenomen, maar zijn de afvalproblemen gegroeid ([NOS Nieuwsuur](https://nos.nl/nieuwsuur/artikel/2573331-problemen-lachgascilinders-in-afval-nemen-toe-bewoners-draaien-op-voor-kosten)). Na het stoppen van het AEB-innamepunt in februari 2024 zag de gemeente meer gedumpte cilinders, bijvoorbeeld tientallen bij een container aan het Bos en Lommerplantsoen ([AT5](https://www.at5.nl/artikelen/226649/lachgascilinders-vaker-gedumpt-in-de-stad-na-afschaffing-statiegeld-door-aeb)).",
+        type: "steps",
+        items: [
+          {
+            title: "Van straatverkoop naar afval",
+            text: "In 2019 meldde burgemeester Halsema de gemeenteraad een ‘explosief toenemende overlast’ door straatverkoop van lachgas ([NOS](https://nos.nl/artikel/2300206-amsterdam-opent-jacht-op-verkopers-van-lachgas)). Sinds het landelijke verbod is de straatoverlast afgenomen, maar zijn de afvalproblemen gegroeid ([NOS Nieuwsuur](https://nos.nl/nieuwsuur/artikel/2573331-problemen-lachgascilinders-in-afval-nemen-toe-bewoners-draaien-op-voor-kosten)).",
+          },
+          {
+            title: "Gedumpte cilinders",
+            text: "Na het stoppen van het AEB-innamepunt in februari 2024 zag de gemeente meer gedumpte cilinders, bijvoorbeeld tientallen bij een container aan het Bos en Lommerplantsoen. Meestal worden er twee tot vier cilinders bij elkaar gevonden ([AT5](https://www.at5.nl/artikelen/226649/lachgascilinders-vaker-gedumpt-in-de-stad-na-afschaffing-statiegeld-door-aeb)).",
+          },
+          {
+            title: "Gebruik in auto’s en uit het zicht",
+            text: "Volgens het [RIVM](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) vindt gebruik steeds minder plaats in het uitgaansleven en vaker thuis, op hotelkamers en in auto’s. Gebruik in en rond auto’s brengt extra verkeersrisico’s mee: lachgas verstoort waarneming en coördinatie.",
+          },
+          {
+            title: "Politie-incidenten",
+            text: "Het aantal lachgasgerelateerde politie-incidenten lijkt na een flinke daling in 2023 in 2024 en 2025 weer te zijn toegenomen, maar ligt nog duidelijk lager dan vóór het verbod (RIVM).",
+          },
+        ],
+      },
+      { type: "h2", id: "wat-doet-de-gemeente", text: "Wat doet de gemeente?" },
+      {
+        type: "list",
+        items: [
+          "Reinigers, Stadswerken, afvalinzamelaars, handhavers van THOR en de politie nemen cilinders mee die ze op straat aantreffen.",
+          "Cilinders van ongeveer een meter of groter worden opgehaald door een bedrijf dat Stadswerken daarvoor inhuurt; volle cilinders worden verwijderd door THOR of de politie.",
+          "Ingezamelde cilinders gaan naar een centraal afvalpunt aan de Seineweg.",
+        ],
       },
       {
         type: "p",
-        text: "Volgens het [RIVM](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) vindt gebruik steeds minder plaats in het uitgaansleven en vaker thuis, in hotelkamers en in auto’s; lachgas heeft inmiddels een negatief imago. Het aantal lachgasgerelateerde politie-incidenten lijkt na een flinke daling in 2023 in 2024 en 2025 weer te zijn toegenomen.",
+        text: "Bron: [AT5, 15 mei 2024](https://www.at5.nl/artikelen/226649/lachgascilinders-vaker-gedumpt-in-de-stad-na-afschaffing-statiegeld-door-aeb). Waarom gedumpte cilinders zo’n probleem zijn, lees je op [Wegwerpcilinders](/wegwerp-lachgascilinders/).",
+      },
+      { type: "h2", id: "kosten", text: "Wie betaalt de rekening?" },
+      {
+        type: "p",
+        text: "Cilinders die toch in het restafval belanden, veroorzaken explosies in de verbrandingsovens van AEB. AEB sprak in 2024 van schade die kan oplopen tot 20 miljoen euro per jaar ([AT5](https://www.at5.nl/artikelen/226649/lachgascilinders-vaker-gedumpt-in-de-stad-na-afschaffing-statiegeld-door-aeb)). Het bedrijf berekent de extra kosten door aan gemeenten, die ze verhalen via de gemeentelijke belastingen ([NOS Nieuwsuur](https://nos.nl/nieuwsuur/artikel/2573331-problemen-lachgascilinders-in-afval-nemen-toe-bewoners-draaien-op-voor-kosten)). Uiteindelijk betalen bewoners dus mee.",
       },
       {
         type: "callout",
@@ -857,12 +888,180 @@ export const nlPages: Page[] = [
         text: "Achter overlast zit soms een persoon die hulp nodig heeft. Lees op [Hulp bij lachgas](/hulp/) waar je anoniem advies krijgt.",
       },
     ],
-    sources: ["amsterdam-rib-2023", "amsterdam-meldingen", "nos-amsterdam-2019", "nos-nieuwsuur-afval", "at5-dumping", "rivm-cam-2026", "om-lachgasverbod-2023"],
-    related: ["regels-amsterdam", "cilinder-gevonden", "amsterdam", "hulp"],
+    sources: ["amsterdam-rib-2023", "amsterdam-meldingen", "nos-amsterdam-2019", "nos-nieuwsuur-afval", "at5-dumping", "rivm-cam-2026", "om-lachgasverbod-2023", "drugsinfo-lachgas"],
+    related: ["wegwerp", "cilinder-gevonden", "regels-amsterdam", "gebruik"],
     status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-01-31",
+  },
+
+  {
+    id: "wegwerp",
+    locale: "nl",
+    path: "/wegwerp-lachgascilinders/",
+    category: "cilinders",
+    eyebrow: "Cilinders · Wegwerptanks",
+    title: "Wegwerpcilinders: de grote lachgastanks",
+    metaTitle: "Wegwerp lachgascilinders: risico’s, afval en overlast",
+    metaDescription:
+      "Waarom grote wegwerpcilinders de slagroompatronen verdrongen, en wat dat betekent voor gezondheid, afval, overlast en beleid. Met bronnen.",
+    answer:
+      "Sinds het verbod zijn de kleine slagroompatronen volgens het RIVM uit het straatbeeld verdwenen en vervangen door grote wegwerpcilinders. Die zijn op drie manieren een probleem: ze maken intensief gebruik makkelijker, het ijskoude gas kan bevriezingswonden geven, en weggegooide cilinders ontploffen in afvalovens. De kosten daarvan komen bij gemeenten en bewoners terecht.",
+    body: [
+      {
+        type: "callout",
+        tone: "warning",
+        title: "Informatie, geen productinformatie",
+        text: "Deze pagina beschrijft het maatschappelijke probleem. Je vindt hier geen prijzen, verkooppunten, merkvergelijkingen of gebruiksinstructies.",
+      },
+      { type: "h2", id: "wat-zijn", text: "Wat is een wegwerpcilinder?" },
+      {
+        type: "p",
+        text: "Een wegwerpcilinder is een grote drukhouder met vloeibaar lachgas, bedoeld om na gebruik weg te gooien. Vóór 2023 konden cilinders vaak worden hervuld of tegen statiegeld worden ingeleverd ([NOS Nieuwsuur](https://nos.nl/nieuwsuur/artikel/2573331-problemen-lachgascilinders-in-afval-nemen-toe-bewoners-draaien-op-voor-kosten)). Sinds het verbod circuleren vooral wegwerpexemplaren. Het RIVM noemt cilinders van 2 kilo en merken als Fastgas.",
+      },
+      { type: "h2", id: "verschuiving", text: "Van patroon naar tank" },
+      {
+        type: "p",
+        text: "Volgens de [RIVM-notitie van maart 2026](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) lijken de kleine lachgaspatronen — bedoeld voor de slagroomspuit — uit het straatbeeld verdwenen en vervangen door wegwerpcilinders. Straatverkopers lijken voorzichtiger en een deel is overgestapt op de verkoop van vapes, terwijl webwinkels weer actiever zijn met promotie. Meer over de merknamen op [Lachgasmerken](/lachgas-merken/).",
+      },
+      { type: "h2", id: "gezondheid", text: "Waarom tanks riskanter zijn voor de gezondheid" },
+      {
+        type: "list",
+        items: [
+          "**Meer per keer.** Het Trimbos-instituut signaleert dat het vullen van ballonnen uit grote tanks de kans op gezondheidsproblemen vergroot. Onder mbo-studenten die in de laatste maand lachgas gebruikten, gebruikte in 2023 40,2% tien of meer ballonnen per keer (RIVM).",
+          "**Bevriezing.** Het gas komt ijskoud uit de cilinder. Brandwondencentra hebben ernstige vrieswonden gezien bij mensen die tanks vasthielden of tussen hun benen klemden; sommigen hielden blijvende littekens over ([DrugsInfo](https://www.drugsinfo.nl/lachgas/wat-je-moet-weten-over-lachgas/)).",
+          "**Geen veilige grens.** Volgens het RIVM kan zelfs één ballon al tintelingen geven. Zie [Lachgas en gezondheid](/gezondheid/).",
+        ],
+      },
+      { type: "h2", id: "afval", text: "Ontploffingen in de afvalverwerking" },
+      {
+        type: "p",
+        text: "Cilinders zonder ontluchtingssysteem kunnen in de verbrandingsoven ontploffen ([NOS Nieuwsuur](https://nos.nl/nieuwsuur/artikel/2573331-problemen-lachgascilinders-in-afval-nemen-toe-bewoners-draaien-op-voor-kosten)). Het Amsterdamse AEB meldde vanaf half januari 2023 vaker en hardere explosies, met schade aan roostervloeren en ketelwanden. Sinds maart 2025 controleert AEB wekelijks zo’n 1.800 ton huishoudelijk en 1.250 ton bedrijfsafval op cilinders en vermaalt die in een speciale loods ([NH Nieuws](https://www.nhnieuws.nl/nieuws/346301/nieuwe-lachgasloods-moet-explosies-in-ovens-aeb-voorkomen-heel-veel-schade-voor-bedrijf)). Toch waren er volgens een AEB-woordvoerder in 2025 nog 15 tot 20 explosies per week.",
+      },
+      { type: "h2", id: "straat", text: "Overlast op straat" },
+      {
+        type: "p",
+        text: "Gedumpte cilinders liggen in portieken, parken en naast containers. Rotterdam haalde in twaalf maanden ruim 33.000 cilinders van straat (NOS Nieuwsuur, juli 2025). In Amsterdam nam het aantal dumpingen toe nadat AEB in februari 2024 stopte met zijn inleververgoeding ([AT5](https://www.at5.nl/artikelen/226649/lachgascilinders-vaker-gedumpt-in-de-stad-na-afschaffing-statiegeld-door-aeb)). Hoe je een gevonden cilinder meldt, lees je op [Lachgascilinder gevonden](/lachgascilinder-gevonden/).",
+      },
+      { type: "h2", id: "kosten", text: "De kosten" },
+      {
+        type: "facts",
+        items: [
+          { label: "Schade AEB", value: "Volgens AEB kan de schade oplopen tot 20 miljoen euro per jaar (AT5, mei 2024)." },
+          { label: "Doorberekend", value: "AEB berekent de kosten door aan gemeenten, die ze verhalen via de gemeentelijke belastingen (NOS Nieuwsuur)." },
+          { label: "Voorbeeld", value: "In Heemstede steeg de afvalstoffenheffing in 2025 gemiddeld met 42 euro, vooral door lachgas (NOS Nieuwsuur)." },
+        ],
+      },
+      { type: "h2", id: "beleid", text: "Wat wordt eraan gedaan?" },
+      {
+        type: "list",
+        items: [
+          "**Statiegeld:** een landelijk statiegeldsysteem is voorgesteld, maar niet ingevoerd. AEB’s eigen inleverpunt haalde in vijf maanden zo’n 80.000 cilinders op en stopte in februari 2024.",
+          "**Pilot:** het kabinet-Rutte IV stelde 450.000 euro beschikbaar voor een pilot met innovatieve technieken; de afvalbranche noemt dat te weinig.",
+          "**Rechtszaak:** eind 2024 kondigden gemeenten en afvalverwerkers aan de Staat aan te klagen. De betrokken ministeries stellen dat de schade wordt veroorzaakt door mensen die de wet overtreden, niet door het verbod.",
+          "**Europa:** de ministeries staan open voor een Europees verbod, om de invoer uit landen zonder verbod te beperken; anderen pleiten voor een verplicht ontluchtingssysteem via Europese regels.",
+        ],
+      },
+      { type: "p", text: "Bron van deze vier punten: [NOS Nieuwsuur, 2 juli 2025](https://nos.nl/nieuwsuur/artikel/2573331-problemen-lachgascilinders-in-afval-nemen-toe-bewoners-draaien-op-voor-kosten) en [AT5](https://www.at5.nl/artikelen/225064/aeb-stopt-na-vijf-maanden-met-innamepunt-lachgas-maar-liefst-80000-cilinders-ingeleverd)." },
+    ],
+    sources: ["rivm-cam-2026", "nos-nieuwsuur-afval", "trimbos-lachgas", "drugsinfo-lachgas", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods"],
+    related: ["cilinders", "cilinder-gevonden", "overlast", "merken"],
+    translationOf: "en-tanks",
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-01-31",
+  },
+  {
+    id: "gebruik",
+    locale: "nl",
+    path: "/lachgas-gebruik/",
+    category: "gebruik",
+    eyebrow: "Gebruik en cijfers",
+    title: "Lachgasgebruik: cijfers en trends",
+    metaTitle: "Lachgasgebruik in Nederland en Amsterdam: cijfers en trends",
+    metaDescription:
+      "Hoeveel mensen gebruiken lachgas, wie, waar en hoe vaak? De belangrijkste cijfers en trends sinds 2019 voor Nederland en Amsterdam, op basis van het RIVM.",
+    answer:
+      "Het recreatieve lachgasgebruik daalt sinds 2019 in vrijwel alle groepen. In 2024 had 0,5% van de Nederlandse volwassenen in het afgelopen jaar lachgas gebruikt, tegen 2,7% in 2018. Tegelijk blijft er een kleine, kwetsbare groep die intensief en vaak alleen gebruikt, met relatief veel gezondheidsproblemen. In de regio Amsterdam ligt het gebruik onder jongvolwassenen hoger dan gemiddeld.",
+    body: [
+      {
+        type: "callout",
+        tone: "info",
+        title: "Over deze pagina",
+        text: "Hier staan cijfers en trends over gebruik, niet hoe je lachgas gebruikt. Recreatief gebruik is verboden en schadelijk. Alle cijfers komen uit de [RIVM-notitie van 2 maart 2026](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf), tenzij anders vermeld.",
+      },
+      { type: "h2", id: "16-35", text: "In één oogopslag: 16 tot 35 jaar" },
+      {
+        type: "facts",
+        items: [
+          { label: "Uitgaanders 16–35", value: "Jaargebruik daalde van 35,2% in 2020 naar 15,0% in 2023." },
+          { label: "Amsterdam 16–25", value: "3,0% gebruikte in 2024 lachgas in het afgelopen jaar — het op één na hoogste percentage van Nederland." },
+          { label: "Volwassenen 18–29", value: "Ooit-gebruik daalde van 24,3% in 2018 naar 20,7% in 2024; het is de leeftijdsgroep waarin het meest is gebruikt." },
+          { label: "Intensief", value: "40,2% van de mbo-studenten die in de laatste maand gebruikten, gebruikte tien of meer ballonnen per keer." },
+        ],
+      },
+      { type: "h2", id: "volwassenen", text: "Volwassenen" },
+      {
+        type: "facts",
+        items: [
+          { label: "Afgelopen jaar", value: "0,5% in 2024 — tegen 0,9% in 2023 en 2,7% in 2018." },
+          { label: "Ooit gebruikt", value: "7,5% van de volwassenen; minder dan 0,1% gebruikte in de laatste maand." },
+          { label: "Hoe vaak", value: "80,7% van de jaargebruikers gebruikte één of enkele keren; 19,4% maandelijks of vaker." },
+          { label: "Wie", value: "Vooral mannen, 18- tot 29-jarigen, hoger opgeleiden en mensen in (zeer) sterk stedelijke gebieden." },
+          { label: "Leeftijd", value: "Jaargebruikers waren in 2024 gemiddeld 30,3 jaar, het hoogste sinds 2018; de gemiddelde startleeftijd was 24,8 jaar." },
+        ],
+      },
+      { type: "h2", id: "jongeren", text: "Jongeren" },
+      {
+        type: "list",
+        items: [
+          "**Scholieren (12–16 jaar):** het gebruik is in 2023 meer dan gehalveerd ten opzichte van 2015. In 2023 had 3,1% ooit lachgas gebruikt en 0,9% in de laatste maand. De sterkste daling viel tussen 2019 en 2021, vooral na de aankondiging van het verbod in december 2019.",
+          "**Mbo-studenten (16–18 jaar):** ooit-gebruik daalde van 17,2% (2015) naar 10,5% (2023). Wie nog gebruikt, doet dat vaak intensief: 40,2% van de maandgebruikers gebruikte tien of meer ballonnen per keer.",
+          "**Uitgaanders (16–35 jaar):** jaargebruik daalde van 35,2% in 2020 naar 15,0% in 2023. In een panel van uitgaanders zag de meerderheid nauwelijks nog lachgas in het nachtleven.",
+        ],
+      },
+      { type: "h2", id: "amsterdam", text: "Amsterdam" },
+      {
+        type: "list",
+        items: [
+          "In de GGD-regio Amsterdam gebruikte in 2024 3,0% van de 16- tot 25-jarigen lachgas in het afgelopen jaar — na Groningen (3,9%) het hoogste percentage van Nederland.",
+          "Onder jonge Amsterdamse cafébezoekers steeg het jaargebruik van 11% in 2010 naar 35% in 2015 en daalde het daarna tot 9% in 2024 — terug op het niveau van 2010.",
+          "Onder Amsterdamse mbo-studenten daalde het gebruik tussen 2016 en 2021, maar wie wel gebruikte, deed dat vaker.",
+        ],
+      },
+      { type: "h2", id: "waar", text: "Waar en hoe wordt gebruikt?" },
+      {
+        type: "p",
+        text: "Door strengere regels en lokale verboden vindt gebruik volgens het RIVM vooral nog plaats thuis, op hotelkamers en in auto’s. Lachgas heeft een negatief imago gekregen en er zijn minder groepen waarin het wordt gebruikt. Een veldwerker van Jellinek in Utrecht ziet dat gebruik vaak in een groep begint maar uiteindelijk vaak alleen plaatsvindt. Gebruik in en rond auto’s brengt extra verkeersrisico’s mee.",
+      },
+      { type: "h2", id: "intensief", text: "Een kleine groep intensieve gebruikers" },
+      {
+        type: "p",
+        text: "Terwijl het algemene gebruik daalt, blijft er een kleine maar kwetsbare groep die intensief en problematisch gebruikt, vaak met bredere problemen rond gezondheid, school, schulden of huisvesting. AVROTROS Radar beschrijft problematisch gebruik als meer dan vijftig ballonnen per sessie. In 2024 werden 190 mensen in de verslavingszorg behandeld voor lachgasproblematiek, en de informatieverzoeken bij het Nationaal Vergiftigingen Informatie Centrum verdubbelden van 24 in 2023 naar 48 in 2024. Lees meer op [Lachgas en verslaving](/lachgas-verslaving/) en [Lachgas en zenuwschade](/lachgas-zenuwschade/).",
+      },
+      { type: "h2", id: "handhaving", text: "Handhaving in cijfers" },
+      {
+        type: "facts",
+        items: [
+          { label: "In beslag genomen", value: "68.000 cilinders in 2023, 66.000 in 2024 en 77.000 in 2025 (politie, via RIVM)." },
+          { label: "Incidenten", value: "Na een flinke daling in 2023 lijkt het aantal lachgasgerelateerde politie-incidenten in 2024 en 2025 weer te stijgen; de meeste in Zuid-Holland." },
+        ],
+      },
+      {
+        type: "callout",
+        tone: "help",
+        title: "Zelf hulp nodig of zorgen om iemand?",
+        text: "Bel of chat anoniem met de DrugsInfo Infolijn (0900-1995) of praat met je huisarts. Meer op [Hulp bij lachgas](/hulp/).",
+      },
+    ],
+    sources: ["rivm-cam-2026", "radar-2025", "drugsinfo-lachgas"],
+    related: ["verslaving", "gezondheid", "wegwerp", "amsterdam"],
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-04-30",
   },
 
   // ───────────────────────────────────────────────────────────── HULP ──

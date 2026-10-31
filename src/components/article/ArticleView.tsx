@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Inline } from "@/components/ui/Inline";
 import { Reveal } from "@/components/ui/Reveal";
 
-const SEEDS: Record<string, number> = { wetgeving: 3, gezondheid: 8, soorten: 13, merken: 21, cilinders: 34, amsterdam: 55, hulp: 89, toeristen: 144, nieuws: 377, redactie: 233 };
+const SEEDS: Record<string, number> = { wetgeving: 3, gezondheid: 8, soorten: 13, merken: 21, cilinders: 34, amsterdam: 55, hulp: 89, toeristen: 144, nieuws: 377, gebruik: 610, redactie: 233 };
 
 export function ArticleView({ page }: { page: Page }) {
   const t = ui[page.locale];

@@ -23,7 +23,9 @@ export type IconKey =
   | "compass"
   | "repeat"
   | "megaphone"
-  | "newspaper";
+  | "newspaper"
+  | "chart"
+  | "flame";
 
 export interface MenuLink {
   href: string;
@@ -85,7 +87,9 @@ export const menu: Record<Locale, Menu> = {
         links: [
           { href: "/lachgas-soorten-en-toepassingen/", label: "Soorten en toepassingen", desc: "Medisch, culinair en technisch", icon: "flask" },
           { href: "/lachgas-merken/", label: "Merken", desc: "Wat openbare bronnen melden", icon: "tag" },
+          { href: "/lachgas-gebruik/", label: "Gebruik en cijfers", desc: "Wie, hoeveel en waar", icon: "chart" },
           { href: "/lachgascilinders/", label: "Cilinders en patronen", desc: "Risico’s en afval", icon: "cylinder" },
+          { href: "/wegwerp-lachgascilinders/", label: "Wegwerpcilinders", desc: "Tanks, afval en kosten", icon: "flame" },
           { href: "/lachgascilinder-gevonden/", label: "Cilinder gevonden?", desc: "Zo handel je veilig", icon: "recycle" },
           { href: "/bronnen/", label: "Bronregister", desc: "Alle bronnen, openbaar", icon: "fileText" },
         ],
@@ -145,6 +149,7 @@ export const menu: Record<Locale, Menu> = {
           { href: "/en/nitrous-oxide-types/", label: "Types and uses", desc: "Medical, culinary, technical", icon: "flask" },
           { href: "/en/nitrous-oxide-brands/", label: "Brands", desc: "What public sources report", icon: "tag" },
           { href: "/en/nitrous-oxide-cylinders/", label: "Cylinders", desc: "Found one? What to do", icon: "cylinder" },
+          { href: "/en/disposable-nitrous-oxide-tanks/", label: "Disposable tanks", desc: "Why they are a problem", icon: "flame" },
           { href: "/en/sources/", label: "Source register", desc: "Every source, in public", icon: "library" },
           { href: "/en/about/", label: "About us", desc: "Independent and non-commercial", icon: "info" },
         ],

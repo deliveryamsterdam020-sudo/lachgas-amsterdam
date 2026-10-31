@@ -19,7 +19,7 @@ export const metadata = buildMetadata({
   type: "website",
 });
 
-const ORDER: Category[] = ["wetgeving", "gezondheid", "soorten", "merken", "cilinders", "amsterdam", "hulp", "nieuws"];
+const ORDER: Category[] = ["wetgeving", "gezondheid", "soorten", "merken", "cilinders", "amsterdam", "gebruik", "hulp", "nieuws"];
 
 export default function Kennisbank() {
   const listed = pagesFor("nl").filter((p) => !p.unlisted);

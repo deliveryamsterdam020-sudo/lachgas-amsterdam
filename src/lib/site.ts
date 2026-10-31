@@ -47,7 +47,9 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
       items: [
         { href: "/lachgas-soorten-en-toepassingen/", label: "Soorten en toepassingen" },
         { href: "/lachgas-merken/", label: "Merken" },
+        { href: "/lachgas-gebruik/", label: "Gebruik en cijfers" },
         { href: "/lachgascilinders/", label: "Cilinders en patronen" },
+        { href: "/wegwerp-lachgascilinders/", label: "Wegwerpcilinders" },
         { href: "/amsterdam/", label: "Amsterdam" },
         { href: "/lachgas-overlast-amsterdam/", label: "Overlast melden" },
         { href: "/nieuws/", label: "Nieuws" },
@@ -81,6 +83,7 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
         { href: "/en/nitrous-oxide-types/", label: "Types and uses" },
         { href: "/en/nitrous-oxide-brands/", label: "Brands" },
         { href: "/en/nitrous-oxide-cylinders/", label: "Cylinders" },
+        { href: "/en/disposable-nitrous-oxide-tanks/", label: "Disposable tanks" },
       ],
     },
     {
@@ -174,6 +177,7 @@ export const categoryLabel: Record<Locale, Record<string, string>> = {
     hulp: "Hulp",
     toeristen: "Toeristen",
     nieuws: "Nieuws",
+    gebruik: "Gebruik en cijfers",
     redactie: "Redactie",
   },
   en: {
@@ -186,6 +190,7 @@ export const categoryLabel: Record<Locale, Record<string, string>> = {
     hulp: "Help",
     toeristen: "Visitors",
     nieuws: "News",
+    gebruik: "Use and figures",
     redactie: "About",
   },
 };

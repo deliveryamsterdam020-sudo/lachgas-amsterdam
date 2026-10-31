@@ -7,11 +7,13 @@ import {
   Activity,
   ArrowRight,
   BookOpen,
+  ChartColumn,
   ChevronDown,
   ChevronRight,
   Compass,
   Cylinder,
   FileText,
+  Flame,
   FlaskConical,
   Globe,
   HeartPulse,
@@ -56,6 +58,8 @@ const ICONS: Record<IconKey, LucideIcon> = {
   repeat: Repeat,
   megaphone: Megaphone,
   newspaper: Newspaper,
+  chart: ChartColumn,
+  flame: Flame,
 };
 
 interface Props {
