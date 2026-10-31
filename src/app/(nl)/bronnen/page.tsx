@@ -1,9 +1,11 @@
 import { PageHero } from "@/components/article/PageHero";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SourceRegister } from "@/components/article/SourceRegister";
 import { specialRoutes } from "@/content";
 import { sources } from "@/content/sources";
-import { buildMetadata } from "@/lib/seo";
+import { breadcrumbLd, buildMetadata, graph } from "@/lib/seo";
 
+const crumbs = [{ name: "Home", path: "/" }, { name: "Bronregister", path: "/bronnen/" }];
 const route = specialRoutes.find((r) => r.id === "bronnen")!;
 
 export const metadata = buildMetadata({
@@ -21,7 +23,8 @@ export default function Bronnen() {
   for (const s of sources) counts[s.check]++;
   return (
     <>
-      <PageHero crumbs={[{ name: "Home", path: "/" }, { name: "Bronregister", path: "/bronnen/" }]} eyebrow="Redactie · Transparantie" title="Bronregister" seed={144}>
+      <JsonLd data={graph(breadcrumbLd(crumbs))} />
+      <PageHero crumbs={crumbs} eyebrow="Redactie · Transparantie" title="Bronregister" seed={144}>
         <p className="rise mt-6 max-w-2xl text-[17px] leading-relaxed text-white/75" style={{ ["--rise-delay" as string]: "160ms" }}>
           Iedere bewering op deze website is herleidbaar. Hier staan alle {sources.length} bronnen, met de mate waarin de redactie ze heeft gecontroleerd: {counts.full} volledig gelezen, {counts.summary} op samenvatting gecontroleerd, {counts.pending} nog te beoordelen.
         </p>

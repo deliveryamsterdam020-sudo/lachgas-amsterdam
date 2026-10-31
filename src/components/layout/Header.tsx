@@ -17,6 +17,8 @@ import {
   HeartPulse,
   Info,
   Landmark,
+  Megaphone,
+  Newspaper,
   Library,
   LifeBuoy,
   MapPin,
@@ -24,6 +26,7 @@ import {
   Phone,
   Plane,
   Recycle,
+  Repeat,
   Scale,
   Tag,
   type LucideIcon,
@@ -50,6 +53,9 @@ const ICONS: Record<IconKey, LucideIcon> = {
   plane: Plane,
   info: Info,
   compass: Compass,
+  repeat: Repeat,
+  megaphone: Megaphone,
+  newspaper: Newspaper,
 };
 
 interface Props {

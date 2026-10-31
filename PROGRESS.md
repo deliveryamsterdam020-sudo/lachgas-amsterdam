@@ -2,49 +2,47 @@
 
 Laatst bijgewerkt: 31 oktober 2026
 
-## Status in één zin
+## Status
 
-De technische en visuele basis staat en is getest; het platform is **nog niet klaar voor publicatie**, omdat juridische en medische controle, uitgeversgegevens en het productiedomein ontbreken.
+De site is **inhoudelijk en technisch klaar voor livegang**. Alle 30 pagina’s staan op `published` en zijn indexeerbaar; de sitemap bevat 35 URL’s. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
 
 ## Afgerond
 
-| Fase | Wat |
+| Onderdeel | Wat |
 |---|---|
-| 1 Analyse | Lege werkmap; Next.js 16.4 (App Router, Turbopack, Cache Components), React 19, Tailwind 4, TypeScript. |
-| 2 Strategie | Informatiearchitectuur, contentmodel, SEO-structuur, bronregister (zie ARCHITECTURE.md, SEO_STRATEGY.md, CONTENT_PLAN.md). |
-| 3 Design | Eigen visuele taal: grachtenpanden-generator (trap-, hals-, klok-, tuit- en lijstgevels), geanimeerde grachtscène met lichtjesbrug en waterreflecties, abstracte grachtengordelkaart, designsysteem (DESIGN_SYSTEM.md). |
-| 4 Bouw | Homepage (9 secties), artikelsjabloon, kennisbank, bronregister, 404, Apple-achtige navigatie met dropdownpanelen en iOS-achtig mobiel menu met iconen. |
-| 5 Content | 15 NL-pagina’s + 8 EN-pagina’s + 2 homepages, 24 bronnen. Feiten gecontroleerd tegen Rijksoverheid, VNG, Trimbos, DrugsInfo, AT5, NOS. |
-| 6 Redactie | Contentmodel met statussen (draft → published), controledatums, onzekerheden per pagina, openbaar bronregister met controleniveau, `npm run content:audit`. |
-| 7 Testen | Crawl van alle routes, metadata, hreflang, JSON-LD, mobiel, toetsenbord, contrast, performance — zie TEST_REPORT.md. |
-| 8 Visuele audit | Desktop en mobiel bekeken in de browser; verbeterpunten doorgevoerd (heroscène, hubgrid, mobiele header, navigatie). |
+| Uitgever | Lachgas info Amsterdam, Sarphatipark 8, Amsterdam — op Over ons, privacy (NL/EN) en in de Organization-structured data. |
+| Domein | `https://lachgasinfo.nl` als canoniek domein; lachgasinfo.com en www-varianten → 308 naar lachgasinfo.nl. |
+| Hosting | Klaar voor Vercel (DEPLOY.md); privacyverklaring noemt Vercel. |
+| Publicatie | Pagina’s gecontroleerd en vrijgegeven door de uitgever (31-10-2026). Strafmaat: “wordt door het OM bepaald”, met de OM-uitleg erbij. |
+| Bronnen | 27 bronnen; alle bronnen die pagina’s gebruiken zijn volledig gelezen (o.a. Opiumwet, Stb. 2022-461, OM, RIVM CAM-notitie maart 2026, gemeente Amsterdam). De audit blokkeert publicatie op niet-volledig gecontroleerde bronnen. |
+| Correcties na broncontrole | NOS 2021 noemt geen overlastverbod → verwijderd; AEB-data (sept 2023–feb 2024, € 10 → € 5) toegevoegd; OLVG-cijfers (4 → 12, 2019); Alrijne-link dood → vervangen door peer-reviewed bron; APV-gebruiksverbod Amsterdam bevestigd via raadsinformatiebrief 9-2-2023. |
+| Nieuwe pagina’s | `/lachgas-verslaving/`, `/lachgas-overlast-amsterdam/`, `/nieuws/`, `/en/privacy/`, `/en/disclaimer/`, `/en/editorial-policy/`. |
+| Design | Apple-achtige navigatie met dropdownpanelen en iconen; iOS-achtig mobiel menu; Amsterdam-sectie op de Engelse homepage. |
+| Performance | Heroscène gesplitst in statische laag + lichtlaag (statische, gecomprimeerde SVG’s: 5,6 KB + 2,5 KB gzip); camerabeweging via GPU-transform; mono-font niet meer preloaded; LCP-elementen niet meer onzichtbaar geanimeerd. |
+| Cross-browser | Chromium (Edge), Firefox en WebKit getest; CSP-directive die WebKit lokaal brak verwijderd. |
 
 ## Gemaakte keuzes
 
-- **Geen stockfoto’s**: de Amsterdamse beeldtaal is volledig in code getekend (SVG). Geen licentierisico, ~55 KB, scherp op elk scherm, animaties uit bij reduced motion.
-- **Twee root layouts** (`(nl)` en `(en)/en`) zodat `<html lang>` per taal klopt.
-- **Content als code** (TypeScript-modules in Git) i.p.v. een database-CMS: reviewbaar, versiebeheer, geen inlog-aanvalsoppervlak. Een headless CMS kan later op hetzelfde contentmodel aansluiten.
-- **Niet-gepubliceerde pagina’s zijn `noindex`** en staan niet in de sitemap. Juridische/medische content wacht op controle door een professional, zoals de opdracht voorschrijft. De sitemap is daarom nu bewust leeg.
-- **Geen boetebedragen**: niet geverifieerd, dus niet genoemd.
-- **Dunne pagina’s niet gemaakt**: `/lachgas-boete/`, `/lachgas-vervoer/`, `/lachgas-verslaving/`, `/nieuws/` e.a. zijn opgenomen in bestaande pagina’s of wachten op voldoende geverifieerde inhoud.
-- **Geen contactmogelijkheden**, geen cookies, geen analytics, geen externe scripts of fonts.
+- Geen stockfoto’s: Amsterdamse beeldtaal in code (SVG), licentievrij en licht.
+- Content-as-code met redactionele statussen en `npm run content:audit` in plaats van een database-CMS.
+- Geen boetebedragen: het OM bepaalt de strafmaat per zaak; de site citeert de OM-uitleg.
+- Geen contactkanaal; correspondentie (o.a. AVG-verzoeken) per post naar het uitgeversadres.
+- Bewust niet gemaakt (te dun of dubbel): zie CONTENT_PLAN.md.
 
-## Open — blokkerend voor livegang
+## Open — vraagt handeling van de uitgever
 
-1. **Juridische controle** van alle wetgevingspagina’s, privacy en disclaimer door een jurist.
-2. **Medische controle** van gezondheids- en hulppagina’s door een arts.
-3. **Uitgeversgegevens** invullen (`PUBLISHER` in `src/lib/site.ts`, /over-ons/, /privacy/): naam, verwerkingsverantwoordelijke, hostingprovider, bewaartermijn serverlogs. Laat toetsen welke identificatieverplichtingen gelden.
-4. **Productiedomein** instellen via `NEXT_PUBLIC_SITE_URL` (canonicals, hreflang, sitemap en structured data hangen ervan af).
-5. Bronnen met status *summary* volledig lezen; *pending*-bronnen (NRC 2025, RIVM CAM-notitie 2026, WVW, Kamervragen 2023) beoordelen.
-6. Actuele Amsterdamse APV-tekst en inzamelroute voor cilinders (Afvalpunten) verifiëren.
+1. Deployen op Vercel en domeinen/DNS koppelen (DEPLOY.md).
+2. Search Console instellen en sitemap indienen.
+3. Controle op een echte iPhone/Mac: WebKit op Windows toont de letters dunner dan Safari normaal doet.
 
-## Open — niet blokkerend
+## Open — optioneel
 
-- Concurrentieanalyse met echte Nederlandse SERP-data (Search Console / rankingtool); nu alleen hypotheses (SEO_STRATEGY.md).
-- Lighthouse/PageSpeed op de productieomgeving (LCP kon lokaal niet betrouwbaar gemeten worden).
-- Eventueel headless CMS met rollen en inlog, als er meerdere redacteuren komen.
-- Extra pagina’s zodra er geverifieerde inhoud is: verslaving, overlast Amsterdam, hulp voor ouders/jongeren als eigen pagina’s.
+- Concurrentieanalyse met echte Nederlandse zoekdata (Search Console na livegang).
+- Eigen of gelicenseerde Amsterdamse fotografie als aanvulling op de illustraties.
+- Interactieve stadskaart (de grachtengordel is nu decoratief).
+- Headless CMS met inlog en rollen, zodra er meerdere redacteuren zijn.
+- Bronnen die niet meer gebruikt worden (Raad van State-advies, Kamervragen 2023, NRC-artikel) alsnog lezen als er een pagina over komt.
 
 ## Volgende concrete stap
 
-Laat een jurist `/lachgas-verbod/`, `/lachgas-regels-amsterdam/`, `/lachgas-bezit/` en de drie Engelse wetgevingspagina’s beoordelen; zet na akkoord de status op `published` en draai `npm run check`.
+Volg DEPLOY.md: push naar GitHub, importeer in Vercel, koppel lachgasinfo.nl.

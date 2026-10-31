@@ -1,63 +1,58 @@
 # TEST_REPORT — Lachgas Amsterdam
 
-Datum: 31 oktober 2026 · Getest op de **productiebuild** (`next build` + `next start`) tenzij anders vermeld.
+Datum: 31 oktober 2026 · Getest op de **productiebuild** (`next build` + `next start`).
 
 ## Samenvatting
 
 | Onderdeel | Resultaat |
 |---|---|
 | TypeScript, ESLint | ✅ schoon |
-| Content-audit (`npm run content:audit`) | ✅ 0 fouten, 4 waarschuwingen (bronnen nog niet beoordeeld) |
-| Routes (29) | ✅ alle 200; onbekende URL’s 404; zonder slash → 308 |
-| Interne links en ankers | ✅ 0 gebroken (crawl vanaf `/` en `/en/`) |
-| Metadata | ✅ na fixes: titels ≤ 60 tekens, beschrijvingen ≤ 160, canonical op elke pagina |
-| hreflang | ✅ wederkerig voor alle paren, x-default → NL |
-| Structured data | ✅ geldige JSON-LD (Organization, WebSite, Article, BreadcrumbList) |
-| Headings | ✅ precies één h1 per pagina, geen niveausprongen |
-| Mobiel (360 px) | ✅ geen horizontale overflow op alle paginatypes |
-| Toetsenbord | ✅ skiplink eerst, zichtbare focus, menu met Enter open, Escape sluit |
-| Contrast (WCAG AA) | ✅ na fixes (zie onder) |
-| Beveiligingsheaders | ✅ CSP, HSTS, X-Frame-Options, nosniff, Referrer- en Permissions-Policy |
-| Privacy | ✅ 0 cookies, 0 externe requests, fonts self-hosted |
-| Performance (lab) | ⚠️ deels gemeten, zie onder |
+| Content-audit | ✅ 0 fouten · 30 pagina’s `published` · 5 waarschuwingen (ongebruikte bronnen) |
+| Crawl (35 URL’s) | ✅ alle 200, 0 gebroken links of ankers, onbekende URL’s 404 |
+| Metadata | ✅ titels ≤ 60, beschrijvingen ≤ 160, canonical en og:image op elke pagina |
+| hreflang | ✅ wederkerig, x-default → NL, ook in de sitemap |
+| Sitemap / robots | ✅ 35 URL’s met alternates; `index, follow`; sitemap-verwijzing in robots.txt |
+| Domein | ✅ canonicals op https://lachgasinfo.nl; .com en www → 308 |
+| Structured data | ✅ geldige JSON-LD: Organization (met adres), WebSite, Article (met citations), BreadcrumbList |
+| Lighthouse mobiel | ✅ toegankelijkheid 100 · best practices 100 · SEO 100 op alle geteste pagina’s |
+| Lighthouse performance | Homepage 92 mobiel / 99 desktop · artikelpagina 96 mobiel |
+| Cross-browser | ✅ Chromium, Firefox, WebKit: geen JS-fouten, menu’s werken, geen horizontale scroll (desktop en mobiel) |
+| Toetsenbord | ✅ skiplink, zichtbare focus, Enter opent menu, Escape sluit |
+| Beveiliging | ✅ CSP, HSTS, X-Frame-Options, nosniff, Referrer- en Permissions-Policy |
+| Privacy | ✅ 0 cookies, 0 externe requests |
 
-## Gevonden en opgelost tijdens de audit
+## Lighthouse in detail (mobiel, gesimuleerd 4G, Edge headless)
+
+| Pagina | Perf | A11y | BP | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| `/` | 92 | 100 | 100 | 100 | 3,1 s | 0,04 | 130 ms |
+| `/lachgas-verbod/` | 96 | 100 | 100 | 100 | 2,7 s | 0 | 90 ms |
+| `/` desktop | 99 | — | — | — | 0,7 s | 0 | 0 ms |
+
+LCP mobiel ligt in de labsimulatie nog boven de 2,5 s-norm. Velddata (echte bezoekers) komen pas na livegang beschikbaar via Search Console / CrUX.
+
+## Opgelost in deze ronde
 
 | # | Probleem | Oplossing |
 |---|---|---|
-| 1 | Titels tot 89 tekens door automatisch achtervoegsel | Merknaam alleen toevoegen als het past; lange titels ingekort |
-| 2 | Geen og:image op enige pagina | Gegenereerde deelafbeeldingen `/og-nl.png` en `/og-en.png`, expliciet op elke pagina |
-| 3 | Zes meta-descriptions > 160 tekens | Ingekort |
-| 4 | Dubbele SVG-id’s op de homepage | Labelpaden alleen renderen als labels zichtbaar zijn |
-| 5 | Homepage-HTML 440 KB (78 KB gzip): heroscène dubbel in HTML én React-payload | Scène als losse, cachebare `/canal-scene.svg`; HTML nu 285 KB (54 KB gzip) |
-| 6 | Kort-antwoordkaart pas zichtbaar na JavaScript | Rendert direct, animatie via CSS |
-| 7 | Inhoud onzichtbaar zonder JavaScript (scroll-reveal) | `<noscript>`-fallback |
-| 8 | Mobiele header te breed op 375 px | Ondertitel logo verborgen < 400 px |
-| 9 | Lege grijze vlakken in feitenraster tijdens animatie | Raster herbouwd met losse kaarten |
-| 10 | Hubgrid met lege cellen | Laatste kaarten over twee kolommen |
-| 11 | Kleine tekst onder AA-contrast (wit 45 % op navy: 4,4:1; slate op wit: 4,2:1) | Naar wit 60 % (6,8:1) en `muted` (6,0:1) |
-| 12 | Waarschuwing Partial Prefetching op dynamische route | Experimentele optie uitgezet (alle pagina’s zijn statisch) |
-| 13 | Lint-fouten (setState in effect) in header en teller | Teller via `useSyncExternalStore`, menu sluit via klik |
+| 1 | Heroscène werd ieder frame volledig opnieuw getekend (583 elementen + blur) | Gesplitst in statische laag en lichtlaag; drift als GPU-transform |
+| 2 | Heroscène ongecomprimeerd (42 KB) | Statische bestanden in `/public`, gzip 5,6 KB |
+| 3 | LCP-tekst startte onzichtbaar door entree-animatie | `rise-soft`: alleen beweging, geen opacity |
+| 4 | Mono-font concurreerde om bandbreedte | Niet meer preloaded |
+| 5 | WebKit laadde lokaal geen scripts door `upgrade-insecure-requests` | Directive verwijderd (HSTS dekt HTTPS al af) |
+| 6 | Bewering over overlastverbod 2021 niet door bron gedekt | Verwijderd; APV-gebruiksverbod nu onderbouwd met gemeentelijke brief |
+| 7 | Dode bronlink (Alrijne) | Vervangen door peer-reviewed publicatie |
+| 8 | Engelse juridische pagina’s ontbraken | `/en/privacy/`, `/en/disclaimer/`, `/en/editorial-policy/` |
 
-## Performance (homepage, productiebuild, lokaal)
+Eerdere ronde (zie Git-historie): titels, og:image, beschrijvingen, dubbele id’s, contrast, no-JS-fallback, mobiele header, hubgrid.
 
-- TTFB 13 ms · 13 requests · JS 142 KB · CSS 11 KB · fonts 51 KB · heroscène 55 KB · HTML 54 KB (gzip)
-- 0 externe requests.
-- **Niet gemeten:** LCP/INP. Het browserpaneel draaide op de achtergrond, waardoor LCP niet werd gerapporteerd. Meet na deployment met PageSpeed Insights.
-- Aandachtspunt: de heroscène wordt lokaal ongecomprimeerd geserveerd; zet compressie aan op de host (Vercel en de meeste CDN’s doen dit standaard).
+## Bekende beperkingen
 
-## Bewust zo — geen fout
+- WebKit op Windows toont Geist dunner dan Safari op macOS/iOS; controleer op een echt Apple-apparaat.
+- Domeinredirect via de site zelf gaat in twee stappen (host → zonder slash → met slash); laat Vercel de domeinredirect doen (DEPLOY.md), dan is het één stap.
+- Niet getest met echte schermlezers (NVDA/VoiceOver); Lighthouse-toegankelijkheid 100 en structurele controles wel.
 
-- `<meta name="robots" content="noindex">` op alle pagina’s en een **lege sitemap**: geen enkele pagina heeft nog status `published` (juridische/medische controle staat open).
-- Canonicals wijzen naar `http://localhost:3000` zolang `NEXT_PUBLIC_SITE_URL` niet is ingesteld.
-
-## Niet getest
-
-- Echte schermlezers (NVDA/VoiceOver): alleen structurele controles gedaan (namen, landmarks, headings, aria-attributen).
-- Andere browsers dan Chromium.
-- Field data (CrUX) — pas beschikbaar na livegang.
-
-## Hoe opnieuw testen
+## Opnieuw testen
 
 ```bash
 npm run check

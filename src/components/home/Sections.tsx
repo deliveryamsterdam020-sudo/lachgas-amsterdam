@@ -49,8 +49,14 @@ export function Hero({
     <section className="on-dark grain relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink text-white">
       {/* On wide screens the scene shifts right so the bridge and its reflection sit beside the headline. */}
       <div aria-hidden="true" className="absolute inset-0 -z-20 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static animated SVG; next/image adds nothing for SVG */}
-        <img src="/canal-scene.svg" alt="" fetchPriority="high" decoding="async" className="h-full w-full object-cover lg:translate-x-[16%]" />
+        {/* Static scene plus a light layer with the animated reflections. The slow camera
+            drift is a transform on the wrapper, so the browser composites it on the GPU. */}
+        <div className="scene-drift absolute inset-0 lg:left-[16%]">
+          {/* eslint-disable-next-line @next/next/no-img-element -- SVG scene; next/image adds nothing for SVG */}
+          <img src="/canal-scene.svg" alt="" fetchPriority="high" className="absolute inset-0 h-full w-full" />
+          {/* eslint-disable-next-line @next/next/no-img-element -- animated SVG overlay */}
+          <img src="/canal-lights.svg" alt="" loading="lazy" className="absolute inset-0 h-full w-full" />
+        </div>
       </div>
       {/* Overlays for legibility: a left vignette that hides the scene edge, and a short fade at the bottom */}
       <div
@@ -64,13 +70,13 @@ export function Hero({
           <span aria-hidden="true" className="h-px w-10 bg-lamp/60" />
           {kicker}
         </p>
-        <h1 className="display rise mt-6 text-[clamp(3.3rem,1.2rem+9.4vw,10.5rem)]" style={{ ["--rise-delay" as string]: "90ms" }}>
+        <h1 className="display rise-soft mt-6 text-[clamp(3.3rem,1.2rem+9.4vw,10.5rem)]" style={{ ["--rise-delay" as string]: "90ms" }}>
           LACHGAS
           <br />
           <span className="text-white/90">AMSTERDAM</span>
         </h1>
         <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-[minmax(0,560px)_1fr] lg:items-end">
-          <div className="rise" style={{ ["--rise-delay" as string]: "220ms" }}>
+          <div className="rise-soft" style={{ ["--rise-delay" as string]: "180ms" }}>
             <p className="text-balance text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-medium leading-snug tracking-[-0.015em]">{subtitle}</p>
             <p className="mt-4 max-w-xl text-[16.5px] leading-relaxed text-white/72">{text}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">

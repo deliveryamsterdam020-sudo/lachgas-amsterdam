@@ -1,4 +1,4 @@
-import { generateRow, rng, type House } from "./gables";
+import { generateRow, rng, type House } from "./gables.ts";
 
 // A canal at dusk, drawn as a standalone SVG: a row of gabled houses on the far
 // quay, a side canal crossed by a bridge outlined in light bulbs, elms, quay
@@ -49,14 +49,15 @@ const anim = (seed: number, o: number) => {
 };
 
 function houses(list: House[], fill: string, windowFill: string, withWindows = true) {
+  // Lit windows are drawn statically here; their flicker lives in the light layer.
   return list
-    .map((h, i) => {
+    .map((h) => {
       let out = `<path d="${h.path}" fill="${fill}"/>`;
       if (h.beam) out += `<rect x="${n(h.beam.x)}" y="${n(h.beam.y)}" width="${h.beam.w}" height="9" fill="${fill}"/>`;
       if (withWindows)
-        for (const [j, w] of h.windows.entries()) {
+        for (const w of h.windows) {
           out += w.lit
-            ? `<rect x="${w.x}" y="${w.y}" width="${w.w}" height="${w.h}" rx="1" fill="url(#window)"${w.glow ? ` class="window-glow" style="opacity:${w.o};${anim(i * 31 + j, w.o)}"` : ` opacity="${w.o}"`}/>`
+            ? `<rect x="${w.x}" y="${w.y}" width="${w.w}" height="${w.h}" rx="1" fill="url(#window)" opacity="${w.o}"/>`
             : `<rect x="${w.x}" y="${w.y}" width="${w.w}" height="${w.h}" rx="1" fill="${windowFill}"/>`;
         }
       return out;
@@ -78,24 +79,37 @@ const tower = (() => {
   return `<g fill="#14243f"><rect x="${x}" y="250" width="64" height="420"/><rect x="${x + 6}" y="190" width="52" height="64"/><rect x="${x + 12}" y="140" width="40" height="54"/><path d="M${x + 16},140 Q${x + 32},96 ${x + 48},140 Z"/><rect x="${x + 30}" y="58" width="4" height="50"/><rect x="${x + 18}" y="206" width="8" height="26" fill="url(#window)" opacity="0.35"/><rect x="${x + 38}" y="206" width="8" height="26" fill="url(#window)" opacity="0.35"/></g>`;
 })();
 
+// Only the light layer is animated. Its elements are plain rectangles without
+// filters or masks, so re-rendering it each frame stays cheap.
 const STYLE = `
-.scene-drift{animation:drift 40s cubic-bezier(.22,1,.36,1) infinite alternate;transform-origin:50% 60%}
-@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.1) translate(-1.5%,-.8%)}}
 .shimmer{animation:shimmer var(--d,5s) ease-in-out infinite;animation-delay:var(--delay,0s);transform-box:fill-box;transform-origin:center;opacity:var(--o,.55)}
 @keyframes shimmer{0%,100%{transform:scaleX(1) translateX(0);opacity:var(--o,.55)}50%{transform:scaleX(.55) translateX(var(--x,3px));opacity:calc(var(--o,.55)*.45)}}
 .window-glow{animation:glow var(--d,9s) ease-in-out infinite;animation-delay:var(--delay,0s)}
 @keyframes glow{0%,100%{opacity:var(--o,.9)}50%{opacity:calc(var(--o,.9)*.55)}}
 .ripple-lines{animation:ripple 9s linear infinite}
 @keyframes ripple{from{transform:translateX(0)}to{transform:translateX(-120px)}}
-@media (prefers-reduced-motion:reduce){.scene-drift,.shimmer,.window-glow,.ripple-lines{animation:none}}`;
+@media (prefers-reduced-motion:reduce){.shimmer,.window-glow,.ripple-lines{animation:none}}`;
 
-export function canalSceneSvg(): string {
-  const rand = rng(3);
-  const stars = Array.from({ length: 46 }, () => `<circle cx="${n(rand() * W)}" cy="${n(rand() * 330)}" r="${n(0.6 + rand() * 1.1)}" opacity="${n(0.15 + rand() * 0.5)}"/>`).join("");
+const open = (extra = "") => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice">${extra}`;
+
+/** Animated lights only: flickering windows, reflections and ripples. Overlaid on the base layer. */
+export function canalLightsSvg(): string {
+  const glows = front
+    .flatMap((h, i) => h.windows.map((w, j) => ({ w, i, j })))
+    .filter(({ w }) => w.glow)
+    .map(({ w, i, j }) => `<rect x="${w.x}" y="${w.y}" width="${w.w}" height="${w.h}" rx="1" fill="#05101f" class="window-glow" style="${anim(i * 31 + j, 0.45)}"/>`)
+    .join("");
+  return `${open(`<style>${STYLE}</style>`)}
+<defs><pattern id="ripples" width="120" height="7" patternUnits="userSpaceOnUse"><path d="M0 3.5 Q15 1.5 30 3.5 T60 3.5 T90 3.5 T120 3.5" stroke="#0a1424" stroke-width="2.2" fill="none"/></pattern></defs>
+<g>${glows}</g>
+<g>${streaks()}</g>
+<g class="ripple-lines" opacity="0.75"><rect x="0" y="${WATER + 4}" width="${W + 240}" height="${H - WATER}" fill="url(#ripples)"/></g>
+</svg>`;
+}
+
+function streaks(): string {
   const litFront = front.flatMap((h) => h.windows.filter((w) => w.lit));
-  const bulbs = [...deckBulbs, ...archBulbs];
-
-  const streaks = [
+  return [
     ...litFront.map((w, i) => {
       const y = mirror(w.y + w.h);
       if (y > H) return "";
@@ -109,8 +123,15 @@ export function canalSceneSvg(): string {
       ),
     ),
   ].join("");
+}
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice"><style>${STYLE}</style>
+/** The static scene: sky, houses, bridge, water and softened reflections. */
+export function canalSceneSvg(): string {
+  const rand = rng(3);
+  const stars = Array.from({ length: 46 }, () => `<circle cx="${n(rand() * W)}" cy="${n(rand() * 330)}" r="${n(0.6 + rand() * 1.1)}" opacity="${n(0.15 + rand() * 0.5)}"/>`).join("");
+  const bulbs = [...deckBulbs, ...archBulbs];
+
+  return `${open()}
 <defs>
 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070e1c"/><stop offset="0.45" stop-color="#101c32"/><stop offset="0.78" stop-color="#1f3a5e"/><stop offset="1" stop-color="#3a4d6b"/></linearGradient>
 <radialGradient id="horizon" cx="0.5" cy="0.68" r="0.55"><stop offset="0" stop-color="#e8b96f" stop-opacity="0.22"/><stop offset="1" stop-color="#e8b96f" stop-opacity="0"/></radialGradient>
@@ -118,12 +139,11 @@ export function canalSceneSvg(): string {
 <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#13243f"/><stop offset="1" stop-color="#060c18"/></linearGradient>
 <linearGradient id="window" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d49a"/><stop offset="1" stop-color="#e2a654"/></linearGradient>
 <radialGradient id="lantern" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#f7d9a3" stop-opacity="0.9"/><stop offset="0.25" stop-color="#e8b96f" stop-opacity="0.35"/><stop offset="1" stop-color="#e8b96f" stop-opacity="0"/></radialGradient>
-<pattern id="ripples" width="120" height="7" patternUnits="userSpaceOnUse"><path d="M0 3.5 Q15 1.5 30 3.5 T60 3.5 T90 3.5 T120 3.5" stroke="#0a1424" stroke-width="2.2" fill="none"/></pattern>
 <filter id="soften" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="2.2"/></filter>
 <linearGradient id="reflectionFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="white" stop-opacity="0.75"/><stop offset="1" stop-color="white" stop-opacity="0.1"/></linearGradient>
 <mask id="reflectionMask"><rect x="0" y="${WATER}" width="${W}" height="${H - WATER}" fill="url(#reflectionFade)"/></mask>
 </defs>
-<g class="scene-drift">
+<g>
 <rect width="${W}" height="${WATER}" fill="url(#sky)"/><rect width="${W}" height="${WATER}" fill="url(#horizon)"/>
 <g fill="#f4ecdf">${stars}</g>
 <circle cx="1360" cy="170" r="120" fill="url(#moon)"/><circle cx="1360" cy="170" r="26" fill="#efe4d2" opacity="0.9"/>
@@ -139,8 +159,6 @@ ${lanterns.map((x) => `<rect x="${x - 1.5}" y="${QUAY - 78}" width="3" height="7
 <g>${bulbs.map((b) => `<circle cx="${n(b.x)}" cy="${n(b.y)}" r="9" fill="url(#lantern)" opacity="0.6"/>`).join("")}</g>
 <rect x="0" y="${WATER}" width="${W}" height="${H - WATER}" fill="url(#water)"/>
 <g mask="url(#reflectionMask)"><g transform="translate(0 ${2 * WATER}) scale(1 -1)" filter="url(#soften)" opacity="0.55">${houses(front, "#0f1d34", "#14233c", false)}${treesSvg("#0b1527")}<path d="${bridgePath}" fill="#0d192e"/></g></g>
-<g>${streaks}</g>
-<g class="ripple-lines" opacity="0.75"><rect x="0" y="${WATER + 4}" width="${W + 240}" height="${H - WATER}" fill="url(#ripples)"/></g>
 </g>
 </svg>`;
 }

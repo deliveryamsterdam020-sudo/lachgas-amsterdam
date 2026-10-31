@@ -25,7 +25,7 @@ export const metadata = buildMetadata({
   type: "website",
 });
 
-const ORDER = ["verbod", "regels-amsterdam", "gezondheid", "zenuwschade", "soorten", "cilinders"];
+const ORDER = ["verbod", "regels-amsterdam", "gezondheid", "verslaving", "cilinders", "nieuws"];
 
 export default function Home() {
   const knowledge = ORDER.map((id) => pagesFor("nl").find((p) => p.id === id)!).filter(Boolean);
@@ -99,19 +99,19 @@ export default function Home() {
           {
             year: "2021",
             title: "Verbod in horeca en bij evenementen",
-            text: "Amsterdam besluit verkoop in horeca en bij evenementen te verbieden en overlast door gebruik aan te pakken.",
+            text: "De gemeenteraad stemt in met een verbod op de verkoop van lachgas in de horeca en bij evenementen.",
             source: { label: "NOS", href: "https://nos.nl/artikel/2378722-lachgas-wordt-ook-verboden-in-amsterdam" },
           },
           {
             year: "2023",
             title: "Landelijk verbod",
-            text: "Lachgas komt op lijst II van de Opiumwet. Lokale verkoopverboden vervallen; overlastregels blijven relevant.",
-            source: { label: "VNG", href: "https://vng.nl/artikelen/factsheet-landelijk-lachgasverbod" },
+            text: "Lachgas komt op lijst II van de Opiumwet. Daarnaast verbiedt de Amsterdamse APV het gebruik van lachgas.",
+            source: { label: "Gemeente Amsterdam", href: "https://assets.amsterdam.nl/publish/pages/1027459/2023-02-08_raadsinformatiebrief_apv_wijziging_blowverbod_en_alcoholoverlastgebied_1_.pdf" },
           },
           {
             year: "AEB",
             title: "Ontploffende cilinders",
-            text: "Cilinders in het restafval veroorzaken explosies in de verbrandingsovens. Een inleverpunt haalde zo’n 80.000 cilinders op.",
+            text: "Cilinders in het restafval veroorzaken explosies in de ovens. Een innamepunt haalde in vijf maanden zo’n 80.000 cilinders op.",
             source: { label: "AT5", href: "https://www.at5.nl/artikelen/225064/aeb-stopt-na-vijf-maanden-met-innamepunt-lachgas-maar-liefst-80000-cilinders-ingeleverd" },
           },
         ]}
@@ -157,7 +157,7 @@ export default function Home() {
           { k: "Geen overheidssite", v: "Niet verbonden aan de gemeente Amsterdam of het Rijk." },
         ]}
         orgsTitle="Belangrijkste bronnen"
-        orgs={["Rijksoverheid", "wetten.overheid.nl", "VNG", "Raad van State", "Trimbos-instituut", "DrugsInfo", "AT5", "NOS"]}
+        orgs={["Rijksoverheid", "Openbaar Ministerie", "RIVM", "wetten.overheid.nl", "Gemeente Amsterdam", "VNG", "Trimbos-instituut", "DrugsInfo", "AT5", "NOS"]}
         links={[
           { href: "/bronnen/", label: "Bronregister" },
           { href: "/redactiebeleid/", label: "Redactiebeleid" },

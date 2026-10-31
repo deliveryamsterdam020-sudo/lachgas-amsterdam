@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "content:audit": "node scripts/content-audit.mts",
+    "content:audit": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/content-audit.mts",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run lint && npm run content:audit"
+    "check": "npm run typecheck && npm run lint && npm run content:audit",
+    "scene": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/build-scene.mts",
+    "predev": "npm run -s scene",
+    "prebuild": "npm run -s scene"
   },
   "dependencies": {
     "lucide-react": "^1.66.0",

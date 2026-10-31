@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Inline } from "@/components/ui/Inline";
 import { Reveal } from "@/components/ui/Reveal";
 
-const SEEDS: Record<string, number> = { wetgeving: 3, gezondheid: 8, soorten: 13, merken: 21, cilinders: 34, amsterdam: 55, hulp: 89, toeristen: 144, redactie: 233 };
+const SEEDS: Record<string, number> = { wetgeving: 3, gezondheid: 8, soorten: 13, merken: 21, cilinders: 34, amsterdam: 55, hulp: 89, toeristen: 144, nieuws: 377, redactie: 233 };
 
 export function ArticleView({ page }: { page: Page }) {
   const t = ui[page.locale];
@@ -41,7 +41,7 @@ export function ArticleView({ page }: { page: Page }) {
         <section
           aria-labelledby="kort-antwoord"
           style={{ ["--rise-delay" as string]: "160ms" }}
-          className="rise relative max-w-4xl overflow-hidden rounded-3xl bg-paper p-6 shadow-[0_30px_80px_-30px_rgba(16,28,50,0.35)] ring-1 ring-ink/5 sm:p-10">
+          className="rise-soft relative max-w-4xl overflow-hidden rounded-3xl bg-paper p-6 shadow-[0_30px_80px_-30px_rgba(16,28,50,0.35)] ring-1 ring-ink/5 sm:p-10">
             <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-lamp to-navy-700" />
             <h2 id="kort-antwoord" className="eyebrow text-muted">
               {t.shortAnswer}

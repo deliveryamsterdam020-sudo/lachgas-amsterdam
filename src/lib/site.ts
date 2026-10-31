@@ -1,16 +1,20 @@
 import type { Locale } from "@/content/types";
 
 /**
- * The production domain is not decided yet. Set NEXT_PUBLIC_SITE_URL before
- * deploying; canonicals, hreflang, the sitemap and structured data all derive
- * from it.
+ * Production domain. lachgasinfo.com and the www variants redirect here
+ * (next.config.ts). NEXT_PUBLIC_SITE_URL overrides it, e.g. for previews.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://lachgasinfo.nl").replace(/\/$/, "");
 
 export const SITE_NAME = "Lachgas Amsterdam";
 
-/** Publisher details are a launch requirement; null renders a visible notice. */
-export const PUBLISHER: { legalName: string | null } = { legalName: null };
+/** Publisher identification (legal notice). Postal address only: the site deliberately has no contact channel. */
+export const PUBLISHER = {
+  name: "Lachgas info Amsterdam",
+  street: "Sarphatipark 8",
+  city: "Amsterdam",
+  country: "NL",
+};
 
 export const absoluteUrl = (path: string) => `${SITE_URL}${path}`;
 
@@ -34,6 +38,7 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
       items: [
         { href: "/gezondheid/", label: "Gezondheidsrisico’s" },
         { href: "/lachgas-zenuwschade/", label: "Zenuwschade en B12" },
+        { href: "/lachgas-verslaving/", label: "Verslaving" },
         { href: "/hulp/", label: "Hulp en ondersteuning" },
       ],
     },
@@ -44,6 +49,8 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
         { href: "/lachgas-merken/", label: "Merken" },
         { href: "/lachgascilinders/", label: "Cilinders en patronen" },
         { href: "/amsterdam/", label: "Amsterdam" },
+        { href: "/lachgas-overlast-amsterdam/", label: "Overlast melden" },
+        { href: "/nieuws/", label: "Nieuws" },
         { href: "/kennisbank/", label: "Alle artikelen" },
       ],
     },
@@ -80,8 +87,10 @@ export const footerNav: Record<Locale, { title: string; items: NavItem[] }[]> = 
       title: "About",
       items: [
         { href: "/en/about/", label: "About us" },
+        { href: "/en/editorial-policy/", label: "Editorial policy" },
         { href: "/en/sources/", label: "Source register" },
-        { href: "/", label: "Nederlands" },
+        { href: "/en/privacy/", label: "Privacy" },
+        { href: "/en/disclaimer/", label: "Disclaimer" },
       ],
     },
   ],
@@ -164,6 +173,7 @@ export const categoryLabel: Record<Locale, Record<string, string>> = {
     amsterdam: "Amsterdam",
     hulp: "Hulp",
     toeristen: "Toeristen",
+    nieuws: "Nieuws",
     redactie: "Redactie",
   },
   en: {
@@ -175,6 +185,7 @@ export const categoryLabel: Record<Locale, Record<string, string>> = {
     amsterdam: "Amsterdam",
     hulp: "Help",
     toeristen: "Visitors",
+    nieuws: "News",
     redactie: "About",
   },
 };

@@ -9,7 +9,6 @@ src/
   app/
     (nl)/                 root layout NL (<html lang="nl-NL">), homepage, [...slug], kennisbank, bronnen, not-found
     (en)/en/              root layout EN (<html lang="en">), homepage, [...slug], sources, not-found
-    canal-scene.svg/      route: geanimeerde heroscène als cachebare SVG
     og-nl.png, og-en.png/ routes: gegenereerde deelafbeeldingen
     sitemap.ts, robots.ts, icon.svg, global-not-found.tsx, globals.css
   content/                contentmodel (types.ts), nl.ts, en.ts, sources.ts, index.ts (registry + helpers)
@@ -20,7 +19,10 @@ src/
     visual/               gables.ts (gevelgenerator), canalScene.ts, GableSkyline, CanalRings
     seo/                  JsonLd, shareImage
   lib/                    site.ts (config, UI-teksten), menu.ts (navigatie), seo.ts (metadata + JSON-LD)
+public/canal-scene.svg    heroscène, statische laag (gegenereerd door scripts/build-scene.mts)
+public/canal-lights.svg   heroscène, geanimeerde lichtlaag
 scripts/content-audit.mts redactionele controle (CI-geschikt)
+scripts/build-scene.mts   schrijft de heroscène-SVG’s; draait vóór dev en build
 ```
 
 ## Rendering
@@ -40,4 +42,4 @@ Statussen: `draft → fact-check → legal-review / medical-review → approved 
 Strikte CSP, HSTS, X-Frame-Options DENY, nosniff, Referrer- en Permissions-Policy (`next.config.ts`). Geen formulieren, geen cookies, geen secrets in de code.
 
 ## Configuratie
-`NEXT_PUBLIC_SITE_URL` — productiedomein (verplicht vóór livegang).
+Canoniek domein: `https://lachgasinfo.nl` (standaard in `src/lib/site.ts`). `NEXT_PUBLIC_SITE_URL` overschrijft dit, bijvoorbeeld voor previews. Hosting: Vercel — zie DEPLOY.md.

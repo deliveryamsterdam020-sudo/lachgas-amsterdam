@@ -47,7 +47,7 @@ export function PageHero({
           </ol>
         </nav>
         <p className="eyebrow rise mt-10 text-lamp">{eyebrow}</p>
-        <h1 className="display rise mt-4 max-w-4xl text-balance text-[clamp(2.4rem,1.6rem+3.6vw,4.75rem)]" style={{ ["--rise-delay" as string]: "80ms" }}>
+        <h1 className="display rise-soft mt-4 max-w-4xl text-balance text-[clamp(2.4rem,1.6rem+3.6vw,4.75rem)]" style={{ ["--rise-delay" as string]: "80ms" }}>
           {title}
         </h1>
         {children}

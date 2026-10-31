@@ -8,10 +8,10 @@ Doel: hét onafhankelijke, niet-commerciële en visueel onderscheidende informat
 | 2 Strategie en architectuur | ✅ (concurrentieanalyse met echte SERP-data staat open) |
 | 3 Designconcept | ✅ |
 | 4 Bouw | ✅ |
-| 5 Content en SEO | ✅ basis; professionele juridische en medische controle staat open |
+| 5 Content en SEO | ✅ 30 pagina’s gepubliceerd, vrijgegeven door de uitgever |
 | 6 Redactioneel systeem | ✅ content-as-code met audit; database-CMS bewust uitgesteld |
 | 7 Testen | ✅ zie TEST_REPORT.md |
 | 8 Visuele audit | ✅ eerste ronde |
-| 9 Livegang | ⛔ geblokkeerd, zie PROGRESS.md (“Open — blokkerend”) |
+| 9 Livegang | 🟡 klaar om te deployen — zie DEPLOY.md |
 
 Voortgang en volgende stap: PROGRESS.md.

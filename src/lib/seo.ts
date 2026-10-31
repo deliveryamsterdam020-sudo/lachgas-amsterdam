@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { Locale, Page, Status } from "@/content/types";
 import { alternatePath, isIndexable } from "@/content";
-import { SITE_NAME, SITE_URL, absoluteUrl } from "./site";
+import { PUBLISHER, SITE_NAME, SITE_URL, absoluteUrl } from "./site";
 
 interface MetaInput {
   id: string;
@@ -64,6 +64,13 @@ export function organizationLd() {
     name: SITE_NAME,
     url: absoluteUrl("/"),
     logo: absoluteUrl("/icon.svg"),
+    legalName: PUBLISHER.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: PUBLISHER.street,
+      addressLocality: PUBLISHER.city,
+      addressCountry: PUBLISHER.country,
+    },
     description:
       "Onafhankelijk, niet-commercieel informatieplatform over lachgas in Amsterdam. Geen overheidswebsite.",
   };

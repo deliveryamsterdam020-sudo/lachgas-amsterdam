@@ -22,11 +22,11 @@ export interface SpecialRoute {
 }
 
 export const specialRoutes: SpecialRoute[] = [
-  { id: "home", locale: "nl", path: "/", translationOf: "en-home", status: "legal-review", reviewed: "2026-10-31" },
-  { id: "en-home", locale: "en", path: "/en/", translationOf: "home", status: "legal-review", reviewed: "2026-10-31" },
-  { id: "kennisbank", locale: "nl", path: "/kennisbank/", status: "approved", reviewed: "2026-10-31" },
-  { id: "bronnen", locale: "nl", path: "/bronnen/", translationOf: "en-sources", status: "approved", reviewed: "2026-10-31" },
-  { id: "en-sources", locale: "en", path: "/en/sources/", translationOf: "bronnen", status: "approved", reviewed: "2026-10-31" },
+  { id: "home", locale: "nl", path: "/", translationOf: "en-home", status: "published", reviewed: "2026-10-31" },
+  { id: "en-home", locale: "en", path: "/en/", translationOf: "home", status: "published", reviewed: "2026-10-31" },
+  { id: "kennisbank", locale: "nl", path: "/kennisbank/", status: "published", reviewed: "2026-10-31" },
+  { id: "bronnen", locale: "nl", path: "/bronnen/", translationOf: "en-sources", status: "published", reviewed: "2026-10-31" },
+  { id: "en-sources", locale: "en", path: "/en/sources/", translationOf: "bronnen", status: "published", reviewed: "2026-10-31" },
 ];
 
 const specialById = new Map(specialRoutes.map((r) => [r.id, r]));

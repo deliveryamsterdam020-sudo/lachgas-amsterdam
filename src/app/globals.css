@@ -161,6 +161,28 @@
   transform: none;
 }
 
+/* Slow camera drift on the hero scene (compositor-only transform) */
+.scene-drift {
+  animation: drift 40s var(--ease-out-soft) infinite alternate;
+  transform-origin: 50% 70%;
+  will-change: transform;
+}
+@keyframes drift {
+  from { transform: scale(1.03); }
+  to   { transform: scale(1.08) translate3d(-1.2%, -0.6%, 0); }
+}
+
+/* Entrance for the largest text on a page: movement only, never invisible,
+   so it does not delay Largest Contentful Paint. */
+.rise-soft {
+  animation: rise-soft 1s var(--ease-out-soft) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes rise-soft {
+  from { transform: translate3d(0, 14px, 0); }
+  to   { transform: none; }
+}
+
 /* Hero entrance */
 .rise {
   animation: rise 1.2s var(--ease-out-soft) both;
@@ -203,6 +225,8 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ripple-lines,
+  .scene-drift,
+  .rise-soft,
   .rise,
   .flyout-in,
   .flyout-item {

@@ -17,7 +17,8 @@ const securityHeaders = [
       "base-uri 'self'",
       "form-action 'none'",
       "object-src 'none'",
-      "upgrade-insecure-requests",
+      // No upgrade-insecure-requests: every resource is same-origin and HSTS already
+      // enforces HTTPS. The directive also broke local testing in WebKit.
     ].join("; "),
   },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
@@ -44,6 +45,15 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  // One canonical host: the .com domain and www variants redirect permanently to https://lachgasinfo.nl.
+  async redirects() {
+    return ["www.lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://lachgasinfo.nl/:path*",
+      permanent: true,
+    }));
   },
   async headers() {
     // The dev server needs eval for fast refresh and runs over plain HTTP, so CSP

@@ -1,22 +1,21 @@
 # CONTENT_PLAN
 
 ## In de build (actuele status: `npm run content:audit`)
-NL: lachgas-verbod, lachgas-regels-amsterdam, lachgas-bezit, gezondheid, lachgas-zenuwschade, lachgas-soorten-en-toepassingen, lachgas-merken, lachgas-merken/fastgas, lachgascilinders, lachgascilinder-gevonden, amsterdam, hulp, over-ons, redactiebeleid, privacy, disclaimer, kennisbank, bronnen.
+Alle pagina’s staan op `published` (vrijgegeven door de uitgever, 31-10-2026).
 
-EN: is-laughing-gas-legal-in-amsterdam, nitrous-oxide-laws-netherlands, nitrous-oxide-health-risks, nitrous-oxide-types, nitrous-oxide-brands, nitrous-oxide-cylinders, visiting-amsterdam, about, sources.
+NL: lachgas-verbod, lachgas-regels-amsterdam, lachgas-bezit, gezondheid, lachgas-zenuwschade, lachgas-verslaving, lachgas-soorten-en-toepassingen, lachgas-merken, lachgas-merken/fastgas, lachgascilinders, lachgascilinder-gevonden, amsterdam, lachgas-overlast-amsterdam, hulp, nieuws, over-ons, redactiebeleid, privacy, disclaimer, kennisbank, bronnen.
+
+EN: is-laughing-gas-legal-in-amsterdam, nitrous-oxide-laws-netherlands, nitrous-oxide-health-risks, nitrous-oxide-types, nitrous-oxide-brands, nitrous-oxide-cylinders, visiting-amsterdam, about, editorial-policy, privacy, disclaimer, sources.
 
 ## Bewust (nog) niet gemaakt
 | URL uit de opdracht | Reden / plek |
 |---|---|
-| /lachgas-boete/ | Geen geverifieerde bedragen; behandeld op /lachgas-bezit/ |
+| /lachgas-boete/ | Het OM bepaalt de strafmaat per zaak; behandeld op /lachgas-bezit/ en /lachgas-verbod/ |
 | /lachgas-vervoer/ | Te dun als losse pagina; op /lachgas-bezit/ |
 | /lachgas-gevaren/, /lachgas-vitamine-b12/ | Overlap met /gezondheid/ en /lachgas-zenuwschade/ |
-| /lachgas-verslaving/ | Wacht op geverifieerde inhoud over behandeling |
 | /lachgas-soorten/, /medisch-lachgas/, /culinair-lachgas/, /technisch-lachgas/, /samenstelling-lachgas/ | Samen op /lachgas-soorten-en-toepassingen/ tot er genoeg unieke inhoud is |
 | /wegwerp-lachgascilinders/, /lachgaspatronen/, /lachgascilinder-inleveren/, /lachgas-afval/ | Op /lachgascilinders/ en /lachgascilinder-gevonden/ |
-| /lachgas-overlast-amsterdam/ | Geen geverifieerde actuele overlastgegevens |
 | /hulp-lachgas-amsterdam/, /lachgas-hulp-jongeren/, /lachgas-hulp-ouders/ | Secties op /hulp/ |
-| /nieuws/ | Vraagt doorlopende redactie; pas starten met vaste bemensing |
 | /en/nitrous-oxide-amsterdam/ | Overlap met /en/ en /en/visiting-amsterdam/ |
 
 ## Redactieregels

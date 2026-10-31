@@ -17,7 +17,7 @@ export const enPages: Page[] = [
     metaDescription:
       "Laughing gas has been banned for recreational use in the Netherlands since 1 January 2023. What that means in Amsterdam and for tourists, with official sources.",
     answer:
-      "No. Since 1 January 2023, nitrous oxide (laughing gas, N₂O) has been on List II of the Dutch Opium Act. Possessing, selling, transporting or producing it for recreational use is illegal everywhere in the Netherlands — including Amsterdam — and the law applies to tourists exactly as it does to residents.",
+      "No. Since 1 January 2023, nitrous oxide (laughing gas, N₂O) has been on List II of the Dutch Opium Act. Possessing, selling, transporting or producing it for recreational use is illegal everywhere in the Netherlands, and Amsterdam’s local bylaws also ban using it. The law applies to tourists exactly as it does to residents.",
     body: [
       { type: "h2", id: "what-is-banned", text: "What exactly is banned?" },
       {
@@ -43,45 +43,39 @@ export const enPages: Page[] = [
       { type: "h2", id: "amsterdam", text: "Is Amsterdam stricter than the rest of the country?" },
       {
         type: "p",
-        text: "The criminal ban is national, so it is the same everywhere. Before 2023 Amsterdam already had its own measures against street sales and against sales in bars and at events ([DutchNews](https://www.dutchnews.nl/news/2021/04/amsterdam-to-ban-sale-of-laughing-gas-in-cafes-at-festivals/)). Today, the city can still act against public nuisance under its local bylaws.",
+        text: "The criminal ban is national, so it is the same everywhere. On top of that, Amsterdam’s local bylaws (the APV) prohibit using nitrous oxide, according to a city council letter of 9 February 2023. Before 2023 the city already acted against street sales and banned sales in bars and at events ([DutchNews](https://www.dutchnews.nl/news/2021/04/amsterdam-to-ban-sale-of-laughing-gas-in-cafes-at-festivals/)).",
       },
       { type: "h2", id: "consequences", text: "What happens if you’re caught?" },
       {
         type: "p",
-        text: "Police can confiscate the gas and file a report. The Public Prosecution Service (Openbaar Ministerie) decides on any penalty. We don’t list fine amounts because we haven’t been able to verify current official figures. Read more on [Nitrous oxide laws in the Netherlands](/en/nitrous-oxide-laws-netherlands/).",
+        text: "Police can confiscate the gas. Penalties are decided case by case by the Public Prosecution Service (Openbaar Ministerie). According to the [OM](https://www.om.nl/actueel/nieuws/2023/07/01/lachgasverbod), one charger or one balloon counts as a personal-use quantity; a first-time offender has to give it up. Larger amounts lead to a fine or community service, and very large amounts can lead to a prison sentence. Read more on [Nitrous oxide laws in the Netherlands](/en/nitrous-oxide-laws-netherlands/).",
       },
       { type: "h2", id: "official", text: "Official information" },
       {
         type: "list",
         items: [
           "[Dutch government — Ban on nitrous oxide (Dutch)](https://www.rijksoverheid.nl/onderwerpen/drugs/verbod-op-lachgas)",
+          "[Public Prosecution Service — Q&A on the ban (Dutch)](https://www.om.nl/actueel/nieuws/2023/07/01/lachgasverbod)",
           "[Opium Act on wetten.overheid.nl (Dutch)](https://wetten.overheid.nl/BWBR0001941)",
           "[City of Amsterdam](https://www.amsterdam.nl)",
         ],
       },
     ],
     faq: [
-      {
-        q: "Is laughing gas legal in the Netherlands?",
-        a: "Not for recreational use. Since 1 January 2023 it has been on List II of the Opium Act. Medical, culinary and technical uses remain allowed.",
-      },
-      {
-        q: "Does the Dutch nitrous oxide ban apply to tourists?",
-        a: "Yes. The Opium Act applies to everyone in the Netherlands, whatever your nationality.",
-      },
+      { q: "Is laughing gas legal in the Netherlands?", a: "Not for recreational use. Since 1 January 2023 it has been on List II of the Opium Act. Medical, culinary and technical uses remain allowed." },
+      { q: "Does the Dutch nitrous oxide ban apply to tourists?", a: "Yes. The Opium Act applies to everyone in the Netherlands, whatever your nationality." },
       {
         q: "Can I buy whipped-cream chargers in Amsterdam?",
-        a: "Culinary use is an exception to the ban. According to the Association of Netherlands Municipalities, more than ten chargers in the hands of a private individual is a strong sign the gas isn’t meant for the kitchen.",
+        a: "Culinary use is an exception to the ban. Private buyers get at most one pack of ten chargers per purchase, and holding more than ten is a strong sign the gas isn’t meant for the kitchen.",
       },
     ],
-    sources: ["rijk-verbod", "rijk-nieuws-2022", "opiumwet", "vng-factsheet", "dutchnews-2021"],
+    sources: ["rijk-verbod", "rijk-nieuws-2022", "opiumwet", "om-lachgasverbod-2023", "amsterdam-rib-2023", "dutchnews-2021"],
     related: ["en-laws", "en-visiting", "en-health", "en-cylinders"],
     translationOf: "regels-amsterdam",
-    status: "legal-review",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-01-31",
-    uncertainties: ["Current fine amounts and prosecution guidelines have not yet been verified."],
   },
   {
     id: "en-laws",
@@ -92,14 +86,14 @@ export const enPages: Page[] = [
     title: "Nitrous oxide laws in the Netherlands",
     metaTitle: "Nitrous oxide laws in the Netherlands: the 2023 ban",
     metaDescription:
-      "The Dutch nitrous oxide ban explained in plain English: what the Opium Act prohibits, the medical, culinary and technical exceptions, enforcement and driving.",
+      "The Dutch nitrous oxide ban explained in plain English: what the Opium Act prohibits, the medical, culinary and technical exceptions, penalties and driving.",
     answer:
-      "Since 1 January 2023 nitrous oxide has been listed on List II of the Dutch Opium Act — the same list as cannabis. Possession, sale, transport, production, import and export for recreational use are prohibited. Exceptions apply to medical use, use as a food additive and technical purposes.",
+      "Since 1 January 2023 nitrous oxide has been listed on List II of the Dutch Opium Act — the same list as cannabis. Possession, sale, transport, production, import and export for recreational use are prohibited. Exceptions apply to medical use, use as a food additive and technical purposes. Penalties are set case by case by the Public Prosecution Service.",
     body: [
       { type: "h2", id: "the-ban", text: "The ban in one paragraph" },
       {
         type: "p",
-        text: "After a government risk assessment, the Dutch cabinet placed nitrous oxide (dinitrogen monoxide, N₂O) on List II of the Opium Act. The ban targets recreational supply and possession. According to the Association of Netherlands Municipalities (VNG), merely using it is not itself an offence under the Opium Act — but you can’t use it without having it, and possession is prohibited.",
+        text: "After a government risk assessment, the Dutch government placed nitrous oxide (dinitrogen monoxide, N₂O) on List II of the Opium Act by a decree of 17 November 2022, effective 1 January 2023. Article 3 of the Act prohibits, among other things, bringing it into or out of the country, selling, transporting, possessing and manufacturing it. According to the Association of Netherlands Municipalities (VNG), merely using it is not itself an offence under the Opium Act — but you can’t use it without having it, and possession is prohibited.",
       },
       { type: "h2", id: "exceptions", text: "The exceptions" },
       {
@@ -113,32 +107,33 @@ export const enPages: Page[] = [
       { type: "h2", id: "burden", text: "‘Punishable, unless…’" },
       {
         type: "p",
-        text: "The ban works on a ‘punishable, unless’ basis: if nitrous oxide is found on you, you have to make it plausible that it falls under an exception. For private individuals, the VNG says more than ten chargers is a strong indication that it isn’t for culinary use.",
+        text: "The ban works on a ‘punishable, unless’ basis: if nitrous oxide is found on you, you have to make it plausible that it falls under an exception. Private buyers may get at most one pack of ten chargers per purchase, and holding more than ten is a strong indication that it isn’t for culinary use (explanatory note to the decree).",
+      },
+      { type: "h2", id: "penalties", text: "Penalties" },
+      {
+        type: "p",
+        text: "Police and prosecutors have enforced the ban since 1 July 2023. According to the [Public Prosecution Service](https://www.om.nl/actueel/nieuws/2023/07/01/lachgasverbod), one charger or balloon is a personal-use quantity that a first-time offender must give up. Larger amounts lead to a fine or community service; very large amounts can lead to prison, and repeat offences to an unconditional prison sentence of several months.",
       },
       { type: "h2", id: "enforcement", text: "Who enforces it?" },
       {
         type: "p",
-        text: "Enforcing the Opium Act is a police matter. Municipal enforcement officers can only act under local bylaws, for example against public nuisance. Mayors can also issue warnings, impose penalty payments or close premises under Article 13b of the Opium Act.",
+        text: "Enforcing the Opium Act is a police matter. Municipal enforcement officers act under local bylaws. Mayors can also issue warnings, impose penalty payments or close premises under Article 13b of the Opium Act.",
       },
       { type: "h2", id: "driving", text: "Driving" },
       {
         type: "p",
-        text: "Nitrous oxide disturbs perception and coordination; DrugsInfo says driving ability is probably reduced for the first hour after use. Road accidents were one of the reasons the government gave for the ban. Dutch traffic law separately prohibits driving under the influence of a substance that impairs your driving.",
+        text: "Nitrous oxide disturbs perception and coordination; DrugsInfo says driving ability is probably reduced for the first hour after use. Article 8 of the Road Traffic Act 1994 separately prohibits driving under the influence of a substance you know, or should know, can reduce your driving ability.",
       },
       { type: "h2", id: "waste", text: "Disposal" },
-      {
-        type: "p",
-        text: "Nitrous oxide cylinders are hazardous waste and must not go in normal bins. See [Nitrous oxide cylinders](/en/nitrous-oxide-cylinders/).",
-      },
+      { type: "p", text: "Nitrous oxide cylinders are hazardous waste and must not go in normal bins. See [Nitrous oxide cylinders](/en/nitrous-oxide-cylinders/)." },
     ],
-    sources: ["rijk-verbod", "rijk-nieuws-2022", "opiumwet", "stb-2022-461", "vng-factsheet", "drugsinfo-lachgas", "wvw-1994"],
+    sources: ["rijk-verbod", "rijk-nieuws-2022", "opiumwet", "stb-2022-461", "om-lachgasverbod-2023", "vng-factsheet", "drugsinfo-lachgas", "wvw-1994"],
     related: ["en-is-legal", "en-types", "en-visiting", "en-cylinders"],
     translationOf: "verbod",
-    status: "legal-review",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-01-31",
-    uncertainties: ["Current fine amounts and the prosecution guideline have not yet been verified."],
   },
   {
     id: "en-health",
@@ -151,7 +146,7 @@ export const enPages: Page[] = [
     metaDescription:
       "What are the health risks of laughing gas? Dizziness, frostbite, vitamin B12 deficiency and nerve damage explained, based on Dutch public health sources.",
     answer:
-      "Nitrous oxide can cause dizziness, headaches, nausea and tingling straight away. Heavy or frequent use inactivates vitamin B12, which can lead to nerve damage and, in severe cases, paralysis. Gas released from large cylinders is extremely cold and can cause serious frostbite.",
+      "Nitrous oxide can cause dizziness, headaches, nausea and tingling straight away. There is no safe limit: according to the Dutch public health institute RIVM, even one balloon can cause tingling in the hands and feet. Heavy or frequent use inactivates vitamin B12, which can lead to nerve damage and, in severe cases, paralysis.",
     body: [
       {
         type: "callout",
@@ -184,7 +179,7 @@ export const enPages: Page[] = [
       { type: "h2", id: "dependence", text: "Dependence" },
       {
         type: "p",
-        text: "Some people find it hard to stop and feel a strong urge to keep using. That can be a sign of dependence.",
+        text: "Frequent users report craving and tolerance, and the [RIVM](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) sees growing signs of addiction in a small group of users.",
       },
       { type: "h2", id: "help", text: "Getting help in Amsterdam" },
       {
@@ -192,14 +187,14 @@ export const enPages: Page[] = [
         items: [
           "**112** — emergencies.",
           "**A GP (huisarts) or out-of-hours GP service (huisartsenpost)** — for tingling, numbness or weakness after use. Visitors can also go to a hospital emergency department.",
-          "**DrugsInfo Infolijn: 0900-1995** — anonymous advice (Dutch-language service).",
+          "**DrugsInfo Infolijn: 0900-1995** — anonymous advice in Dutch, Monday to Friday 9:00–17:00.",
         ],
       },
     ],
-    sources: ["trimbos-lachgas", "drugsinfo-lachgas", "rijk-verbod", "alrijne-protocol"],
+    sources: ["rivm-cam-2026", "trimbos-lachgas", "drugsinfo-lachgas", "drugsinfo-contact", "meissner-2023"],
     related: ["en-is-legal", "en-visiting", "en-laws"],
     translationOf: "gezondheid",
-    status: "medical-review",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-04-30",
@@ -227,20 +222,14 @@ export const enPages: Page[] = [
         ],
       },
       { type: "h2", id: "medical", text: "Medical nitrous oxide" },
-      {
-        type: "p",
-        text: "Used for pain relief and anaesthesia, always mixed with oxygen and supervised by professionals. It is a medicine and must meet pharmaceutical quality standards.",
-      },
+      { type: "p", text: "Used for pain relief and anaesthesia, always mixed with oxygen and supervised by professionals. It is a medicine and must meet pharmaceutical quality standards." },
       { type: "h2", id: "culinary", text: "Culinary nitrous oxide" },
       {
         type: "p",
-        text: "Used as a propellant in whipped-cream dispensers, usually in small steel chargers. As a food additive it falls under the exception in Article 15a of the Dutch Opium Act Decree.",
+        text: "Used as a propellant in whipped-cream dispensers, usually in small steel chargers. As a food additive it falls under the exception in Article 15a of the Dutch Opium Act Decree. According to the RIVM, these small chargers have largely disappeared from the streets, replaced by large disposable cylinders.",
       },
       { type: "h2", id: "technical", text: "Technical nitrous oxide" },
-      {
-        type: "p",
-        text: "Used, among other things, to add power to combustion engines and in industrial processes. It is not intended for human consumption.",
-      },
+      { type: "p", text: "Used, among other things, to add power to combustion engines and in industrial processes. It is not intended for human consumption." },
       {
         type: "callout",
         tone: "info",
@@ -248,10 +237,10 @@ export const enPages: Page[] = [
         text: "The exceptions depend on what the gas is meant for. A cylinder labelled ‘culinary’ that is intended for inhaling is covered by the [ban](/en/nitrous-oxide-laws-netherlands/).",
       },
     ],
-    sources: ["rijk-verbod", "stb-2022-461", "vng-factsheet"],
+    sources: ["rijk-verbod", "stb-2022-461", "vng-factsheet", "rivm-cam-2026"],
     related: ["en-laws", "en-brands", "en-cylinders"],
     translationOf: "soorten",
-    status: "fact-check",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-04-30",
@@ -267,7 +256,7 @@ export const enPages: Page[] = [
     metaDescription:
       "Why brand names like FastGas appear in Dutch reporting on nitrous oxide — an independent, non-commercial overview. No recommendations, prices or sellers.",
     answer:
-      "Brand names are printed on many of the cylinders found on Dutch streets, and journalists have named some of them, including FastGas and Fastwhip. This page summarises what public sources report. Mentioning a brand is never a recommendation: we list no prices, sellers or product comparisons.",
+      "Brand names are printed on many of the cylinders found on Dutch streets. The Dutch public health institute RIVM names Fastgas as one of the disposable-cylinder brands that replaced small whipped-cream chargers; consumer programme Radar also mentions Fastwhip. Mentioning a brand is never a recommendation: we list no prices, sellers or product comparisons.",
     body: [
       {
         type: "callout",
@@ -280,25 +269,26 @@ export const enPages: Page[] = [
         type: "steps",
         items: [
           {
-            title: "AVROTROS Radar — 22 September 2025",
-            text: "The Dutch consumer programme reported that streets are littered with cylinders ‘with names like Fastgast and Fastwhip’ (spelling as published), despite the ban, and that the police have no specific approach to the drug.",
+            title: "RIVM — 2 March 2026",
+            text: "The institute’s [monitoring note](https://www.rivm.nl/sites/default/files/2026-03/CAM-notitie-Stand-van-zaken-omtrent-lachgas-%282019-2025%29-beveiligd.pdf) says small chargers seem to have disappeared from the streets, replaced by disposable cylinders from brands including Fastgas, and that online shops are promoting them more actively again.",
           },
           {
-            title: "NRC — 19 June 2025",
-            text: "The newspaper published an investigation into the international nitrous oxide trade. We have not yet read it ourselves and therefore do not quote from it.",
+            title: "AVROTROS Radar — 22 September 2025",
+            text: "The Dutch consumer programme reported that streets are littered with cylinders ‘with names like Fastgast and Fastwhip’ (spelling as published), despite the ban.",
+          },
+          {
+            title: "Rotterdam city council — 20 June 2025",
+            text: "A council party asked [written questions](https://rotterdamraad.bestuurlijkeinformatie.nl/Document/View/a252a85f-8511-462a-bddd-f143f5a70aef) about Fastgas following an NRC investigation into the international nitrous oxide trade.",
           },
         ],
       },
       { type: "h2", id: "law", text: "Brand, label and the law" },
-      {
-        type: "p",
-        text: "Under Dutch law the brand doesn’t matter: nitrous oxide meant for inhaling is illegal to possess, whatever is printed on the cylinder.",
-      },
+      { type: "p", text: "Under Dutch law the brand doesn’t matter: nitrous oxide meant for inhaling is illegal to possess, whatever is printed on the cylinder." },
     ],
-    sources: ["radar-2025", "nrc-2025", "rijk-verbod"],
+    sources: ["rivm-cam-2026", "radar-2025", "rotterdam-vragen-2025", "rijk-verbod"],
     related: ["en-types", "en-cylinders", "en-laws"],
     translationOf: "merken",
-    status: "fact-check",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-01-31",
@@ -314,12 +304,12 @@ export const enPages: Page[] = [
     metaDescription:
       "Nitrous oxide cylinders are hazardous waste and can explode in incinerators. What to do if you find one in Amsterdam, and why it matters.",
     answer:
-      "Don’t put a nitrous oxide cylinder in a normal bin — it can explode in the waste incinerator. Don’t open or heat it. Residents can take it to one of Amsterdam’s waste points (Afvalpunten); visitors can leave it where it is and report it to the city via amsterdam.nl.",
+      "Don’t put a nitrous oxide cylinder in a normal bin — it can explode in the waste incinerator. Don’t open or heat it. Report a cylinder in a public space via meldingen.amsterdam.nl (the city’s reporting service); residents can take empty cylinders to one of Amsterdam’s waste points (Afvalpunten).",
     body: [
       { type: "h2", id: "why", text: "Why it matters" },
       {
         type: "p",
-        text: "Cylinders thrown into household waste end up in AEB’s incinerators, where they explode with increasing frequency, according to Amsterdam broadcaster AT5. AEB built a dedicated shed to shred cylinders before incineration. A paid return scheme collected roughly 80,000 cylinders in five months before it was stopped.",
+        text: "Cylinders thrown into household waste end up in the incinerators of AEB, Amsterdam’s waste-to-energy company. AEB reported more frequent and louder explosions from mid-January 2023, damaging grates and boiler walls. A paid return scheme collected about 80,000 cylinders between September 2023 and February 2024, and since March 2025 cylinders are shredded in a dedicated shed — yet in 2025 AEB still reported 15 to 20 explosions a week.",
       },
       { type: "h2", id: "steps", text: "What to do" },
       {
@@ -327,22 +317,19 @@ export const enPages: Page[] = [
         items: [
           { title: "Leave it intact", text: "Don’t open, puncture or heat it." },
           { title: "Not in the bin", text: "Not in household waste, recycling or bulky waste." },
-          { title: "Drop it off or report it", text: "Take it to an Amsterdam Afvalpunt (check amsterdam.nl first), or report it to the city if it’s in a public space." },
+          { title: "Report it", text: "Report cylinders in public spaces via [meldingen.amsterdam.nl](https://meldingen.amsterdam.nl). City services collect them; full cylinders are removed by city enforcement officers or the police." },
+          { title: "Or drop it off", text: "Residents can take empty cylinders to an Amsterdam Afvalpunt (waste point) — see [amsterdam.nl](https://www.amsterdam.nl)." },
         ],
       },
-      {
-        type: "p",
-        text: "Suspect dealing or storage? Call the police non-emergency line on **0900-8844**. Emergencies: **112**.",
-      },
+      { type: "p", text: "Suspect dealing or storage? Call the police non-emergency line on **0900-8844**. Emergencies: **112**." },
     ],
-    sources: ["rijk-verbod", "at5-explosies", "at5-aeb-stopt", "nhnieuws-loods"],
+    sources: ["rijk-verbod", "at5-explosies", "at5-aeb-stopt", "at5-dumping", "nhnieuws-loods", "nos-nieuwsuur-afval"],
     related: ["en-visiting", "en-is-legal", "en-brands"],
     translationOf: "cilinders",
-    status: "fact-check",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-01-31",
-    uncertainties: ["Which Afvalpunten currently accept cylinders has not yet been verified."],
   },
   {
     id: "en-visiting",
@@ -361,10 +348,10 @@ export const enPages: Page[] = [
       {
         type: "steps",
         items: [
-          { title: "It’s banned", text: "Since 1 January 2023, possessing, selling or transporting nitrous oxide for recreational use is illegal. [Read the law](/en/nitrous-oxide-laws-netherlands/)." },
+          { title: "It’s banned", text: "Since 1 January 2023, possessing, selling or transporting nitrous oxide for recreational use is illegal, and Amsterdam’s bylaws also ban using it. [Read the law](/en/nitrous-oxide-laws-netherlands/)." },
           { title: "It applies to you", text: "Dutch law applies to everyone in the country, whatever is allowed at home." },
           { title: "Street balloons are illegal", text: "Anyone selling balloons in the street or at a party is breaking the law." },
-          { title: "It’s not harmless", text: "Risks range from fainting and frostbite to nerve damage. [Health risks](/en/nitrous-oxide-health-risks/)." },
+          { title: "It’s not harmless", text: "There is no safe limit; risks range from fainting and frostbite to nerve damage. [Health risks](/en/nitrous-oxide-health-risks/)." },
           { title: "Cylinders are hazardous waste", text: "Never bin them. [What to do](/en/nitrous-oxide-cylinders/)." },
         ],
       },
@@ -389,9 +376,9 @@ export const enPages: Page[] = [
         text: "Lachgas Amsterdam is an independent, non-commercial information platform. It is not a website of the City of Amsterdam. Official city information is at [amsterdam.nl](https://www.amsterdam.nl).",
       },
     ],
-    sources: ["rijk-verbod", "vng-factsheet", "trimbos-lachgas", "drugsinfo-lachgas", "at5-explosies"],
+    sources: ["rijk-verbod", "amsterdam-rib-2023", "om-lachgasverbod-2023", "rivm-cam-2026", "trimbos-lachgas", "drugsinfo-lachgas", "at5-explosies"],
     related: ["en-is-legal", "en-health", "en-cylinders", "en-laws"],
-    status: "legal-review",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-01-31",
@@ -405,9 +392,9 @@ export const enPages: Page[] = [
     title: "About Lachgas Amsterdam",
     metaTitle: "About Lachgas Amsterdam: independent and non-commercial",
     metaDescription:
-      "Lachgas Amsterdam is an independent, non-commercial information platform about nitrous oxide in Amsterdam. How we work, our sources and our privacy approach.",
+      "Lachgas Amsterdam is an independent, non-commercial information platform about nitrous oxide in Amsterdam. Who publishes it and how we work.",
     answer:
-      "Lachgas Amsterdam is an independent, fully non-commercial information platform. We explain Dutch law, health risks and the Amsterdam context using verifiable sources. We sell nothing, show no ads, use no cookies or trackers, and are not a government website.",
+      "Lachgas Amsterdam is an independent, fully non-commercial information platform published by Lachgas info Amsterdam. We explain Dutch law, health risks and the Amsterdam context using verifiable sources. We sell nothing, show no ads, use no cookies or trackers, and are not a government website.",
     body: [
       { type: "h2", id: "independent", text: "Independent and non-commercial" },
       {
@@ -419,25 +406,137 @@ export const enPages: Page[] = [
           "no connection to the City of Amsterdam or any other authority.",
         ],
       },
+      { type: "h2", id: "publisher", text: "Publisher" },
+      {
+        type: "facts",
+        items: [
+          { label: "Publisher", value: "Lachgas info Amsterdam" },
+          { label: "Postal address", value: "Sarphatipark 8, Amsterdam, the Netherlands" },
+          { label: "Website", value: "lachgasinfo.nl" },
+        ],
+      },
+      {
+        type: "p",
+        text: "This site deliberately has no contact form, email address or phone number. Correspondence — for example about your data protection rights — can be sent by post to the address above.",
+      },
       { type: "h2", id: "editorial", text: "Editorial standards" },
       {
         type: "p",
-        text: "Every page goes through fact-checking and, where relevant, legal or medical review before it is published. Pages show when they were last checked and list their sources. Pages still under review say so and are not indexed by search engines. All sources are listed in our [source register](/en/sources/).",
-      },
-      { type: "h2", id: "advice", text: "Not personal advice" },
-      {
-        type: "p",
-        text: "The information here is general. It is not legal or medical advice for your situation. In an emergency, call 112.",
+        text: "Every page is fact-checked against sources the editors have read in full, shows when it was last checked and lists its sources. See our [editorial policy](/en/editorial-policy/) and [source register](/en/sources/).",
       },
     ],
     sources: [],
-    related: ["en-visiting", "en-is-legal"],
+    related: ["en-editorial", "en-privacy", "en-disclaimer"],
     translationOf: "over-ons",
-    status: "draft",
+    status: "published",
     published: D,
     reviewed: D,
     nextReview: "2027-04-30",
     unlisted: true,
-    uncertainties: ["Publisher details still need to be added before launch."],
+  },
+  {
+    id: "en-editorial",
+    locale: "en",
+    path: "/en/editorial-policy/",
+    category: "redactie",
+    eyebrow: "Editorial",
+    title: "Editorial policy",
+    metaTitle: "Editorial policy — Lachgas Amsterdam",
+    metaDescription: "How Lachgas Amsterdam selects sources, checks facts, reviews legal and health content and keeps information up to date.",
+    answer:
+      "Every page goes through fixed steps: draft, fact-check, legal or medical check, approval and publication. We prefer primary and official sources, show the last-checked date on every page and never publish claims we cannot trace to a source.",
+    body: [
+      { type: "h2", id: "sources", text: "Sources" },
+      {
+        type: "p",
+        text: "We prefer primary sources: legislation, official publications and information from the Dutch government, the Public Prosecution Service, the RIVM and the Trimbos Institute. Journalism is used for context and local developments, always named and dated. Published pages rely only on sources the editors have read in full; the [source register](/en/sources/) shows how each source was checked.",
+      },
+      { type: "h2", id: "never", text: "What we never do" },
+      {
+        type: "list",
+        items: [
+          "invent experts, authors or reviews;",
+          "cite figures, incidents or measures we cannot trace;",
+          "give individual legal or medical advice;",
+          "recommend brands, list prices or link to sellers.",
+        ],
+      },
+      { type: "h2", id: "updates", text: "Keeping it current" },
+      { type: "p", text: "Legal pages are reviewed at least quarterly, health pages at least every six months, and immediately when rules change." },
+    ],
+    sources: [],
+    related: ["en-about", "en-privacy", "en-disclaimer"],
+    translationOf: "redactiebeleid",
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-04-30",
+    unlisted: true,
+  },
+  {
+    id: "en-privacy",
+    locale: "en",
+    path: "/en/privacy/",
+    category: "redactie",
+    eyebrow: "Privacy",
+    title: "Privacy statement",
+    metaTitle: "Privacy statement — Lachgas Amsterdam",
+    metaDescription: "Lachgas Amsterdam collects as little data as possible: no cookies, no analytics, no forms and no third-party trackers.",
+    answer:
+      "We collect as little data as possible. This website uses no cookies, no analytics and no forms, and loads no third-party scripts or fonts. Only our hosting provider, Vercel, processes technically necessary server logs.",
+    body: [
+      { type: "h2", id: "controller", text: "Data controller" },
+      { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam, the Netherlands. Questions or requests about your data can be sent by post to this address." },
+      { type: "h2", id: "cookies", text: "Cookies and tracking" },
+      { type: "p", text: "This website sets no cookies and uses no analytics, ad networks or social media plug-ins, so there is no cookie banner. All fonts are served from our own domain." },
+      { type: "h2", id: "hosting", text: "Hosting and server logs" },
+      {
+        type: "p",
+        text: "The website is hosted by Vercel Inc. On each visit Vercel processes technical data such as IP address, time and requested page to keep the site secure and available (legitimate interest, Article 6(1)(f) GDPR). Vercel retains these logs under its own policy; the publisher keeps no visitor data. For transfers outside the EU, Vercel uses the European Commission’s standard contractual clauses.",
+      },
+      { type: "h2", id: "rights", text: "Your rights" },
+      {
+        type: "p",
+        text: "Under the GDPR you have the right of access, rectification and erasure, among others, and the right to lodge a complaint with the Dutch Data Protection Authority ([Autoriteit Persoonsgegevens](https://www.autoriteitpersoonsgegevens.nl)).",
+      },
+    ],
+    sources: [],
+    related: ["en-disclaimer", "en-about"],
+    translationOf: "privacy",
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-04-30",
+    unlisted: true,
+  },
+  {
+    id: "en-disclaimer",
+    locale: "en",
+    path: "/en/disclaimer/",
+    category: "redactie",
+    eyebrow: "Disclaimer",
+    title: "Disclaimer",
+    metaTitle: "Disclaimer — Lachgas Amsterdam",
+    metaDescription: "Information on Lachgas Amsterdam is general and not legal or medical advice. We are not a government body and sell nothing.",
+    answer:
+      "The information on this website is general and intended for education and public safety. It is not individual legal or medical advice. Lachgas Amsterdam is not a government website and is not affiliated with the City of Amsterdam.",
+    body: [
+      { type: "h2", id: "general", text: "General information" },
+      { type: "p", text: "We do our best to keep information accurate and current, but rules can change. Every page therefore shows when it was last checked and lists its sources. When in doubt, consult the official source." },
+      { type: "h2", id: "advice", text: "No personal advice" },
+      { type: "p", text: "For legal questions about your own situation, consult a lawyer. For health concerns, see a doctor — or call 112 in an emergency." },
+      { type: "h2", id: "government", text: "Not a government website" },
+      { type: "p", text: "Lachgas Amsterdam is not affiliated with the City of Amsterdam, the Dutch government or any other authority, and uses no government logos or branding." },
+      { type: "h2", id: "links", text: "External links" },
+      { type: "p", text: "We link only to sources and support services, never to sellers. We are not responsible for the content of external websites." },
+    ],
+    sources: [],
+    related: ["en-privacy", "en-editorial"],
+    translationOf: "disclaimer",
+    status: "published",
+    published: D,
+    reviewed: D,
+    nextReview: "2027-04-30",
+    unlisted: true,
   },
 ];

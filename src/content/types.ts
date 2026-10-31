@@ -24,6 +24,7 @@ export type Category =
   | "amsterdam"
   | "hulp"
   | "toeristen"
+  | "nieuws"
   | "redactie";
 
 /**

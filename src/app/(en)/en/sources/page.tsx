@@ -1,9 +1,11 @@
 import { PageHero } from "@/components/article/PageHero";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SourceRegister } from "@/components/article/SourceRegister";
 import { specialRoutes } from "@/content";
 import { sources } from "@/content/sources";
-import { buildMetadata } from "@/lib/seo";
+import { breadcrumbLd, buildMetadata, graph } from "@/lib/seo";
 
+const crumbs = [{ name: "Home", path: "/en/" }, { name: "Source register", path: "/en/sources/" }];
 const route = specialRoutes.find((r) => r.id === "en-sources")!;
 
 export const metadata = buildMetadata({
@@ -21,7 +23,8 @@ export default function Sources() {
   for (const s of sources) counts[s.check]++;
   return (
     <>
-      <PageHero crumbs={[{ name: "Home", path: "/en/" }, { name: "Source register", path: "/en/sources/" }]} eyebrow="Editorial · Transparency" title="Source register" seed={144}>
+      <JsonLd data={graph(breadcrumbLd(crumbs))} />
+      <PageHero crumbs={crumbs} eyebrow="Editorial · Transparency" title="Source register" seed={144}>
         <p className="rise mt-6 max-w-2xl text-[17px] leading-relaxed text-white/75" style={{ ["--rise-delay" as string]: "160ms" }}>
           Every claim on this site can be traced. These are all {sources.length} sources and how thoroughly our editors checked them: {counts.full} read in full, {counts.summary} checked by summary, {counts.pending} not yet reviewed. Most sources are in Dutch.
         </p>

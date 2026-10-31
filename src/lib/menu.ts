@@ -20,7 +20,10 @@ export type IconKey =
   | "bookOpen"
   | "plane"
   | "info"
-  | "compass";
+  | "compass"
+  | "repeat"
+  | "megaphone"
+  | "newspaper";
 
 export interface MenuLink {
   href: string;
@@ -69,6 +72,7 @@ export const menu: Record<Locale, Menu> = {
         links: [
           { href: "/gezondheid/", label: "Gezondheidsrisico’s", desc: "Van duizeligheid tot bevriezing", icon: "heartPulse" },
           { href: "/lachgas-zenuwschade/", label: "Zenuwschade en B12", desc: "Klachten, diagnose en herstel", icon: "activity" },
+          { href: "/lachgas-verslaving/", label: "Verslaving", desc: "Signalen, cijfers en hulp", icon: "repeat" },
           { href: "/hulp/", label: "Hulp en ondersteuning", desc: "Anoniem advies en zorg", icon: "lifeBuoy" },
         ],
       },
@@ -94,7 +98,9 @@ export const menu: Record<Locale, Menu> = {
         overview: { href: "/amsterdam/", label: "Lachgas in Amsterdam" },
         links: [
           { href: "/amsterdam/", label: "Lachgas in Amsterdam", desc: "De lokale context", icon: "landmark" },
-          { href: "/lachgas-regels-amsterdam/", label: "Amsterdamse regels", desc: "Van 2019 tot nu", icon: "mapPin" },
+          { href: "/lachgas-regels-amsterdam/", label: "Amsterdamse regels", desc: "Opiumwet en APV", icon: "mapPin" },
+          { href: "/lachgas-overlast-amsterdam/", label: "Overlast melden", desc: "Wie optreedt en hoe je meldt", icon: "megaphone" },
+          { href: "/nieuws/", label: "Nieuws en ontwikkelingen", desc: "Tijdlijn sinds 2019", icon: "newspaper" },
           { href: "/en/visiting-amsterdam/", label: "Visiting Amsterdam", desc: "Guide for tourists (English)", icon: "plane" },
           { href: "/over-ons/", label: "Over ons", desc: "Onafhankelijk en niet-commercieel", icon: "info" },
         ],
@@ -140,6 +146,7 @@ export const menu: Record<Locale, Menu> = {
           { href: "/en/nitrous-oxide-brands/", label: "Brands", desc: "What public sources report", icon: "tag" },
           { href: "/en/nitrous-oxide-cylinders/", label: "Cylinders", desc: "Found one? What to do", icon: "cylinder" },
           { href: "/en/sources/", label: "Source register", desc: "Every source, in public", icon: "library" },
+          { href: "/en/about/", label: "About us", desc: "Independent and non-commercial", icon: "info" },
         ],
       },
     ],

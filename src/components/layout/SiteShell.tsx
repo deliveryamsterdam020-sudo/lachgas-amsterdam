@@ -12,7 +12,8 @@ import "@/app/globals.css";
 
 // next/font self-hosts the files at build time: no requests to Google at runtime.
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+// The mono face only styles small labels, so it is not preloaded on the critical path.
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
 /** Shared root markup for both language trees (each has its own root layout so `<html lang>` is correct). */
 export function SiteShell({ locale, children }: { locale: Locale; children: ReactNode }) {
