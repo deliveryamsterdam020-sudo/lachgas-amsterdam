@@ -4,7 +4,7 @@ Laatst bijgewerkt: 31 oktober 2026
 
 ## Status
 
-De site is **inhoudelijk en technisch klaar voor livegang**. Alle 30 pagina’s staan op `published`, de slotcontrole is afgerond en zijn indexeerbaar; de sitemap bevat 35 URL’s. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
+De site is **inhoudelijk en technisch klaar voor livegang**. Alle 30 pagina’s staan op `published` en zijn indexeerbaar; de sitemap bevat 35 URL’s en de slotcontrole is afgerond. Wat nog rest, vraagt een handeling van de uitgever (deployen, DNS, Search Console) — zie DEPLOY.md.
 
 ## Afgerond
 
