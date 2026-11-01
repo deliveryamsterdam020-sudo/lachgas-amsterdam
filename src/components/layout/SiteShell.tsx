@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { alternateMap } from "@/content";
 import type { Locale } from "@/content/types";
@@ -19,7 +20,12 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export function SiteShell({ locale, children }: { locale: Locale; children: ReactNode }) {
   const t = ui[locale];
   return (
-    <html lang={locale === "nl" ? "nl-NL" : "en"} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    // data-scroll-behavior: Next turns CSS smooth scrolling off during page changes, so a new page starts at the top instantly.
+    <html
+      lang={locale === "nl" ? "nl-NL" : "en"}
+      data-scroll-behavior="smooth"
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
       {/* eslint-disable-next-line @next/next/no-head-element -- App Router root layout */}
       <head>
         {/* Without JavaScript, scroll-reveal content must still be visible. */}
@@ -34,6 +40,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
           {children}
         </main>
         <Footer locale={locale} />
+        <SmoothScroll />
       </body>
     </html>
   );

@@ -116,3 +116,18 @@ Getest op de live site (https://www.lachgasinfo.nl), alle 40 pagina's, met Playw
 | CLS 0,04–0,07 (binnen “goed”, < 0,1) | Lettertype-wissel (fallback → Geist) verandert regelafbreking in de onderaan uitgelijnde hero | Voorladen van Geist Mono getest: geen verschil, teruggedraaid. Volledig oplossen kan met `font-display: optional`, maar dan zien nieuwe bezoekers op traag netwerk Arial. Bewust zo gelaten |
 
 Lighthouse mobiel op de live homepage vóór deze ronde: prestaties 97, toegankelijkheid 100, best practices 100, SEO 100. Scores schommelen per meting enkele punten.
+
+## Vloeiend scrollen (1 november 2026)
+
+| Controle | Resultaat |
+|---|---|
+| Muiswiel (Edge, desktop) | ✅ Uitlopende beweging, gemeten per frame: 74 → 137 → 190 → 234 … → 475 px in ca. 1 s |
+| Paginawissel na scrollen | ✅ Nieuwe pagina staat binnen één frame bovenaan (geen animatie naar boven) |
+| Inhoudsopgave-anker | ✅ Glijdt naar de kop, eindigt 96 px onder de bovenkant (vrij van de header), `#` in de URL |
+| Wiel na anker | ✅ Gaat verder vanaf de ankerpositie |
+| Mobiel menu in smal venster met muis | ✅ Menu scrolt, pagina erachter blijft staan |
+| Touchprofiel (375 px) | ✅ Lenis uit, native momentum; hero-diepte via CSS werkt; geen horizontaal scrollen |
+| `prefers-reduced-motion: reduce` | ✅ Lenis uit, hero-animaties uit, reveal-inhoud direct zichtbaar |
+| axe (40 pagina's × 2 breedtes) | ✅ 0 overtredingen |
+| WebKit-telefoontest (3 profielen, 40 pagina's) | ✅ Geen bevindingen (behalve de bewuste skiplink van 1×1 px) |
+| Lighthouse mobiel, lokaal (mediaan) | Home 92 (TBT 116 ms, was ~185 ms); artikel 96 (TBT 65 ms) |

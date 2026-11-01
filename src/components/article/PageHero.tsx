@@ -26,7 +26,7 @@ export function PageHero({
   return (
     <section className="on-dark grain relative overflow-hidden bg-ink text-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_80%_0%,#1f3a5e_0%,transparent_70%)]" />
-      <CanalRings labels={false} className="pointer-events-none absolute -right-40 -top-10 w-[720px] max-w-none text-mist opacity-[0.18] sm:-right-24" />
+      <CanalRings labels={false} className="hero-trail pointer-events-none absolute -right-40 -top-10 w-[720px] max-w-none text-mist opacity-[0.18] sm:-right-24" />
       <div className="relative mx-auto max-w-7xl px-4 pb-36 pt-28 sm:px-6 lg:px-8 lg:pb-44 lg:pt-36">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 text-[13px] text-white/60">

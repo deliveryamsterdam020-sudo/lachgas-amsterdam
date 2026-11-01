@@ -32,3 +32,8 @@ Kort-antwoordkaart · feitentabel · stappen · callouts (info, waarschuwing, hu
 
 ## Beweging
 Ease `cubic-bezier(.22,1,.36,1)`. Entree via `rise`, scroll-reveal via IntersectionObserver, dropdown-cascade van 35 ms per item. Alles staat uit bij `prefers-reduced-motion`; inhoud blijft zichtbaar zonder JavaScript.
+
+- **Scrollen met gevoel:** Lenis (`lerp 0.085`) geeft muiswiel en trackpad traagheid. Alleen bij een fijne aanwijzer met hover; touchtoestellen houden hun eigen momentum. Ankers (skiplink, inhoudsopgave) blijven native, zodat de focus meegaat. Het mobiele menu scrolt zelfstandig.
+- **Diepte in de hero:** CSS-scrolltijdlijnen, dus geen JavaScript per frame. Op de homepage beweegt de grachtscène trager mee (`hero-depth`) en tilt de kop weg met een fade (`hero-lift`). Op artikelpagina's drijven de grachtringen mee (`hero-trail`). Browsers zonder scrolltijdlijn tonen een statische hero.
+- **Reveal:** 32 px en `scale(.985)` naar rust, ease `cubic-bezier(.16,1,.3,1)` (`--ease-out-expo`), 1,0–1,2 s.
+- `<html data-scroll-behavior="smooth">`: Next.js zet vloeiend scrollen uit tijdens paginawissels, zodat een nieuwe pagina direct bovenaan begint.

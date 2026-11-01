@@ -48,7 +48,7 @@ export function Hero({
   return (
     <section className="on-dark grain relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink text-white">
       {/* On wide screens the scene shifts right so the bridge and its reflection sit beside the headline. */}
-      <div aria-hidden="true" className="absolute inset-0 -z-20 overflow-hidden">
+      <div aria-hidden="true" className="hero-depth absolute inset-0 -z-20 overflow-hidden">
         {/* Static scene plus a light layer with the animated reflections. The slow camera
             drift is a transform on the wrapper, so the browser composites it on the GPU. */}
         <div className="scene-drift absolute inset-0 lg:left-[16%]">
@@ -65,7 +65,7 @@ export function Hero({
       />
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-[#070e1c]/90 to-transparent" />
 
-      <div className={`${container} relative w-full pb-16 pt-32 sm:pb-24 lg:pb-28`}>
+      <div className={`${container} hero-lift relative w-full pb-16 pt-32 sm:pb-24 lg:pb-28`}>
         <p className="eyebrow rise flex items-center gap-3 text-lamp">
           <span aria-hidden="true" className="h-px w-10 bg-lamp/60" />
           {kicker}
