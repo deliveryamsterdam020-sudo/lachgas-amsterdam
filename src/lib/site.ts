@@ -1,10 +1,11 @@
 import type { Locale } from "@/content/types";
 
 /**
- * Production domain. lachgasinfo.com and the www variants redirect here
+ * Production domain (the primary domain in Vercel). lachgasinfo.nl and both
+ * .com variants redirect here
  * (next.config.ts). NEXT_PUBLIC_SITE_URL overrides it, e.g. for previews.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://lachgasinfo.nl").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lachgasinfo.nl").replace(/\/$/, "");
 
 export const SITE_NAME = "Lachgas Amsterdam";
 

@@ -11,18 +11,20 @@ git push -u origin main
 ## 2. Project in Vercel
 1. Ga naar vercel.com → **Add New… → Project** → importeer de GitHub-repository.
 2. Framework: Next.js wordt automatisch herkend. Build command `npm run build` (draait eerst `npm run scene`).
-3. Environment variable is niet nodig: `https://lachgasinfo.nl` is de standaard. Alleen voor een preview-domein zet je `NEXT_PUBLIC_SITE_URL`.
+3. Environment variable is niet nodig: `https://www.lachgasinfo.nl` is de standaard. Alleen voor een preview-domein zet je `NEXT_PUBLIC_SITE_URL`.
 4. Deploy.
 
 ## 3. Domeinen
 In Vercel → Project → **Settings → Domains**:
-- `lachgasinfo.nl` — primair domein
-- `www.lachgasinfo.nl`, `lachgasinfo.com`, `www.lachgasinfo.com` — toevoegen en laten doorverwijzen naar `lachgasinfo.nl` (308)
+- `www.lachgasinfo.nl` — primair domein
+- `lachgasinfo.nl`, `lachgasinfo.com`, `www.lachgasinfo.com` — toevoegen en laten doorverwijzen naar `www.lachgasinfo.nl`
+
+Let op: de code stuurt dezelfde domeinen door naar www. Maak in Vercel dus nooit `lachgasinfo.nl` (zonder www) primair, anders ontstaat een redirect-lus.
 
 Zet bij je domeinregistrar de DNS-records die Vercel toont (A-record voor het apex-domein, CNAME voor www). HTTPS regelt Vercel automatisch. Als extra vangnet stuurt de site zelf ook door (`next.config.ts`).
 
 ## 4. Na livegang
-- Google Search Console: domein verifiëren en `https://lachgasinfo.nl/sitemap.xml` indienen.
+- Google Search Console: domein verifiëren en `https://www.lachgasinfo.nl/sitemap.xml` indienen.
 - PageSpeed Insights draaien op `/` en `/lachgas-verbod/`.
 - Controleren op een echte iPhone/Mac (Safari) en Android-telefoon.
 

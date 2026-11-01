@@ -42,4 +42,4 @@ Statussen: `draft → fact-check → legal-review / medical-review → approved 
 Strikte CSP, HSTS, X-Frame-Options DENY, nosniff, Referrer- en Permissions-Policy (`next.config.ts`). Geen formulieren, geen cookies, geen secrets in de code.
 
 ## Configuratie
-Canoniek domein: `https://lachgasinfo.nl` (standaard in `src/lib/site.ts`). `NEXT_PUBLIC_SITE_URL` overschrijft dit, bijvoorbeeld voor previews. Hosting: Vercel — zie DEPLOY.md.
+Canoniek domein: `https://www.lachgasinfo.nl` (primair domein in Vercel) (standaard in `src/lib/site.ts`). `NEXT_PUBLIC_SITE_URL` overschrijft dit, bijvoorbeeld voor previews. Hosting: Vercel — zie DEPLOY.md.

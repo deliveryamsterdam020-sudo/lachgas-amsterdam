@@ -46,12 +46,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  // One canonical host: the .com domain and www variants redirect permanently to https://lachgasinfo.nl.
+  // One canonical host, matching the primary domain in Vercel: the bare .nl domain and
+  // both .com variants redirect permanently to https://www.lachgasinfo.nl. The www host
+  // itself must never redirect, or it loops with Vercel's own domain redirect.
   async redirects() {
-    return ["www.lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
+    return ["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
       source: "/:path*",
       has: [{ type: "host" as const, value: host }],
-      destination: "https://lachgasinfo.nl/:path*",
+      destination: "https://www.lachgasinfo.nl/:path*",
       permanent: true,
     }));
   },

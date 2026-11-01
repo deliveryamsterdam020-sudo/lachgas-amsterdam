@@ -12,7 +12,7 @@ Datum: 31 oktober 2026 · Getest op de **productiebuild** (`next build` + `next 
 | Metadata | ✅ titels ≤ 60, beschrijvingen ≤ 160, canonical en og:image op elke pagina |
 | hreflang | ✅ wederkerig, x-default → NL, ook in de sitemap |
 | Sitemap / robots | ✅ 35 URL’s met alternates; `index, follow`; sitemap-verwijzing in robots.txt |
-| Domein | ✅ canonicals op https://lachgasinfo.nl; .com en www → 308 |
+| Domein | ✅ canonicals op https://www.lachgasinfo.nl; .nl zonder www en .com → www |
 | Structured data | ✅ geldige JSON-LD: Organization (met adres), WebSite, Article (met citations), BreadcrumbList |
 | Lighthouse mobiel | ✅ toegankelijkheid 100 · best practices 100 · SEO 100 op alle geteste pagina’s |
 | Lighthouse performance | Homepage 92 mobiel / 99 desktop · artikelpagina 96 mobiel |
