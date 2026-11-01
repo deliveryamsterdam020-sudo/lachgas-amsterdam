@@ -90,3 +90,29 @@ Alle code en alle teksten opnieuw doorgelopen; alle beweringen tegen de bronnen 
 | 13 | “1.1 2023” werd niet als datum voorgelezen | Verborgen tekst “Ingangsdatum: 1 januari 2023” |
 | 14 | Footer-landmark in NL heette “Footer”; uitgever ontbrak in de footer | “Voettekst” en uitgeversregel |
 | 15 | Verouderde `interest-cohort` in Permissions-Policy gaf consolewaarschuwingen | Verwijderd |
+
+## Mobiele test (1 november 2026)
+
+Getest op de live site (https://www.lachgasinfo.nl), alle 40 pagina's, met Playwright WebKit (de engine van Safari) in drie telefoonprofielen: iPhone 13 (390 px), iPhone SE (320 px) en Pixel 7 (412 px). Dit is emulatie; een controle op een echt toestel blijft aanbevolen.
+
+| Controle | Resultaat |
+|---|---|
+| Horizontaal scrollen | ✅ Geen, op alle pagina's en breedtes |
+| Viewport-meta, afbeeldingen | ✅ In orde, geen kapotte afbeeldingen |
+| Menu en navigatie met tikken | ✅ Werkt; mobiel menu sluit na keuze |
+| Kleinste tekst | ⚠️→✅ Labels van 10,5 px (logo-ondertitel 9,5 px) naar 11,5 px / 11 px |
+| Tikdoelen ≥ 24×24 px (WCAG 2.5.8) | ⚠️→✅ Broodkruimels, bronlinks en officiële links kregen minimaal 24 px hoogte |
+| Skiplink 1×1 px | Bewust: alleen zichtbaar bij toetsenbordfocus |
+| RSC-meldingen “access control checks” | Testartefact: prefetch die wordt afgebroken door snelle navigatie; niet zichtbaar bij normaal gebruik |
+
+### PageSpeed Insights-punten
+
+| Inzicht | Bevinding | Actie |
+|---|---|---|
+| Gedwongen dynamische aanpassing (forced reflow) | Header las `window.scrollY` bij het laden | Vervangen door IntersectionObserver op een markering bovenaan de pagina; geen layout-uitlezing meer |
+| Verzoeken voor renderblokkering (~80 ms geschat) | Eén CSS-bestand (12 KB gzip) | `inlineCss` getest: Next zet de CSS dan twee keer in de HTML (+23 KB gzip). Gemeten (3× Lighthouse, mediaan): FCP gelijk, TBT 178 → 233 ms. Niet ingevoerd |
+| Netwerkafhankelijkheid, DOM-grootte | Herhaalde inline gevelsilhouetten met float-ruis in coördinaten | Paden afgerond op 0,1 px: homepage-HTML 56,3 → 52,5 KB gzip |
+| Verouderde JS (~14 KiB), ongebruikte JS (~48 KiB) | Zit in het framework-bundel van Next.js/React | Niet zelf op te lossen zonder het framework aan te passen |
+| CLS 0,04–0,07 (binnen “goed”, < 0,1) | Lettertype-wissel (fallback → Geist) verandert regelafbreking in de onderaan uitgelijnde hero | Voorladen van Geist Mono getest: geen verschil, teruggedraaid. Volledig oplossen kan met `font-display: optional`, maar dan zien nieuwe bezoekers op traag netwerk Arial. Bewust zo gelaten |
+
+Lighthouse mobiel op de live homepage vóór deze ronde: prestaties 97, toegankelijkheid 100, best practices 100, SEO 100. Scores schommelen per meting enkele punten.

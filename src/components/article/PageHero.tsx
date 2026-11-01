@@ -34,7 +34,7 @@ export function PageHero({
               <li key={c.path} className="flex items-center gap-1.5">
                 {i > 0 && <ChevronRight className="h-3.5 w-3.5 text-white/30" aria-hidden="true" />}
                 {i < crumbs.length - 1 ? (
-                  <Link href={c.path} className="hover:text-white">
+                  <Link href={c.path} className="inline-flex min-h-6 items-center hover:text-white">
                     {c.name}
                   </Link>
                 ) : (

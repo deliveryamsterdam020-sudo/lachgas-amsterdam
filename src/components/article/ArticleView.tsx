@@ -149,7 +149,7 @@ export function ArticleView({ page }: { page: Page }) {
                   className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-paper p-6 transition-all duration-500 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_20px_50px_-25px_rgba(16,28,50,0.35)]"
                 >
                   <div>
-                    <p className="eyebrow text-[10.5px] text-muted">{categoryLabel[r.locale][r.category]}</p>
+                    <p className="eyebrow text-[11.5px] text-muted">{categoryLabel[r.locale][r.category]}</p>
                     <p className="mt-3 text-[17px] font-semibold leading-snug tracking-tight text-ink">{r.title}</p>
                   </div>
                   <ArrowUpRight className="mt-8 h-5 w-5 text-muted transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" aria-hidden="true" />

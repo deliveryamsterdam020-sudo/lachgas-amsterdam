@@ -38,6 +38,8 @@ export function rng(seed: number) {
 }
 
 const r1 = (n: number) => Math.round(n * 10) / 10;
+// Path data rounded to 0.1px: the skyline is inlined several times per page, so float noise like 62.13000000000001 adds up.
+const roundPath = (d: string) => d.replace(/-?\d+\.\d+/g, (n) => String(r1(Number(n))));
 
 function gablePath(type: GableType, x: number, w: number, top: number, baseline: number): string {
   const gh = Math.min(w * 0.9, 90); // gable height
@@ -107,7 +109,7 @@ export function generateRow(o: RowOptions): House[] {
     const h = Math.round(o.minH + rand() * (o.maxH - o.minH));
     const top = o.baseline - h;
     const type = TYPES[Math.floor(rand() * TYPES.length)];
-    const house: House = { x, w, top, baseline: o.baseline, type, path: gablePath(type, x, w, top, o.baseline), windows: [] };
+    const house: House = { x, w, top, baseline: o.baseline, type, path: roundPath(gablePath(type, x, w, top, o.baseline)), windows: [] };
 
     if (o.windows !== false) {
       const gh = Math.min(w * 0.9, 90);

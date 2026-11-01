@@ -50,8 +50,8 @@ export function SourceRegister({ locale }: { locale: Locale }) {
                 return (
                   <li key={s.id} className="grid gap-4 p-6 lg:grid-cols-[1.4fr_1fr]">
                     <div className="min-w-0">
-                      <p className="eyebrow text-[10.5px] text-muted">{s.organisation}</p>
-                      <a href={s.url} rel="noopener noreferrer" className="inline-link mt-1.5 inline-flex items-start gap-1.5 break-words text-[16px] font-medium">
+                      <p className="eyebrow text-[11.5px] text-muted">{s.organisation}</p>
+                      <a href={s.url} rel="noopener noreferrer" className="inline-link mt-1.5 inline-flex min-h-6 items-start gap-1.5 break-words py-0.5 text-[16px] font-medium">
                         {s.title}
                         <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                       </a>
@@ -69,7 +69,7 @@ export function SourceRegister({ locale }: { locale: Locale }) {
                       </p>
                     </div>
                     <div>
-                      <p className="eyebrow text-[10.5px] text-muted">{t.citedBy}</p>
+                      <p className="eyebrow text-[11.5px] text-muted">{t.citedBy}</p>
                       {citing.length ? (
                         <ul className="mt-2 flex flex-wrap gap-2">
                           {citing.map((p) => (

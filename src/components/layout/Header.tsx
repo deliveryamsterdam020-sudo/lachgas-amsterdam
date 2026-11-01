@@ -94,11 +94,15 @@ export function Header({ locale, menu, altMap, labels }: Props) {
   const [panel, setPanel] = useState<string | null>(null);
   const hoverTimer = useRef<number | undefined>(undefined);
 
+  // A 24px marker at the top of the document: once it leaves the viewport the page counts as
+  // scrolled. An observer avoids reading scrollY, which forces a layout pass on load.
+  const topMarker = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = topMarker.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setScrolled(!e.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -144,6 +148,7 @@ export function Header({ locale, menu, altMap, labels }: Props) {
 
   return (
     <>
+      <div ref={topMarker} aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-6 w-px" />
       <a
         href="#inhoud"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-paper focus:px-4 focus:py-2 focus:text-ink"

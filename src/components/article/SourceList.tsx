@@ -29,8 +29,8 @@ export function SourceList({ sources, locale }: { sources: Source[]; locale: Loc
           <li key={s.id} className="grid grid-cols-[28px_1fr] gap-3 rounded-2xl border border-line bg-paper p-4 text-[14.5px]">
             <span className="font-mono text-[12px] text-muted tabular">{String(i + 1).padStart(2, "0")}</span>
             <div className="min-w-0">
-              <p className="eyebrow text-[10.5px] text-muted">{s.organisation}</p>
-              <a href={s.url} rel="noopener noreferrer" className="inline-link mt-1 inline-flex items-start gap-1.5 break-words font-medium">
+              <p className="eyebrow text-[11.5px] text-muted">{s.organisation}</p>
+              <a href={s.url} rel="noopener noreferrer" className="inline-link mt-1 inline-flex min-h-6 items-start gap-1.5 break-words py-0.5 font-medium">
                 {s.title}
                 <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               </a>

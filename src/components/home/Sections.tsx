@@ -224,7 +224,7 @@ export function BanExplainer({
               <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
                 {official.map((o) => (
                   <li key={o.href}>
-                    <a href={o.href} rel="noopener noreferrer" className="inline-link inline-flex items-center gap-1.5 text-[15px]">
+                    <a href={o.href} rel="noopener noreferrer" className="inline-link inline-flex min-h-6 items-center gap-1.5 py-0.5 text-[15px]">
                       {o.label}
                       <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                     </a>
@@ -289,7 +289,7 @@ export function AmsterdamSection({
               <span className="tabular text-[44px] font-semibold leading-none tracking-[-0.04em] text-lamp">{t.year}</span>
               <h3 className="mt-5 text-[18px] font-semibold leading-snug">{t.title}</h3>
               <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-white/70">{t.text}</p>
-              <a href={t.source.href} rel="noopener noreferrer" className="eyebrow mt-6 inline-flex items-center gap-1.5 text-[10.5px] text-white/50 hover:text-white">
+              <a href={t.source.href} rel="noopener noreferrer" className="eyebrow mt-6 inline-flex min-h-6 items-center gap-1.5 text-[11.5px] text-white/50 hover:text-white">
                 {t.source.label}
                 <ExternalLink className="h-3 w-3" aria-hidden="true" />
               </a>

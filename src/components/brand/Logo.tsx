@@ -21,7 +21,7 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
       <LogoMark className="h-8 w-8 shrink-0" />
       <span className="flex flex-col leading-none">
         <span className="text-[15px] font-semibold tracking-[-0.01em]">Lachgas Amsterdam</span>
-        <span className={`eyebrow mt-1 hidden text-[9.5px] min-[400px]:block ${tone === "light" ? "text-white/60" : "text-muted"}`}>Onafhankelijk · Independent</span>
+        <span className={`eyebrow mt-1 hidden text-[11px] min-[400px]:block ${tone === "light" ? "text-white/60" : "text-muted"}`}>Onafhankelijk · Independent</span>
       </span>
     </span>
   );

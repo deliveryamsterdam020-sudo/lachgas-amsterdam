@@ -48,7 +48,7 @@ export function Footer({ locale }: { locale: Locale }) {
               {locale === "nl" ? "Uitgave" : "Published by"}: {PUBLISHER.name} · {PUBLISHER.street}, {PUBLISHER.city}
             </p>
           </div>
-          <p className="eyebrow text-[10.5px]" aria-hidden="true">52.3676° N · 4.9041° E</p>
+          <p className="eyebrow text-[11.5px]" aria-hidden="true">52.3676° N · 4.9041° E</p>
         </div>
       </div>
     </footer>

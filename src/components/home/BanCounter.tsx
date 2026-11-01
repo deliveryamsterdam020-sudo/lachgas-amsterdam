@@ -56,7 +56,7 @@ export function BanCounter({ locale }: { locale: Locale }) {
               i === 0 ? "border-lamp/30" : ""
             }`}
           >
-            <dt className="eyebrow mt-3 text-[10.5px] text-white/55">{labels[locale][u]}</dt>
+            <dt className="eyebrow mt-3 text-[11.5px] text-white/55">{labels[locale][u]}</dt>
             <dd className="tabular text-[clamp(2rem,1.3rem+3vw,4.25rem)] font-semibold leading-none tracking-[-0.04em] text-white">
               {parts ? String(parts[u]).padStart(u === "days" ? 3 : 2, "0") : "—"}
             </dd>
