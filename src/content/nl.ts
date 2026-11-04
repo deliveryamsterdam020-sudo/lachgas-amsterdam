@@ -1263,7 +1263,7 @@ export const nlPages: Page[] = [
         items: [
           "geen verkoop, webshop, affiliate-links of advertenties;",
           "geen betaalde vermeldingen en geen sponsoring door merken of verkopers;",
-          "geen tracking, geen cookies en geen nieuwsbrief;",
+          "geen cookies, geen advertentietrackers en geen nieuwsbrief;",
           "geen relatie met de gemeente Amsterdam of andere overheden.",
         ],
       },
@@ -1363,16 +1363,21 @@ export const nlPages: Page[] = [
     title: "Privacyverklaring",
     metaTitle: "Privacyverklaring — Lachgas Amsterdam",
     metaDescription:
-      "Lachgas Amsterdam verzamelt zo min mogelijk gegevens: geen cookies, geen analytics en geen externe trackers. Vragen aan de chatassistent worden niet bewaard.",
+      "Lachgas Amsterdam verzamelt zo min mogelijk gegevens: geen cookies, geen externe trackers en alleen anonieme bezoekersstatistieken. Chatvragen worden niet bewaard.",
     answer:
-      "Wij verzamelen zo min mogelijk gegevens. Deze website gebruikt geen cookies en geen analytics, en laadt geen externe scripts of lettertypen. De hostingprovider Vercel verwerkt technisch noodzakelijke serverlogs. Als je de chatassistent gebruikt, wordt je vraag naar Anthropic gestuurd om een antwoord te maken; wij bewaren je gesprek niet.",
+      "Wij verzamelen zo min mogelijk gegevens. Deze website gebruikt geen cookies en laadt geen externe scripts of lettertypen. Voor anonieme bezoekersstatistieken gebruiken wij Vercel Web Analytics, zonder cookies. De hostingprovider Vercel verwerkt technisch noodzakelijke serverlogs. Als je de chatassistent gebruikt, wordt je vraag naar Anthropic gestuurd om een antwoord te maken; wij bewaren je gesprek niet.",
     body: [
       { type: "h2", id: "verantwoordelijke", text: "Verwerkingsverantwoordelijke" },
       { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam. Vragen of verzoeken over je gegevens kun je per post naar dit adres sturen." },
       { type: "h2", id: "cookies", text: "Cookies en tracking" },
       {
         type: "p",
-        text: "Deze website plaatst geen cookies en gebruikt geen analytics, advertentienetwerken of social-media-plug-ins. Daarom tonen wij ook geen cookiebanner. Alle lettertypen worden vanaf ons eigen domein geladen.",
+        text: "Deze website plaatst geen cookies en gebruikt geen advertentienetwerken of social-media-plug-ins. Daarom tonen wij ook geen cookiebanner. Alle lettertypen worden vanaf ons eigen domein geladen.",
+      },
+      { type: "h2", id: "statistieken", text: "Bezoekersstatistieken" },
+      {
+        type: "p",
+        text: "Om te weten hoeveel mensen de website bezoeken en welke pagina’s worden gelezen, gebruiken wij Vercel Web Analytics. Dat werkt zonder cookies en slaat niets op in je browser. Per paginabezoek worden de bekeken pagina, de verwijzende website, het land en het type browser, besturingssysteem en apparaat geregistreerd. Om bezoeken van dezelfde bezoeker op één dag samen te tellen, maakt Vercel een anonieme code van technische gegevens van het verzoek; die code wordt na 24 uur weggegooid en je IP-adres wordt niet opgeslagen. Wij zien alleen totalen en kunnen niemand herkennen. Dit doen wij op grond van gerechtvaardigd belang (art. 6 lid 1 sub f AVG): de website verbeteren.",
       },
       { type: "h2", id: "serverlogs", text: "Hosting en serverlogs" },
       {

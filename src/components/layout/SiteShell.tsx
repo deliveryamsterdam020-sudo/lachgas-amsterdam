@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
@@ -43,6 +44,8 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
         <Footer locale={locale} />
         <ChatWidget locale={locale} />
         <SmoothScroll />
+        {/* Cookieless visitor statistics, served from our own domain (see the privacy statement) */}
+        <Analytics />
       </body>
     </html>
   );

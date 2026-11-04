@@ -519,7 +519,7 @@ export const enPages: Page[] = [
         items: [
           "no sales, shop, affiliate links or advertising;",
           "no paid mentions or sponsorship;",
-          "no cookies, analytics or newsletter;",
+          "no cookies, ad trackers or newsletter;",
           "no connection to the City of Amsterdam or any other authority.",
         ],
       },
@@ -598,14 +598,19 @@ export const enPages: Page[] = [
     eyebrow: "Privacy",
     title: "Privacy statement",
     metaTitle: "Privacy statement — Lachgas Amsterdam",
-    metaDescription: "Lachgas Amsterdam collects as little data as possible: no cookies, no analytics and no third-party trackers. Chat questions are not stored.",
+    metaDescription: "Lachgas Amsterdam collects as little data as possible: no cookies, no third-party trackers and only anonymous visitor statistics. Chat questions are not stored.",
     answer:
-      "We collect as little data as possible. This website uses no cookies and no analytics, and loads no third-party scripts or fonts. Our hosting provider, Vercel, processes technically necessary server logs. If you use the chat assistant, your question is sent to Anthropic to generate an answer; we do not store your conversation.",
+      "We collect as little data as possible. This website uses no cookies and loads no third-party scripts or fonts. For anonymous visitor statistics we use Vercel Web Analytics, without cookies. Our hosting provider, Vercel, processes technically necessary server logs. If you use the chat assistant, your question is sent to Anthropic to generate an answer; we do not store your conversation.",
     body: [
       { type: "h2", id: "controller", text: "Data controller" },
       { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam, the Netherlands. Questions or requests about your data can be sent by post to this address." },
       { type: "h2", id: "cookies", text: "Cookies and tracking" },
-      { type: "p", text: "This website sets no cookies and uses no analytics, ad networks or social media plug-ins, so there is no cookie banner. All fonts are served from our own domain." },
+      { type: "p", text: "This website sets no cookies and uses no ad networks or social media plug-ins, so there is no cookie banner. All fonts are served from our own domain." },
+      { type: "h2", id: "statistics", text: "Visitor statistics" },
+      {
+        type: "p",
+        text: "To know how many people visit the website and which pages are read, we use Vercel Web Analytics. It works without cookies and stores nothing in your browser. For each page view it records the page, the referring website, the country and the type of browser, operating system and device. To count visits by the same visitor on one day, Vercel creates an anonymous code from technical details of the request; that code is discarded after 24 hours and your IP address is not stored. We only see totals and cannot identify anyone. We do this on the basis of legitimate interest (Article 6(1)(f) GDPR): improving the website.",
+      },
       { type: "h2", id: "hosting", text: "Hosting and server logs" },
       {
         type: "p",
