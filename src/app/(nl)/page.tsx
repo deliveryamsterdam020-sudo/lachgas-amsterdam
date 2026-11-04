@@ -1,6 +1,5 @@
-import { lastReviewed, pagesFor, specialRoutes } from "@/content";
+import { pagesFor, specialRoutes } from "@/content";
 import { buildMetadata } from "@/lib/seo";
-import { formatDate } from "@/lib/site";
 import { LiveClock } from "@/components/home/LiveClock";
 import {
   AmsterdamSection,
@@ -30,7 +29,6 @@ export const metadata = buildMetadata({
 const ORDER = ["verbod", "regels-amsterdam", "gezondheid", "verslaving", "cilinders", "nieuws"];
 
 export default function Home() {
-  const lastChecked = lastReviewed("nl");
   const knowledge = ORDER.map((id) => pagesFor("nl").find((p) => p.id === id)!).filter(Boolean);
 
   return (
@@ -42,7 +40,7 @@ export default function Home() {
         primary={{ href: "#informatie", label: "Ontdek de informatie" }}
         secondary={{ href: "/en/", label: "Visiting Amsterdam? Read in English", lang: "en" }}
         scrollLabel="Scroll"
-        clock={<LiveClock locale="nl" updated={{ label: "Informatie laatst gecontroleerd op", iso: lastChecked, text: formatDate(lastChecked, "nl") }} />}
+        clock={<LiveClock locale="nl" />}
       />
 
       <DirectAnswer

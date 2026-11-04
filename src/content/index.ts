@@ -48,14 +48,6 @@ export function pagesFor(locale: Locale): Page[] {
   return pages.filter((p) => p.locale === locale);
 }
 
-/** Most recent "last checked" date (YYYY-MM-DD) among the published pages of a language. */
-export function lastReviewed(locale: Locale): string {
-  return pagesFor(locale)
-    .filter((p) => isIndexable(p.status))
-    .map((p) => p.reviewed)
-    .sort()
-    .at(-1)!;
-}
 
 export function relatedPages(page: Page): Page[] {
   return page.related.map((id) => byId.get(id)).filter((p): p is Page => !!p && p.id !== page.id);

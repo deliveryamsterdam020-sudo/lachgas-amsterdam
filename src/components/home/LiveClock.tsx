@@ -39,13 +39,13 @@ const currentSecond = () => Math.floor(Date.now() / 1000) * 1000;
 
 const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-export function LiveClock({ locale, updated }: { locale: Locale; updated: { label: string; iso: string; text: string } }) {
+export function LiveClock({ locale }: { locale: Locale }) {
   const now = useSyncExternalStore(subscribe, currentSecond, () => null);
   const f = formats[locale];
   const date = now === null ? null : new Date(now);
 
   return (
-    <div className="rise flex flex-col items-start gap-2.5">
+    <div className="rise flex flex-col items-start">
       <p className="live-clock">
         <span className="live-clock__dot" aria-hidden="true" />
         {/* On phones the pill only fits the date and time; "Amsterdam" stays for screen readers */}
@@ -64,12 +64,6 @@ export function LiveClock({ locale, updated }: { locale: Locale; updated: { labe
           // Same height as the filled pill, so nothing moves when the time appears.
           <span aria-hidden="true" className="inline-block w-[24ch] sm:w-[30ch]">&nbsp;</span>
         )}
-      </p>
-      <p className="pl-1 text-[12.5px] text-white/60">
-        {updated.label}{" "}
-        <time dateTime={updated.iso} className="text-white/80">
-          {updated.text}
-        </time>
       </p>
     </div>
   );
