@@ -14,7 +14,7 @@ export const SITE_NAME = "Lachgas Amsterdam";
  * assistant: digits only, international format without "+" or leading zeros
  * (06 12345678 → "31612345678"). An empty string hides the WhatsApp button.
  */
-export const WHATSAPP_NUMBER = "";
+export const WHATSAPP_NUMBER = "447441484380";
 
 /** Publisher identification (legal notice). */
 export const PUBLISHER = {
