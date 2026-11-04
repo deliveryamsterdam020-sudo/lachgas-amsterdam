@@ -37,6 +37,7 @@ export function Hero({
   primary,
   secondary,
   scrollLabel,
+  clock,
 }: {
   kicker: string;
   subtitle: string;
@@ -44,6 +45,7 @@ export function Hero({
   primary: { href: string; label: string };
   secondary: { href: string; label: string; lang?: string };
   scrollLabel: string;
+  clock?: ReactNode;
 }) {
   return (
     <section className="on-dark grain relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink text-white">
@@ -66,6 +68,8 @@ export function Hero({
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-[#070e1c]/90 to-transparent" />
 
       <div className={`${container} hero-lift relative w-full pb-16 pt-32 sm:pb-24 lg:pb-28`}>
+        {/* Phones and tablets: the clock sits above the kicker. Desktop: bottom right, beside the text (see below). */}
+        {clock && <div className="mb-8 sm:mb-10 lg:hidden">{clock}</div>}
         <p className="eyebrow rise flex items-center gap-3 text-lamp">
           <span aria-hidden="true" className="h-px w-10 bg-lamp/60" />
           {kicker}
@@ -98,12 +102,15 @@ export function Hero({
               </a>
             </div>
           </div>
-          <a href="#direct" className="eyebrow hidden items-center gap-3 justify-self-end text-[11px] text-white/50 transition-colors hover:text-white lg:flex">
+          <div className="hidden flex-col items-end gap-10 justify-self-end lg:flex">
+          {clock && <div className="[&>div]:items-end">{clock}</div>}
+          <a href="#direct" className="eyebrow flex items-center gap-3 text-[11px] text-white/50 transition-colors hover:text-white">
             {scrollLabel}
             <span className="flex h-10 w-6 justify-center rounded-full border border-white/30 pt-2" aria-hidden="true">
               <span className="h-2 w-px animate-bounce bg-white/70" />
             </span>
           </a>
+          </div>
         </div>
       </div>
     </section>

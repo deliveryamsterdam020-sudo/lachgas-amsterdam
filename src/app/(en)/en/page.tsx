@@ -1,5 +1,7 @@
-import { pagesFor, specialRoutes } from "@/content";
+import { lastReviewed, pagesFor, specialRoutes } from "@/content";
 import { buildMetadata } from "@/lib/seo";
+import { formatDate } from "@/lib/site";
+import { LiveClock } from "@/components/home/LiveClock";
 import { AmsterdamSection, BanExplainer, CounterSection, DirectAnswer, Hero, HubSection, Independence, KnowledgeSection } from "@/components/home/Sections";
 
 const route = specialRoutes.find((r) => r.id === "en-home")!;
@@ -18,6 +20,7 @@ export const metadata = buildMetadata({
 const ORDER = ["en-is-legal", "en-laws", "en-health", "en-visiting", "en-cylinders", "en-types"];
 
 export default function EnglishHome() {
+  const lastChecked = lastReviewed("en");
   const knowledge = ORDER.map((id) => pagesFor("en").find((p) => p.id === id)!).filter(Boolean);
   return (
     <>
@@ -28,6 +31,7 @@ export default function EnglishHome() {
         primary={{ href: "#informatie", label: "Explore the guide" }}
         secondary={{ href: "/", label: "Lees in het Nederlands", lang: "nl" }}
         scrollLabel="Scroll"
+        clock={<LiveClock locale="en" updated={{ label: "Information last checked on", iso: lastChecked, text: formatDate(lastChecked, "en") }} />}
       />
 
       <DirectAnswer
@@ -135,7 +139,7 @@ export default function EnglishHome() {
         principles={[
           { k: "Non-commercial", v: "No shop, advertising, affiliate links or paid mentions." },
           { k: "Verifiable", v: "Every page ends with its sources and how thoroughly they were checked." },
-          { k: "Private by design", v: "No cookies or tracking; chats are not stored." },
+          { k: "Private by design", v: "No cookies, only anonymous visitor statistics; chats are not stored." },
           { k: "Not a government site", v: "Not affiliated with the City of Amsterdam or the Dutch state." },
         ]}
         orgsTitle="Key sources"

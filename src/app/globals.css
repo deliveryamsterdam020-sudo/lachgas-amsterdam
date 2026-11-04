@@ -280,6 +280,62 @@ html.lenis body {
   }
 }
 
+/* ── Live clock in the hero ─────────────────────────────────────────────
+   A frosted pill with a softly pulsing dot. Only opacity and transform animate. */
+.live-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  padding: 7px 15px 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: rgb(255 255 255 / 0.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: rgb(255 255 255 / 0.78);
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .live-clock {
+    font-size: 14px;
+    gap: 12px;
+    padding: 8px 18px 8px 14px;
+  }
+}
+.live-clock__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 999px;
+  background: #34c759;
+}
+.live-clock__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: live-pulse 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes live-pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.8); }
+}
+.live-clock__sep {
+  width: 1px;
+  height: 14px;
+  background: rgb(255 255 255 / 0.22);
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-clock__dot::after { animation: none; opacity: 0; }
+}
+
 /* ── Chat assistant ──────────────────────────────────────────────────────
    A small detective head peeks in from the right edge; on hover or tap he
    looks up (three attention marks) and the panel springs open from him.

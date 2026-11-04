@@ -1,5 +1,7 @@
-import { pagesFor, specialRoutes } from "@/content";
+import { lastReviewed, pagesFor, specialRoutes } from "@/content";
 import { buildMetadata } from "@/lib/seo";
+import { formatDate } from "@/lib/site";
+import { LiveClock } from "@/components/home/LiveClock";
 import {
   AmsterdamSection,
   BanExplainer,
@@ -28,6 +30,7 @@ export const metadata = buildMetadata({
 const ORDER = ["verbod", "regels-amsterdam", "gezondheid", "verslaving", "cilinders", "nieuws"];
 
 export default function Home() {
+  const lastChecked = lastReviewed("nl");
   const knowledge = ORDER.map((id) => pagesFor("nl").find((p) => p.id === id)!).filter(Boolean);
 
   return (
@@ -39,6 +42,7 @@ export default function Home() {
         primary={{ href: "#informatie", label: "Ontdek de informatie" }}
         secondary={{ href: "/en/", label: "Visiting Amsterdam? Read in English", lang: "en" }}
         scrollLabel="Scroll"
+        clock={<LiveClock locale="nl" updated={{ label: "Informatie laatst gecontroleerd op", iso: lastChecked, text: formatDate(lastChecked, "nl") }} />}
       />
 
       <DirectAnswer
@@ -154,7 +158,7 @@ export default function Home() {
         principles={[
           { k: "Niet-commercieel", v: "Geen webshop, advertenties, affiliate-links of betaalde vermeldingen." },
           { k: "Controleerbaar", v: "Iedere pagina eindigt met bronnen, inclusief de mate van controle." },
-          { k: "Privacyvriendelijk", v: "Geen cookies, geen tracking, chatgesprekken worden niet bewaard." },
+          { k: "Privacyvriendelijk", v: "Geen cookies, alleen anonieme bezoekersstatistieken, chatgesprekken worden niet bewaard." },
           { k: "Geen overheidssite", v: "Niet verbonden aan de gemeente Amsterdam of het Rijk." },
         ]}
         orgsTitle="Belangrijkste bronnen"
