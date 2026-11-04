@@ -298,7 +298,7 @@ html.lenis body {
   transform-origin: 100% 50%;
   transition: transform 450ms cubic-bezier(0.32, 0.72, 0, 1);
   -webkit-tap-highlight-color: transparent;
-  filter: drop-shadow(0 4px 10px rgb(16 28 50 / 0.28));
+  filter: drop-shadow(0 0 0.6px #fff) drop-shadow(0 0 0.6px #fff) drop-shadow(0 3px 6px rgb(16 28 50 / 0.22));
 }
 @media (min-width: 640px) {
   .chat-peek {

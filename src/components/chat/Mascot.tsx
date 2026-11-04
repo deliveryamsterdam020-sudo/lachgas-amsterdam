@@ -1,5 +1,5 @@
 // "Incognito", the chat mascot: a flat one-colour detective silhouette (fedora, shades,
-// upturned collar) on a white badge that peeks in from the edge of the screen. Original
+// upturned collar) without a background that peeks in from the edge of the screen. Original
 // artwork in the site's navy. On hover or tap three attention marks pop out and he lifts
 // his hat a little.
 
@@ -17,8 +17,6 @@ export function Mascot({ className = "", mini = false }: { className?: string; m
         <path d="M15 17 9 9" />
         <path d="M28 10 26.5 0" />
       </g>
-
-      <circle cx="50" cy="50" r="48" fill="#ffffff" />
 
       <g fill="#172c49">
         {/* Collar and coat */}
