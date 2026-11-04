@@ -286,14 +286,14 @@ html.lenis body {
 .chat-peek {
   position: fixed;
   right: 0;
-  bottom: calc(88px + env(safe-area-inset-bottom));
+  bottom: -12px;
   z-index: 60;
   width: 74px;
   padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
-  transform: translateX(28%) rotate(-9deg);
+  transform: translateX(26%) rotate(-8deg);
   transform-origin: 100% 100%;
   transition: transform 560ms cubic-bezier(0.32, 0.72, 0, 1);
   -webkit-tap-highlight-color: transparent;
@@ -301,17 +301,20 @@ html.lenis body {
 }
 @media (min-width: 640px) {
   .chat-peek {
-    width: 100px;
-    bottom: calc(40px + env(safe-area-inset-bottom));
+    width: 104px;
+    bottom: -16px;
   }
 }
 @media (hover: hover) {
   .chat-peek:hover {
-    transform: translateX(14%) rotate(-4deg);
+    transform: translateX(6%) translateY(-34px) rotate(-3deg);
+  }
+  .chat-peek:hover .chat-peek__hint[data-show] {
+    transform: rotate(3deg);
   }
 }
 .chat-peek:active {
-  transform: translateX(16%) rotate(-4deg) scale(0.95);
+  transform: translateX(8%) translateY(-30px) rotate(-3deg) scale(0.95);
 }
 .chat-peek:focus-visible {
   outline-offset: -6px;
@@ -327,8 +330,8 @@ html.lenis body {
 
 .chat-peek__hint {
   position: absolute;
-  right: calc(100% - 6px);
-  top: 4px;
+  right: calc(100% - 10px);
+  top: 10px;
   white-space: nowrap;
   border-radius: 999px;
   background: rgb(255 255 255 / 0.92);
@@ -338,14 +341,14 @@ html.lenis body {
   color: var(--color-ink);
   box-shadow: 0 8px 24px -8px rgb(16 28 50 / 0.35), 0 0 0 0.5px rgb(16 28 50 / 0.1);
   opacity: 0;
-  transform: rotate(9deg) translateX(10px) scale(0.85);
+  transform: rotate(8deg) translateX(10px) scale(0.85);
   transform-origin: 100% 50%;
   transition: opacity 300ms ease, transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
   pointer-events: none;
 }
 .chat-peek__hint[data-show] {
   opacity: 1;
-  transform: rotate(9deg);
+  transform: rotate(8deg);
 }
 
 .chat-mascot {
@@ -359,8 +362,16 @@ html.lenis body {
   transform-origin: 50% 100%;
   animation: chat-breathe 4.6s ease-in-out infinite;
 }
+.chat-mascot__hat {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.chat-mascot__shades {
+  transition: transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
+}
 .chat-mascot__pupils {
-  transform: translate(calc(var(--look-x, -0.7) * 4.5px), calc(var(--look-y, 0.15) * 3.5px));
+  transform: translate(calc(var(--look-x, -0.7) * 2.2px), calc(var(--look-y, 0.15) * 2px));
   transition: transform 140ms ease-out;
 }
 .chat-mascot__lids {
@@ -369,28 +380,39 @@ html.lenis body {
   transform: scaleY(0);
   animation: chat-blink 5.8s infinite;
 }
-.chat-mascot__hand {
+.chat-mascot__flap {
   transform-box: fill-box;
-  transform-origin: 70% 100%;
+  transition: transform 620ms cubic-bezier(0.32, 0.72, 0, 1);
 }
+.chat-mascot__flap--l { transform-origin: 0 50%; }
+.chat-mascot__flap--r { transform-origin: 100% 50%; }
+.chat-mascot__goods {
+  opacity: 0;
+  transition: opacity 300ms ease 80ms;
+}
+.chat-mascot__belt {
+  transition: opacity 200ms ease;
+}
+
+/* Peeking over the shades and opening the coat */
 @media (hover: hover) {
-  .chat-peek:hover .chat-mascot__hand {
-    animation: chat-wave 900ms ease-in-out 1;
-  }
+  .chat-peek:hover .chat-mascot__shades { transform: translateY(10px); }
+  .chat-peek:hover .chat-mascot__hat { transform: rotate(-4deg) translateY(-2px); }
+  .chat-peek:hover .chat-mascot__flap--l { transform: scaleX(0.42) skewY(-4deg); }
+  .chat-peek:hover .chat-mascot__flap--r { transform: scaleX(0.38) skewY(4deg); }
+  .chat-peek:hover .chat-mascot__goods { opacity: 1; }
+  .chat-peek:hover .chat-mascot__belt { opacity: 0; }
 }
-.chat-root[data-open] .chat-mascot__pupils {
-  transform: translate(-4.5px, 1px);
-}
+.chat-peek:focus-visible .chat-mascot__shades,
+.chat-root[data-open] .chat-peek .chat-mascot__shades { transform: translateY(10px); }
+.chat-root[data-open] .chat-mascot__pupils { transform: translate(-2.2px, 0.5px); }
+
 .chat-mascot--mini {
-  width: 30px;
-  margin: 5px auto 0;
+  width: 34px;
+  margin: 3px auto 0;
 }
-.chat-mascot--mini .chat-mascot__body {
-  animation: none;
-}
-.chat-mascot--mini .chat-mascot__pupils {
-  transform: none;
-}
+.chat-mascot--mini .chat-mascot__body { animation: none; }
+.chat-mascot--mini .chat-mascot__pupils { transform: none; }
 
 @keyframes chat-breathe {
   0%, 100% { transform: translateY(0) scale(1, 1); }
@@ -399,12 +421,6 @@ html.lenis body {
 @keyframes chat-blink {
   0%, 92%, 100% { transform: scaleY(0); }
   95% { transform: scaleY(1); }
-}
-@keyframes chat-wave {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: translateY(-10px) rotate(-18deg); }
-  50% { transform: translateY(-10px) rotate(12deg); }
-  75% { transform: translateY(-10px) rotate(-14deg); }
 }
 
 /* Panel */
@@ -673,5 +689,5 @@ html.lenis body {
   .chat-typing span {
     animation: none;
   }
-  .chat-peek:hover .chat-mascot__hand { animation: none; }
+  .chat-mascot__flap, .chat-mascot__shades, .chat-mascot__hat { transition: none; }
 }

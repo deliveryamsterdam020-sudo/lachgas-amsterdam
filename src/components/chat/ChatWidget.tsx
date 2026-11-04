@@ -21,7 +21,7 @@ const MAX_MESSAGES = 12;
 const labels = {
   nl: {
     open: "Stel een vraag aan de assistent",
-    hint: "Vraag het mij",
+    hint: "Psst… ik heb alleen info",
     title: "Incognito",
     subtitle: "Antwoordt op basis van deze website",
     close: "Chat sluiten",
@@ -44,7 +44,7 @@ const labels = {
   },
   en: {
     open: "Ask the assistant a question",
-    hint: "Ask me",
+    hint: "Psst… only info here",
     title: "Incognito",
     subtitle: "Answers from this website",
     close: "Close chat",
