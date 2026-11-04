@@ -154,7 +154,7 @@ export default function Home() {
         principles={[
           { k: "Niet-commercieel", v: "Geen webshop, advertenties, affiliate-links of betaalde vermeldingen." },
           { k: "Controleerbaar", v: "Iedere pagina eindigt met bronnen, inclusief de mate van controle." },
-          { k: "Privacyvriendelijk", v: "Geen cookies, geen tracking, geen formulieren." },
+          { k: "Privacyvriendelijk", v: "Geen cookies, geen tracking, chatgesprekken worden niet bewaard." },
           { k: "Geen overheidssite", v: "Niet verbonden aan de gemeente Amsterdam of het Rijk." },
         ]}
         orgsTitle="Belangrijkste bronnen"

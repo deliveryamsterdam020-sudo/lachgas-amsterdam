@@ -598,9 +598,9 @@ export const enPages: Page[] = [
     eyebrow: "Privacy",
     title: "Privacy statement",
     metaTitle: "Privacy statement — Lachgas Amsterdam",
-    metaDescription: "Lachgas Amsterdam collects as little data as possible: no cookies, no analytics, no forms and no third-party trackers.",
+    metaDescription: "Lachgas Amsterdam collects as little data as possible: no cookies, no analytics and no third-party trackers. Chat questions are not stored.",
     answer:
-      "We collect as little data as possible. This website uses no cookies, no analytics and no forms, and loads no third-party scripts or fonts. Only our hosting provider, Vercel, processes technically necessary server logs.",
+      "We collect as little data as possible. This website uses no cookies and no analytics, and loads no third-party scripts or fonts. Our hosting provider, Vercel, processes technically necessary server logs. If you use the chat assistant, your question is sent to Anthropic to generate an answer; we do not store your conversation.",
     body: [
       { type: "h2", id: "controller", text: "Data controller" },
       { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam, the Netherlands. Questions or requests about your data can be sent by post to this address." },
@@ -610,6 +610,15 @@ export const enPages: Page[] = [
       {
         type: "p",
         text: "The website is hosted by Vercel Inc. On each visit Vercel processes technical data such as IP address, time and requested page to keep the site secure and available (legitimate interest, Article 6(1)(f) GDPR). Vercel retains these logs under its own policy; the publisher keeps no visitor data. For transfers outside the EU, Vercel uses the European Commission’s standard contractual clauses.",
+      },
+      { type: "h2", id: "chat", text: "Chat assistant" },
+      {
+        type: "p",
+        text: "Every page has an AI chat assistant. It is only used when you type a question yourself. Your question and the ongoing conversation are then sent via our server to Anthropic PBC (United States), which uses the Claude language model to write an answer based on the content of this website. We do not store conversations or write them to log files. Anthropic processes the data under its own policy for commercial API customers, keeps it for a limited period only and does not use it to train models.",
+      },
+      {
+        type: "p",
+        text: "The conversation exists only in your browser window and disappears when you close or reload the page. No cookies or other data are stored in your browser. Do not share your name, address, phone number or medical details in the chat. The assistant can make mistakes; the articles and their sources take precedence. In an emergency, always call 112.",
       },
       { type: "h2", id: "rights", text: "Your rights" },
       {
@@ -622,7 +631,7 @@ export const enPages: Page[] = [
     translationOf: "privacy",
     status: "published",
     published: D,
-    reviewed: D,
+    reviewed: "2026-11-04",
     nextReview: "2027-04-30",
     unlisted: true,
   },

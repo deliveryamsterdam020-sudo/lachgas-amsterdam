@@ -11,8 +11,18 @@ git push -u origin main
 ## 2. Project in Vercel
 1. Ga naar vercel.com → **Add New… → Project** → importeer de GitHub-repository.
 2. Framework: Next.js wordt automatisch herkend. Build command `npm run build` (draait eerst `npm run scene`).
-3. Environment variable is niet nodig: `https://www.lachgasinfo.nl` is de standaard. Alleen voor een preview-domein zet je `NEXT_PUBLIC_SITE_URL`.
+3. Environment variables: zie **Chatassistent** hieronder. `NEXT_PUBLIC_SITE_URL` is alleen nodig voor een preview-domein (`https://www.lachgasinfo.nl` is de standaard).
 4. Deploy.
+
+## Chatassistent
+De chatassistent heeft een API-sleutel van Anthropic nodig. Zonder sleutel blijft de site gewoon werken; de chat meldt dan dat de assistent niet beschikbaar is.
+
+1. Maak een account op console.anthropic.com en voeg een betaalmethode toe.
+2. Zet onder **Settings → Limits** een maandelijkse bestedingslimiet (bijvoorbeeld € 20). Dit is het echte kostenplafond.
+3. Maak onder **API Keys** een sleutel aan.
+4. Vercel → Project → **Settings → Environment Variables**: voeg `ANTHROPIC_API_KEY` toe (Production en Preview) en plak de sleutel. Zet de sleutel nooit in de code of in Git.
+5. Optioneel: `CHAT_MODEL` om een ander Claude-model te kiezen (standaard `claude-haiku-5-5`).
+6. Redeploy, zodat de variabele actief wordt.
 
 ## 3. Domeinen
 In Vercel → Project → **Settings → Domains**:

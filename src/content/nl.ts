@@ -1363,9 +1363,9 @@ export const nlPages: Page[] = [
     title: "Privacyverklaring",
     metaTitle: "Privacyverklaring — Lachgas Amsterdam",
     metaDescription:
-      "Lachgas Amsterdam verzamelt zo min mogelijk gegevens: geen cookies, geen analytics, geen formulieren en geen externe trackers.",
+      "Lachgas Amsterdam verzamelt zo min mogelijk gegevens: geen cookies, geen analytics en geen externe trackers. Vragen aan de chatassistent worden niet bewaard.",
     answer:
-      "Wij verzamelen zo min mogelijk gegevens. Deze website gebruikt geen cookies, geen analytics, geen formulieren en laadt geen externe scripts of lettertypen. Alleen de hostingprovider Vercel verwerkt technisch noodzakelijke serverlogs.",
+      "Wij verzamelen zo min mogelijk gegevens. Deze website gebruikt geen cookies en geen analytics, en laadt geen externe scripts of lettertypen. De hostingprovider Vercel verwerkt technisch noodzakelijke serverlogs. Als je de chatassistent gebruikt, wordt je vraag naar Anthropic gestuurd om een antwoord te maken; wij bewaren je gesprek niet.",
     body: [
       { type: "h2", id: "verantwoordelijke", text: "Verwerkingsverantwoordelijke" },
       { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam. Vragen of verzoeken over je gegevens kun je per post naar dit adres sturen." },
@@ -1379,8 +1379,17 @@ export const nlPages: Page[] = [
         type: "p",
         text: "De website wordt gehost door Vercel Inc. Bij ieder bezoek verwerkt Vercel technische gegevens, zoals IP-adres, tijdstip en opgevraagde pagina, om de website veilig en beschikbaar te houden (gerechtvaardigd belang, art. 6 lid 1 sub f AVG). Vercel bewaart deze logs volgens zijn eigen beleid; de uitgever bewaart zelf geen bezoekersgegevens. Voor doorgifte buiten de EU hanteert Vercel de standaardcontractbepalingen van de Europese Commissie.",
       },
-      { type: "h2", id: "geen-formulieren", text: "Geen formulieren" },
-      { type: "p", text: "Er zijn geen formulieren, accounts of nieuwsbrieven. Wij vragen je dus nooit om persoonsgegevens." },
+      { type: "h2", id: "chat", text: "Chatassistent" },
+      {
+        type: "p",
+        text: "Op iedere pagina kun je vragen stellen aan een AI-chatassistent. Die gebruik je alleen als je zelf een vraag typt. Je vraag en het lopende gesprek worden dan via onze server naar Anthropic PBC (Verenigde Staten) gestuurd, die met het taalmodel Claude een antwoord maakt op basis van de inhoud van deze website. Wij slaan gesprekken niet op en schrijven ze niet in logbestanden. Anthropic verwerkt de gegevens volgens zijn eigen beleid voor zakelijke API-klanten, bewaart ze maximaal een beperkte periode en gebruikt ze niet om modellen te trainen.",
+      },
+      {
+        type: "p",
+        text: "Het gesprek staat alleen in je browservenster en verdwijnt zodra je de pagina sluit of herlaadt. Er worden geen cookies of andere gegevens in je browser opgeslagen. Deel in de chat geen naam, adres, telefoonnummer of medische gegevens. De assistent kan fouten maken; de artikelen en hun bronnen zijn leidend. Bij nood bel je altijd 112.",
+      },
+      { type: "h2", id: "geen-formulieren", text: "Geen accounts of nieuwsbrief" },
+      { type: "p", text: "Er zijn geen accounts, contactformulieren of nieuwsbrieven. Wij vragen je dus nooit om persoonsgegevens." },
       { type: "h2", id: "rechten", text: "Je rechten" },
       {
         type: "p",
@@ -1392,7 +1401,7 @@ export const nlPages: Page[] = [
     translationOf: "en-privacy",
     status: "published",
     published: D,
-    reviewed: D,
+    reviewed: "2026-11-04",
     nextReview: "2027-04-30",
     unlisted: true,
   },

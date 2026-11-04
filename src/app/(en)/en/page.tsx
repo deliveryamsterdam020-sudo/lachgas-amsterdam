@@ -135,7 +135,7 @@ export default function EnglishHome() {
         principles={[
           { k: "Non-commercial", v: "No shop, advertising, affiliate links or paid mentions." },
           { k: "Verifiable", v: "Every page ends with its sources and how thoroughly they were checked." },
-          { k: "Private by design", v: "No cookies, tracking or forms." },
+          { k: "Private by design", v: "No cookies or tracking; chats are not stored." },
           { k: "Not a government site", v: "Not affiliated with the City of Amsterdam or the Dutch state." },
         ]}
         orgsTitle="Key sources"
