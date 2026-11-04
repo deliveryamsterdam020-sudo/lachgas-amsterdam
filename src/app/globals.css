@@ -281,74 +281,64 @@ html.lenis body {
 }
 
 /* ── Chat assistant ──────────────────────────────────────────────────────
-   Incognito peeks in from the right edge; the panel springs open from him.
-   Only transform and opacity animate. Reduced motion: fades only.        */
+   A small detective head peeks in from the right edge; on hover or tap he
+   looks up (three attention marks) and the panel springs open from him.
+   Only transform and opacity animate.                                    */
 .chat-peek {
   position: fixed;
   right: 0;
-  bottom: -12px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
   z-index: 60;
-  width: 74px;
+  width: 52px;
   padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
-  transform: translateX(26%) rotate(-8deg);
-  transform-origin: 100% 100%;
-  transition: transform 560ms cubic-bezier(0.32, 0.72, 0, 1);
+  transform: translateX(30%) rotate(-10deg);
+  transform-origin: 100% 50%;
+  transition: transform 450ms cubic-bezier(0.32, 0.72, 0, 1);
   -webkit-tap-highlight-color: transparent;
-  filter: drop-shadow(0 10px 18px rgb(16 28 50 / 0.28));
+  filter: drop-shadow(0 6px 10px rgb(16 28 50 / 0.25));
 }
 @media (min-width: 640px) {
   .chat-peek {
-    width: 104px;
-    bottom: -16px;
+    width: 60px;
+    bottom: calc(32px + env(safe-area-inset-bottom));
   }
 }
 @media (hover: hover) {
   .chat-peek:hover {
-    transform: translateX(6%) translateY(-34px) rotate(-3deg);
+    transform: translateX(8%) rotate(-4deg);
   }
-  .chat-peek:hover .chat-peek__hint[data-show] {
-    transform: rotate(3deg);
+  .chat-peek:hover .chat-mascot__shades {
+    transform: translateY(9px);
+  }
+  .chat-peek:hover .chat-mascot__alert path {
+    opacity: 1;
+    transform: none;
   }
 }
 .chat-peek:active {
-  transform: translateX(8%) translateY(-30px) rotate(-3deg) scale(0.95);
+  transform: translateX(10%) rotate(-4deg) scale(0.94);
+}
+.chat-peek:active .chat-mascot__alert path,
+.chat-peek:focus-visible .chat-mascot__alert path {
+  opacity: 1;
+  transform: none;
 }
 .chat-peek:focus-visible {
-  outline-offset: -6px;
+  outline-offset: -4px;
 }
 .chat-root[data-open] .chat-peek {
-  transform: translateX(22%) rotate(-3deg);
+  transform: translateX(14%) rotate(-3deg);
+}
+.chat-root[data-open] .chat-mascot__shades {
+  transform: translateY(9px);
 }
 @media (max-width: 639px) {
   .chat-root[data-open] .chat-peek {
-    transform: translateX(120%) rotate(0deg);
+    transform: translateX(130%);
   }
-}
-
-.chat-peek__hint {
-  position: absolute;
-  right: calc(100% - 10px);
-  top: 10px;
-  white-space: nowrap;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.92);
-  padding: 7px 13px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-ink);
-  box-shadow: 0 8px 24px -8px rgb(16 28 50 / 0.35), 0 0 0 0.5px rgb(16 28 50 / 0.1);
-  opacity: 0;
-  transform: rotate(8deg) translateX(10px) scale(0.85);
-  transform-origin: 100% 50%;
-  transition: opacity 300ms ease, transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
-  pointer-events: none;
-}
-.chat-peek__hint[data-show] {
-  opacity: 1;
-  transform: rotate(8deg);
 }
 
 .chat-mascot {
@@ -357,70 +347,25 @@ html.lenis body {
   height: auto;
   overflow: visible;
 }
-.chat-mascot__body {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  animation: chat-breathe 4.6s ease-in-out infinite;
-}
-.chat-mascot__hat {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  transition: transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
-}
 .chat-mascot__shades {
-  transition: transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform 400ms cubic-bezier(0.32, 0.72, 0, 1);
 }
-.chat-mascot__pupils {
-  transform: translate(calc(var(--look-x, -0.7) * 2.2px), calc(var(--look-y, 0.15) * 2px));
-  transition: transform 140ms ease-out;
-}
-.chat-mascot__lids {
-  transform-box: fill-box;
-  transform-origin: 50% 0;
-  transform: scaleY(0);
-  animation: chat-blink 5.8s infinite;
-}
-.chat-mascot__flap {
-  transform-box: fill-box;
-  transition: transform 620ms cubic-bezier(0.32, 0.72, 0, 1);
-}
-.chat-mascot__flap--l { transform-origin: 0 50%; }
-.chat-mascot__flap--r { transform-origin: 100% 50%; }
-.chat-mascot__goods {
+/* Three attention marks that pop out above the hat, one after the other */
+.chat-mascot__alert path {
   opacity: 0;
-  transition: opacity 300ms ease 80ms;
+  transform: translate(5px, 6px) scale(0.4);
+  transform-box: fill-box;
+  transform-origin: 100% 100%;
+  transition: opacity 180ms ease, transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.chat-mascot__belt {
-  transition: opacity 200ms ease;
-}
-
-/* Peeking over the shades and opening the coat */
-@media (hover: hover) {
-  .chat-peek:hover .chat-mascot__shades { transform: translateY(10px); }
-  .chat-peek:hover .chat-mascot__hat { transform: rotate(-4deg) translateY(-2px); }
-  .chat-peek:hover .chat-mascot__flap--l { transform: scaleX(0.42) skewY(-4deg); }
-  .chat-peek:hover .chat-mascot__flap--r { transform: scaleX(0.38) skewY(4deg); }
-  .chat-peek:hover .chat-mascot__goods { opacity: 1; }
-  .chat-peek:hover .chat-mascot__belt { opacity: 0; }
-}
-.chat-peek:focus-visible .chat-mascot__shades,
-.chat-root[data-open] .chat-peek .chat-mascot__shades { transform: translateY(10px); }
-.chat-root[data-open] .chat-mascot__pupils { transform: translate(-2.2px, 0.5px); }
-
+.chat-mascot__alert path:nth-child(2) { transition-delay: 40ms; }
+.chat-mascot__alert path:nth-child(3) { transition-delay: 80ms; }
 .chat-mascot--mini {
-  width: 34px;
-  margin: 3px auto 0;
+  width: 30px;
+  margin: 4px auto 0;
 }
-.chat-mascot--mini .chat-mascot__body { animation: none; }
-.chat-mascot--mini .chat-mascot__pupils { transform: none; }
-
-@keyframes chat-breathe {
-  0%, 100% { transform: translateY(0) scale(1, 1); }
-  50% { transform: translateY(-1.5px) scale(1.01, 0.99); }
-}
-@keyframes chat-blink {
-  0%, 92%, 100% { transform: scaleY(0); }
-  95% { transform: scaleY(1); }
+.chat-mascot--mini .chat-mascot__alert {
+  display: none;
 }
 
 /* Panel */
@@ -454,7 +399,7 @@ html.lenis body {
 @media (min-width: 640px) {
   .chat-panel {
     left: auto;
-    right: 96px;
+    right: 72px;
     bottom: calc(28px + env(safe-area-inset-bottom));
     width: 392px;
     height: min(74dvh, 620px);
@@ -671,23 +616,21 @@ html.lenis body {
 
 @media (prefers-reduced-motion: reduce) {
   .chat-peek,
-  .chat-panel,
-  .chat-root[data-open] .chat-panel,
-  .chat-peek__hint {
+  .chat-mascot__shades,
+  .chat-mascot__alert path {
+    transition: none;
+  }
+  .chat-panel {
+    transform: none;
     transition: opacity 200ms ease, visibility 0s linear 200ms;
   }
-  .chat-root[data-open] .chat-panel { transition: opacity 200ms ease, visibility 0s; }
-  .chat-panel,
-  .chat-root[data-open] .chat-panel,
-  .chat-peek__hint {
+  .chat-root[data-open] .chat-panel {
     transform: none;
+    transition: opacity 200ms ease, visibility 0s;
   }
-  .chat-mascot__body,
-  .chat-mascot__lids,
   .chat-bubble,
   .chat-chip,
   .chat-typing span {
     animation: none;
   }
-  .chat-mascot__flap, .chat-mascot__shades, .chat-mascot__hat { transition: none; }
 }

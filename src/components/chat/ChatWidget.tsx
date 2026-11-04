@@ -6,7 +6,7 @@ import { ArrowUp, RotateCcw, X } from "lucide-react";
 import type { Locale } from "@/content/types";
 import { Mascot } from "./Mascot";
 
-// Chat assistant with "Incognito", a mascot who peeks in from the edge of the screen.
+// Chat assistant with "Incognito", a small detective who peeks in from the edge of the screen.
 // The conversation lives only in component state: it disappears on reload, nothing is
 // written to cookies or browser storage.
 
@@ -21,7 +21,6 @@ const MAX_MESSAGES = 12;
 const labels = {
   nl: {
     open: "Stel een vraag aan de assistent",
-    hint: "Psst… ik heb alleen info",
     title: "Incognito",
     subtitle: "Antwoordt op basis van deze website",
     close: "Chat sluiten",
@@ -44,7 +43,6 @@ const labels = {
   },
   en: {
     open: "Ask the assistant a question",
-    hint: "Psst… only info here",
     title: "Incognito",
     subtitle: "Answers from this website",
     close: "Close chat",
@@ -133,59 +131,17 @@ function Rich({ text }: { text: string }) {
 export function ChatWidget({ locale }: { locale: Locale }) {
   const t = labels[locale];
   const [open, setOpen] = useState(false);
-  const [hint, setHint] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const rootRef = useRef<HTMLDivElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  // A one-time "ask me" bubble a few seconds after the page loads.
-  useEffect(() => {
-    const show = window.setTimeout(() => setHint(true), 4500);
-    const hide = window.setTimeout(() => setHint(false), 11000);
-    return () => {
-      window.clearTimeout(show);
-      window.clearTimeout(hide);
-    };
-  }, []);
-
-  // The mascot's eyes follow the pointer (fine pointers only, never with reduced motion).
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!fine || reduced) return;
-    let frame = 0;
-    const onMove = (e: PointerEvent) => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        const eye = root.querySelector(".chat-mascot__eyes")?.getBoundingClientRect();
-        if (!eye) return;
-        const dx = e.clientX - (eye.left + eye.width / 2);
-        const dy = e.clientY - (eye.top + eye.height / 2);
-        const d = Math.hypot(dx, dy) || 1;
-        const k = Math.min(1, d / 260);
-        root.style.setProperty("--look-x", ((dx / d) * k).toFixed(3));
-        root.style.setProperty("--look-y", ((dy / d) * k).toFixed(3));
-      });
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      cancelAnimationFrame(frame);
-    };
-  }, []);
-
   useEffect(() => {
     if (open) {
-      setHint(false);
       const id = window.setTimeout(() => inputRef.current?.focus(), 250);
       return () => window.clearTimeout(id);
     }
@@ -261,7 +217,7 @@ export function ChatWidget({ locale }: { locale: Locale }) {
   const typing = busy && messages[messages.length - 1]?.role === "user";
 
   return (
-    <div ref={rootRef} className="chat-root" data-open={open ? "" : undefined}>
+    <div className="chat-root" data-open={open ? "" : undefined}>
       {/* Incognito, peeking in from the edge of the screen */}
       <button
         ref={buttonRef}
@@ -272,9 +228,6 @@ export function ChatWidget({ locale }: { locale: Locale }) {
         aria-label={open ? t.close : t.open}
         className="chat-peek"
       >
-        <span className="chat-peek__hint" data-show={hint ? "" : undefined} aria-hidden="true">
-          {t.hint}
-        </span>
         <Mascot />
       </button>
 
