@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { alternateMap } from "@/content";
 import type { Locale } from "@/content/types";
@@ -40,6 +41,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
           {children}
         </main>
         <Footer locale={locale} />
+        <ChatWidget locale={locale} />
         <SmoothScroll />
       </body>
     </html>

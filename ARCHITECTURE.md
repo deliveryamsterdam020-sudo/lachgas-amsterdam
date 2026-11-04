@@ -1,7 +1,7 @@
 # ARCHITECTURE
 
 ## Stack
-Next.js 16.4 (App Router, Turbopack, Cache Components) · React 19 · TypeScript · Tailwind CSS 4 · Lucide icons · next/font (Geist, self-hosted). Geen database, geen externe diensten.
+Next.js 16.4 (App Router, Turbopack, Cache Components) · React 19 · TypeScript · Tailwind CSS 4 · Lucide icons · next/font (Geist, self-hosted). Geen database. Eén externe dienst: de Claude API van Anthropic, alleen server-side aangeroepen door de chatassistent.
 
 ## Mappen
 ```
@@ -26,7 +26,16 @@ scripts/build-scene.mts   schrijft de heroscène-SVG’s; draait vóór dev en b
 ```
 
 ## Rendering
-Alle pagina’s worden bij de build statisch gegenereerd (`generateStaticParams`). Enige client-JavaScript: header/menu, scroll-reveal en de verbodsteller.
+Alle pagina’s worden bij de build statisch gegenereerd (`generateStaticParams`). Enige client-JavaScript: header/menu, scroll-reveal, de verbodsteller en de chatassistent.
+
+## Chatassistent
+`src/components/chat/ChatWidget.tsx` (knop en venster, NL/EN) post het gesprek naar `src/app/api/chat/route.ts`. Die route stuurt het met alle **gepubliceerde** pagina’s als context (`src/lib/chat/knowledge.ts`) naar de Claude API en streamt het antwoord terug als platte tekst.
+
+- Geen opslag: het gesprek staat alleen in de React-state; geen cookies, geen browseropslag, geen database. De route logt nooit berichtinhoud.
+- Grenzen in de systeemprompt: alleen antwoorden uit de site-inhoud; vragen over kopen, bestellen, dosering of gebruik krijgen alleen een korte verwijzing naar het verbod; acute klachten → 112.
+- Misbruik: alleen same-origin verzoeken, max. 12 berichten en 800 tekens per vraag, eenvoudige rate limit per IP (per serverinstantie). Het echte kostenplafond is de bestedingslimiet in de Anthropic Console.
+- Kosten: het systeemprompt (instructies + content) is per taal gelijk en wordt met prompt caching hergebruikt.
+- Nieuwe of gewijzigde pagina’s komen automatisch in de kennis van de assistent zodra ze `published` zijn.
 
 ## Taalstructuur
 Twee root layouts zodat `lang` per taal klopt. Vertalingen koppelen via `translationOf` (wederkerig, gecontroleerd door de audit). De taalknop gebruikt dezelfde koppeling; zonder vertaling gaat hij naar de homepage van de andere taal.
