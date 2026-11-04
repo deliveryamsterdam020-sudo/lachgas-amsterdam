@@ -1,48 +1,44 @@
-// "Incognito", the chat mascot: a small detective head (fedora, shades, upturned
-// collar) that peeks in from the edge of the screen. Original artwork in the site
-// palette. On hover or tap three attention marks pop out and he lowers his shades.
+// "Incognito", the chat mascot: a flat one-colour detective silhouette (fedora, shades,
+// upturned collar) on a white badge that peeks in from the edge of the screen. Original
+// artwork in the site's navy. On hover or tap three attention marks pop out and he lifts
+// his hat a little.
 
 export function Mascot({ className = "", mini = false }: { className?: string; mini?: boolean }) {
   return (
     <svg
-      viewBox="26 12 88 96"
+      viewBox="0 0 100 100"
       aria-hidden="true"
       focusable="false"
       className={`chat-mascot ${mini ? "chat-mascot--mini" : ""} ${className}`}
     >
       {/* Attention marks, shown on hover or tap */}
-      <g className="chat-mascot__alert" stroke="#e39a2d" strokeWidth="3.2" strokeLinecap="round" fill="none">
-        <path d="M36 33 28 29" />
-        <path d="M41 22 35 15" />
-        <path d="M52 15 50.5 6" />
+      <g className="chat-mascot__alert" stroke="#e39a2d" strokeWidth="4" strokeLinecap="round" fill="none">
+        <path d="M8 30 0 25" />
+        <path d="M15 17 9 9" />
+        <path d="M28 10 26.5 0" />
       </g>
 
-      {/* Face */}
-      <ellipse cx="70" cy="74" rx="21" ry="24" fill="#f1dcc6" />
-      <path d="M58 86c4 4 8 5 12 5s8-1 12-5" stroke="#d9b896" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <circle cx="50" cy="50" r="48" fill="#ffffff" />
 
-      {/* Eyes, visible when the shades come down */}
-      <ellipse cx="61" cy="70" rx="5" ry="5.4" fill="#ffffff" />
-      <ellipse cx="79" cy="70" rx="5" ry="5.4" fill="#ffffff" />
-      <circle cx="59.5" cy="70.5" r="2.6" fill="#101c32" />
-      <circle cx="77.5" cy="70.5" r="2.6" fill="#101c32" />
+      <g fill="#172c49">
+        {/* Collar and coat */}
+        <path d="M27 63 17 88c9 6 20 9 33 9l-6-14Z" />
+        <path d="M73 63 83 88c-9 6-20 9-33 9l6-14Z" />
+        <path d="M44 83 50 97l6-14-6 6Z" opacity="0.85" />
 
-      {/* Shades */}
-      <g className="chat-mascot__shades">
-        <path d="M66 68.5c2.6-1.4 5.4-1.4 8 0" stroke="#0e1a2c" strokeWidth="2.4" fill="none" strokeLinecap="round" />
-        <path d="M50.5 66c4-1.6 10-1.8 15.5-.6.6 6.3-2.4 10.6-8 10.6-5 0-7.8-4.4-7.5-10Z" fill="#0e1a2c" />
-        <path d="M89.5 66c-4-1.6-10-1.8-15.5-.6-.6 6.3 2.4 10.6 8 10.6 5 0 7.8-4.4 7.5-10Z" fill="#0e1a2c" />
-        <path d="M54 68.5c1.6-.8 3.6-1 5.4-.8M77.5 67.7c1.8-.2 3.8 0 5.4.8" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
+        {/* Shades */}
+        <path d="M31 58c5-1.6 11-1.8 16-.6.3 5.4-3 8.6-8 8.6-4.6 0-8-3.4-8-8Z" />
+        <path d="M69 58c-5-1.6-11-1.8-16-.6-.3 5.4 3 8.6 8 8.6 4.6 0 8-3.4 8-8Z" />
+        <path d="M46 58.6c2.6-1 5.4-1 8 0" stroke="#172c49" strokeWidth="2.6" fill="none" strokeLinecap="round" />
+
+        {/* Fedora */}
+        <g className="chat-mascot__hat">
+          <path d="M31 40c0-8 1.5-17 5.5-21.5 2.6-2.8 6.6-1 13.5-1s10.9-1.8 13.5 1C67.5 23 69 32 69 40Z" />
+          <path d="M17 46.5C17 42 31 39 50 39s33 3 33 7.5S69 53 50 53 17 51 17 46.5Z" />
+          {/* Hat band as a thin cut-out */}
+          <path d="M31.2 35.5h37.6" stroke="#ffffff" strokeWidth="2.4" />
+        </g>
       </g>
-
-      {/* Upturned collar */}
-      <path d="M47 82 38 106l16-2 6-12c-6-1.5-10.5-5-13-10Z" fill="#b8915a" />
-      <path d="M93 82l9 24-16-2-6-12c6-1.5 10.5-5 13-10Z" fill="#a8824e" />
-
-      {/* Fedora */}
-      <path d="M45 50c0-10 2-24 8-29 4-3 9 1 17 1s13-4 17-1c6 5 8 19 8 29Z" fill="#172c49" />
-      <path d="M45.5 43h49l.5 7h-50Z" fill="#e8b96f" />
-      <ellipse cx="70" cy="53" rx="41" ry="9" fill="#1f3a5e" />
     </svg>
   );
 }
