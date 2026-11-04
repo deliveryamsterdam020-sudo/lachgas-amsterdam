@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUp, MessageCircle, X } from "lucide-react";
+import { ArrowUp, RotateCcw, X } from "lucide-react";
 import type { Locale } from "@/content/types";
+import { Mascot } from "./Mascot";
 
-// Chat assistant. The conversation lives only in component state: it disappears on
-// reload, nothing is written to cookies or browser storage.
+// Chat assistant with "Incognito", a mascot who peeks in from the edge of the screen.
+// The conversation lives only in component state: it disappears on reload, nothing is
+// written to cookies or browser storage.
 
 interface Message {
   role: "user" | "assistant";
@@ -18,44 +20,48 @@ const MAX_MESSAGES = 12;
 
 const labels = {
   nl: {
-    open: "Stel een vraag",
-    title: "Vraag het de assistent",
+    open: "Stel een vraag aan de assistent",
+    hint: "Vraag het mij",
+    title: "Incognito",
+    subtitle: "Antwoordt op basis van deze website",
     close: "Chat sluiten",
     intro:
-      "Hoi! Ik beantwoord vragen over lachgas op basis van de informatie op deze website: de regels, de gezondheidsrisico’s, cilinders en hulp.",
-    placeholder: "Typ je vraag…",
+      "Hoi! Ik ben Incognito. Ik beantwoord vragen over lachgas met de informatie op deze website: de regels, de gezondheidsrisico’s, cilinders en hulp.",
+    placeholder: "Stel je vraag…",
     send: "Versturen",
     notice: "AI-assistent, kan fouten maken. Deel geen persoonsgegevens. Bij nood: bel 112.",
     privacy: "Privacy",
     privacyHref: "/privacy/#chat",
-    thinking: "Even denken…",
+    typing: "Incognito typt",
     suggestions: ["Is lachgas verboden?", "Wat zijn de gezondheidsrisico’s?", "Wat doe ik met een gevonden cilinder?"],
     errors: {
       rate_limited: "Je hebt veel vragen gesteld. Probeer het over een paar minuten opnieuw.",
       unavailable: "De assistent is op dit moment niet beschikbaar.",
       generic: "Er ging iets mis. Probeer het opnieuw.",
-      long: "Je gesprek is te lang geworden. Begin opnieuw met een nieuwe vraag.",
+      long: "Dit gesprek is lang geworden. Begin een nieuw gesprek.",
     },
     restart: "Nieuw gesprek",
   },
   en: {
-    open: "Ask a question",
-    title: "Ask the assistant",
+    open: "Ask the assistant a question",
+    hint: "Ask me",
+    title: "Incognito",
+    subtitle: "Answers from this website",
     close: "Close chat",
     intro:
-      "Hi! I answer questions about nitrous oxide based on the information on this website: the rules, health risks, cylinders and where to find help.",
-    placeholder: "Type your question…",
+      "Hi! I’m Incognito. I answer questions about nitrous oxide using the information on this website: the rules, health risks, cylinders and where to find help.",
+    placeholder: "Ask your question…",
     send: "Send",
     notice: "AI assistant, may make mistakes. Don’t share personal data. In an emergency: call 112.",
     privacy: "Privacy",
     privacyHref: "/en/privacy/#chat",
-    thinking: "Thinking…",
+    typing: "Incognito is typing",
     suggestions: ["Is laughing gas legal in Amsterdam?", "What are the health risks?", "I found a cylinder, what now?"],
     errors: {
       rate_limited: "You’ve asked a lot of questions. Please try again in a few minutes.",
       unavailable: "The assistant is not available right now.",
       generic: "Something went wrong. Please try again.",
-      long: "This conversation has become too long. Start a new one with a fresh question.",
+      long: "This conversation has become long. Start a new one.",
     },
     restart: "New conversation",
   },
@@ -71,7 +77,7 @@ function inline(text: string): ReactNode[] {
     if (m.index > last) out.push(text.slice(last, m.index));
     if (m[1]) {
       const href = m[2];
-      const cls = "font-medium text-navy-700 underline underline-offset-2 hover:text-ink";
+      const cls = "chat-link";
       out.push(
         href.startsWith("/") ? (
           <Link key={m.index} href={href} className={cls}>
@@ -127,21 +133,66 @@ function Rich({ text }: { text: string }) {
 export function ChatWidget({ locale }: { locale: Locale }) {
   const t = labels[locale];
   const [open, setOpen] = useState(false);
+  const [hint, setHint] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  // A one-time "ask me" bubble a few seconds after the page loads.
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    const show = window.setTimeout(() => setHint(true), 4500);
+    const hide = window.setTimeout(() => setHint(false), 11000);
+    return () => {
+      window.clearTimeout(show);
+      window.clearTimeout(hide);
+    };
+  }, []);
+
+  // The mascot's eyes follow the pointer (fine pointers only, never with reduced motion).
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!fine || reduced) return;
+    let frame = 0;
+    const onMove = (e: PointerEvent) => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const eye = root.querySelector(".chat-mascot__eyes")?.getBoundingClientRect();
+        if (!eye) return;
+        const dx = e.clientX - (eye.left + eye.width / 2);
+        const dy = e.clientY - (eye.top + eye.height / 2);
+        const d = Math.hypot(dx, dy) || 1;
+        const k = Math.min(1, d / 260);
+        root.style.setProperty("--look-x", ((dx / d) * k).toFixed(3));
+        root.style.setProperty("--look-y", ((dy / d) * k).toFixed(3));
+      });
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      setHint(false);
+      const id = window.setTimeout(() => inputRef.current?.focus(), 250);
+      return () => window.clearTimeout(id);
+    }
   }, [open]);
 
   useEffect(() => {
-    logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
+    logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, busy]);
 
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -180,7 +231,6 @@ export function ChatWidget({ locale }: { locale: Locale }) {
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let answer = "";
-      setMessages([...history, { role: "assistant", content: "" }]);
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -208,18 +258,24 @@ export function ChatWidget({ locale }: { locale: Locale }) {
     inputRef.current?.focus();
   };
 
+  const typing = busy && messages[messages.length - 1]?.role === "user";
+
   return (
-    <>
+    <div ref={rootRef} className="chat-root" data-open={open ? "" : undefined}>
+      {/* Incognito, peeking in from the edge of the screen */}
       <button
         ref={buttonRef}
         type="button"
         onClick={() => (open ? close() : setOpen(true))}
         aria-expanded={open}
         aria-controls="chat-panel"
-        className={`fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-navy px-4 py-3 text-[15px] font-medium text-white shadow-lg shadow-ink/20 transition-transform duration-200 hover:bg-navy-700 sm:bottom-6 sm:right-6 ${open ? "max-sm:hidden" : ""}`}
+        aria-label={open ? t.close : t.open}
+        className="chat-peek"
       >
-        {open ? <X aria-hidden="true" className="size-5" /> : <MessageCircle aria-hidden="true" className="size-5" />}
-        <span>{open ? t.close : t.open}</span>
+        <span className="chat-peek__hint" data-show={hint ? "" : undefined} aria-hidden="true">
+          {t.hint}
+        </span>
+        <Mascot />
       </button>
 
       <div
@@ -227,43 +283,36 @@ export function ChatWidget({ locale }: { locale: Locale }) {
         role="dialog"
         aria-modal="false"
         aria-labelledby="chat-title"
-        hidden={!open}
+        inert={!open}
         onKeyDown={(e) => e.key === "Escape" && close()}
-        className="fixed inset-x-0 bottom-0 z-[60] flex h-[min(85dvh,640px)] flex-col overflow-hidden rounded-t-2xl border border-line bg-paper shadow-2xl shadow-ink/25 sm:inset-x-auto sm:bottom-24 sm:right-6 sm:h-[min(70dvh,600px)] sm:w-[380px] sm:rounded-2xl"
+        className="chat-panel"
       >
-        <div className="flex items-center justify-between border-b border-line bg-navy px-4 py-3 text-white">
-          <h2 id="chat-title" className="text-[15px] font-semibold">
-            {t.title}
-          </h2>
-          <div className="flex items-center gap-1">
-            {messages.length > 0 && (
-              <button type="button" onClick={restart} className="rounded-full px-3 py-1 text-[13px] text-white/80 hover:bg-white/10 hover:text-white">
-                {t.restart}
-              </button>
-            )}
-            <button type="button" onClick={close} aria-label={t.close} className="rounded-full p-1.5 hover:bg-white/10">
-              <X aria-hidden="true" className="size-5" />
-            </button>
+        <header className="chat-panel__head">
+          <span className="chat-panel__avatar">
+            <Mascot mini />
+          </span>
+          <div className="min-w-0 flex-1">
+            <h2 id="chat-title" className="text-[15px] font-semibold leading-tight tracking-[-0.01em] text-ink">
+              {t.title}
+            </h2>
+            <p className="truncate text-[12.5px] leading-tight text-muted">{t.subtitle}</p>
           </div>
-        </div>
+          {messages.length > 0 && (
+            <button type="button" onClick={restart} aria-label={t.restart} title={t.restart} className="chat-icon-btn">
+              <RotateCcw aria-hidden="true" className="size-[17px]" />
+            </button>
+          )}
+          <button type="button" onClick={close} aria-label={t.close} className="chat-icon-btn">
+            <X aria-hidden="true" className="size-[19px]" />
+          </button>
+        </header>
 
-        <div
-          id="chat-log"
-          ref={logRef}
-          data-lenis-prevent
-          aria-live="polite"
-          className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-4 text-[15px] leading-relaxed"
-        >
-          <div className="max-w-[90%] rounded-2xl rounded-tl-sm bg-mist px-3.5 py-2.5 text-ink">{t.intro}</div>
+        <div id="chat-log" ref={logRef} data-lenis-prevent aria-live="polite" className="chat-panel__log">
+          <div className="chat-bubble chat-bubble--bot">{t.intro}</div>
           {messages.length === 0 && (
-            <div className="flex flex-wrap gap-2 pt-1">
-              {t.suggestions.map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  onClick={() => ask(s)}
-                  className="rounded-full border border-line bg-paper px-3 py-1.5 text-left text-[13px] text-navy-700 hover:border-navy-700"
-                >
+            <div className="chat-suggestions">
+              {t.suggestions.map((s, i) => (
+                <button key={s} type="button" onClick={() => ask(s)} className="chat-chip" style={{ animationDelay: `${120 + i * 70}ms` }}>
                   {s}
                 </button>
               ))}
@@ -271,27 +320,31 @@ export function ChatWidget({ locale }: { locale: Locale }) {
           )}
           {messages.map((m, i) =>
             m.role === "user" ? (
-              <div key={i} className="ml-auto max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-tr-sm bg-navy px-3.5 py-2.5 text-white">
+              <div key={i} className="chat-bubble chat-bubble--user">
                 {m.content}
               </div>
             ) : (
-              <div key={i} className="max-w-[90%] space-y-2 rounded-2xl rounded-tl-sm bg-mist px-3.5 py-2.5 text-ink">
-                {m.content ? <Rich text={m.content} /> : <span className="text-muted">{t.thinking}</span>}
+              <div key={i} className="chat-bubble chat-bubble--bot space-y-2">
+                <Rich text={m.content} />
               </div>
             ),
           )}
-          {busy && messages[messages.length - 1]?.role === "user" && (
-            <div className="max-w-[90%] rounded-2xl rounded-tl-sm bg-mist px-3.5 py-2.5 text-muted">{t.thinking}</div>
+          {typing && (
+            <div className="chat-bubble chat-bubble--bot chat-typing" role="status" aria-label={t.typing}>
+              <span />
+              <span />
+              <span />
+            </div>
           )}
           {err && (
-            <p role="alert" className="rounded-xl bg-alert-soft px-3.5 py-2.5 text-[14px] text-alert">
+            <p role="alert" className="chat-error">
               {err}
             </p>
           )}
         </div>
 
-        <div className="border-t border-line px-3 pb-3 pt-2.5">
-          <div className="flex items-end gap-2">
+        <footer className="chat-panel__foot">
+          <div className="chat-composer">
             <label htmlFor="chat-input" className="sr-only">
               {t.placeholder}
             </label>
@@ -309,26 +362,26 @@ export function ChatWidget({ locale }: { locale: Locale }) {
                   ask(input);
                 }
               }}
-              className="max-h-32 min-h-[44px] flex-1 resize-none rounded-xl border border-line bg-canvas px-3 py-2.5 text-[16px] text-ink placeholder:text-muted focus:border-navy-700 focus:outline-none"
+              className="chat-composer__input"
             />
             <button
               type="button"
               onClick={() => ask(input)}
               disabled={busy || !input.trim()}
               aria-label={t.send}
-              className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-navy text-white hover:bg-navy-700 disabled:opacity-40"
+              className="chat-composer__send"
             >
-              <ArrowUp aria-hidden="true" className="size-5" />
+              <ArrowUp aria-hidden="true" className="size-[18px]" strokeWidth={2.5} />
             </button>
           </div>
-          <p className="mt-2 text-[12px] leading-snug text-muted">
+          <p className="mt-2 px-1 text-[11.5px] leading-snug text-muted">
             {t.notice}{" "}
             <Link href={t.privacyHref} className="underline underline-offset-2 hover:text-ink">
               {t.privacy}
             </Link>
           </p>
-        </div>
+        </footer>
       </div>
-    </>
+    </div>
   );
 }
