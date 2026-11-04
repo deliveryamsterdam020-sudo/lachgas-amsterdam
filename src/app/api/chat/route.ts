@@ -10,7 +10,9 @@ import { systemPrompt } from "@/lib/chat/knowledge";
 // Optional: CHAT_MODEL (defaults to Claude Haiku, the fastest and cheapest model).
 
 const MODEL = process.env.CHAT_MODEL ?? "claude-haiku-5-5";
-const MAX_TOKENS = 700;
+// The model thinks before it answers, and thinking counts towards max_tokens. Keep
+// the cap roomy so answers never get cut off; the prompt keeps the answers short.
+const MAX_TOKENS = 4000;
 const MAX_MESSAGES = 12;
 const MAX_CHARS = 800;
 
@@ -98,6 +100,8 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       model: MODEL,
       max_tokens: MAX_TOKENS,
+      // Short chat answers need little reasoning: low effort keeps them fast and cheap.
+      output_config: { effort: "low" },
       stream: true,
       // The system prompt (instructions + all site content) is identical for every
       // visitor of a language, so prompt caching keeps repeat requests cheap and fast.
@@ -138,6 +142,8 @@ export async function POST(request: Request) {
             if (event.type === "content_block_delta" && event.delta?.type === "text_delta") {
               controller.enqueue(encoder.encode(event.delta.text));
               emitted = true;
+            } else if (event.type === "message_delta" && event.delta?.stop_reason === "max_tokens") {
+              console.error("chat: answer hit max_tokens");
             } else if (event.type === "error") {
               console.error("chat: stream error", event.error?.type);
               controller.close();
