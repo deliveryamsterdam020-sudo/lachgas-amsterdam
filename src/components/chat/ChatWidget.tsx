@@ -26,19 +26,28 @@ const labels = {
     subtitle: "Handelt alleen in informatie en hulp",
     close: "Chat sluiten",
     intro:
-      "Pssst… ik ben De Info Dealer. Ik handel alleen in informatie en hulp: stel me je vraag over lachgas, de regels, de gezondheidsrisico’s, cilinders of waar je hulp vindt.",
+      "Pssst… ik ben De Info Dealer. Mijn enige handelswaar: informatie. Gratis, legaal en zonder bijwerkingen. Vraag me alles over lachgas, de regels, je gezondheid of die mysterieuze cilinder op de stoep.",
     placeholder: "Stel je vraag…",
     send: "Versturen",
     notice: "AI-assistent, kan fouten maken. Deel geen persoonsgegevens. Bij nood: bel 112.",
     privacy: "Privacy",
     privacyHref: "/privacy/#chat",
     typing: "De Info Dealer typt",
-    suggestions: ["Is lachgas verboden?", "Wat zijn de gezondheidsrisico’s?", "Wat doe ik met een gevonden cilinder?"],
+    suggestions: [
+      "Help, ik heb geen ballonnen 🎈",
+      "Krijg ik een boete als ik alleen maar giechel?",
+      "Ik vond een tank in de gracht. Mag ik hem houden?",
+      "Mag ik een cilinder meenemen naar een festival?",
+      "Waarom tintelen mijn tenen na een feestje?",
+      "Mijn huisgenoot gebruikt elk weekend. Moet ik me zorgen maken?",
+      "Is lachgas nou echt verboden?",
+      "Wat doet lachgas eigenlijk met je hersenen?",
+    ],
     errors: {
-      rate_limited: "Je hebt veel vragen gesteld. Probeer het over een paar minuten opnieuw.",
-      unavailable: "De assistent is op dit moment niet beschikbaar.",
-      generic: "Er ging iets mis. Probeer het opnieuw.",
-      long: "Dit gesprek is lang geworden. Begin een nieuw gesprek.",
+      rate_limited: "Rustig aan, speurneus. Even pauze: probeer het over een paar minuten opnieuw.",
+      unavailable: "De Info Dealer is even met pauze. Probeer het straks nog eens.",
+      generic: "Oeps, mijn vergrootglas besloeg. Probeer het opnieuw.",
+      long: "We kletsen al een tijdje! Begin een nieuw gesprek voor een frisse start.",
     },
     restart: "Nieuw gesprek",
     whatsapp: "Kom je er niet uit?",
@@ -53,19 +62,28 @@ const labels = {
     subtitle: "Deals only in information and help",
     close: "Close chat",
     intro:
-      "Pssst… I’m The Info Dealer. I deal only in information and help: ask me about nitrous oxide, the rules, health risks, cylinders or where to find help.",
+      "Pssst… I’m The Info Dealer. The only thing I deal is information: free, legal and with zero side effects. Ask me anything about nitrous oxide, the rules, your health or that mysterious cylinder on the pavement.",
     placeholder: "Ask your question…",
     send: "Send",
     notice: "AI assistant, may make mistakes. Don’t share personal data. In an emergency: call 112.",
     privacy: "Privacy",
     privacyHref: "/en/privacy/#chat",
     typing: "The Info Dealer is typing",
-    suggestions: ["Is laughing gas legal in Amsterdam?", "What are the health risks?", "I found a cylinder, what now?"],
+    suggestions: [
+      "Help, I’ve got no balloons 🎈",
+      "Can I get fined just for giggling?",
+      "Found a tank in a canal. Finders keepers?",
+      "Can I bring a cylinder to a festival?",
+      "Why are my toes tingling after a party?",
+      "My housemate uses every weekend. Should I worry?",
+      "Is laughing gas actually legal in Amsterdam?",
+      "What does laughing gas do to your brain?",
+    ],
     errors: {
-      rate_limited: "You’ve asked a lot of questions. Please try again in a few minutes.",
-      unavailable: "The assistant is not available right now.",
-      generic: "Something went wrong. Please try again.",
-      long: "This conversation has become long. Start a new one.",
+      rate_limited: "Easy there, detective. Take a breather and try again in a few minutes.",
+      unavailable: "The Info Dealer is on a coffee break. Try again in a bit.",
+      generic: "Oops, my magnifying glass fogged up. Please try again.",
+      long: "We’ve been chatting for a while! Start a new conversation for a fresh start.",
     },
     restart: "New conversation",
     whatsapp: "Still stuck?",
@@ -75,6 +93,18 @@ const labels = {
     whatsappFallback: "Send us a WhatsApp message instead.",
   },
 } as const;
+
+const CHIP_COUNT = 3;
+
+/** A random selection, so the suggestions feel fresh each time the chat opens. */
+function pick<T>(items: readonly T[], n: number): T[] {
+  const pool = [...items];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
+}
 
 /** WhatsApp glyph (Simple Icons, CC0). */
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -160,6 +190,8 @@ export function ChatWidget({ locale }: { locale: Locale }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const [psst, setPsst] = useState(false);
+  // First render uses a fixed selection (server and client must match); shuffled once the chat opens.
+  const [chips, setChips] = useState<string[]>(() => t.suggestions.slice(0, CHIP_COUNT));
 
   // He whispers "Pssst…" once, a few seconds after the page loads (also shown on hover).
   useEffect(() => {
@@ -183,6 +215,12 @@ export function ChatWidget({ locale }: { locale: Locale }) {
   }, [messages, busy]);
 
   useEffect(() => () => abortRef.current?.abort(), []);
+
+  const openChat = () => {
+    // Fresh suggestions on each opening, but never reshuffled while the visitor reads them.
+    if (messages.length === 0) setChips(pick(t.suggestions, CHIP_COUNT));
+    setOpen(true);
+  };
 
   const close = () => {
     setOpen(false);
@@ -242,6 +280,7 @@ export function ChatWidget({ locale }: { locale: Locale }) {
     setMessages([]);
     setErr(null);
     setBusy(false);
+    setChips(pick(t.suggestions, CHIP_COUNT));
     inputRef.current?.focus();
   };
 
@@ -256,7 +295,7 @@ export function ChatWidget({ locale }: { locale: Locale }) {
       <button
         ref={buttonRef}
         type="button"
-        onClick={() => (open ? close() : setOpen(true))}
+        onClick={() => (open ? close() : openChat())}
         aria-expanded={open}
         aria-controls="chat-panel"
         aria-label={open ? t.close : t.open}
@@ -320,7 +359,7 @@ export function ChatWidget({ locale }: { locale: Locale }) {
           <div className="chat-bubble chat-bubble--bot">{t.intro}</div>
           {messages.length === 0 && (
             <div className="chat-suggestions">
-              {t.suggestions.map((s, i) => (
+              {chips.map((s, i) => (
                 <button key={s} type="button" onClick={() => ask(s)} className="chat-chip" style={{ animationDelay: `${120 + i * 70}ms` }}>
                   {s}
                 </button>
