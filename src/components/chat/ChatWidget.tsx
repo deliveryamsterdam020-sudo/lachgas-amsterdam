@@ -139,6 +139,17 @@ export function ChatWidget({ locale }: { locale: Locale }) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const [psst, setPsst] = useState(false);
+
+  // He whispers "Pssst…" once, a few seconds after the page loads (also shown on hover).
+  useEffect(() => {
+    const show = window.setTimeout(() => setPsst(true), 3500);
+    const hide = window.setTimeout(() => setPsst(false), 8500);
+    return () => {
+      window.clearTimeout(show);
+      window.clearTimeout(hide);
+    };
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -228,6 +239,9 @@ export function ChatWidget({ locale }: { locale: Locale }) {
         aria-label={open ? t.close : t.open}
         className="chat-peek"
       >
+        <span className="chat-peek__say" data-show={psst ? "" : undefined} aria-hidden="true">
+          Pssst…
+        </span>
         <Mascot />
       </button>
 
