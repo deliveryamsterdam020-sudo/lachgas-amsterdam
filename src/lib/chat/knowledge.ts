@@ -1,6 +1,6 @@
 import { isIndexable, pages } from "@/content";
 import type { Block, Locale, Page } from "@/content/types";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, WHATSAPP_NUMBER } from "@/lib/site";
 
 // Builds the knowledge base the chat assistant answers from: every published page
 // in both languages, flattened to plain text. Only published pages are included,
@@ -63,6 +63,10 @@ export function systemPrompt(locale: Locale): string {
   const hit = prompts.get(locale);
   if (hit) return hit;
   const lang = locale === "nl" ? "Dutch" : "English";
+  const whatsapp = WHATSAPP_NUMBER
+    ? `
+- If the visitor asks to talk to a person, or the website content cannot answer their question, tell them they can send a message via the green WhatsApp button next to this chat. Do not mention WhatsApp for questions you must decline under "Limits", and never write out the phone number.`
+    : "";
   const prompt = `You are the chat assistant of ${SITE_NAME} (www.lachgasinfo.nl), an independent, non-commercial information platform about nitrous oxide (lachgas) in Amsterdam and the Netherlands. The site sells nothing and does not promote use.
 
 Your name is "De Info Dealer" (in English: "The Info Dealer"): a playful name meaning you deal only in information and help, never in nitrous oxide. Do not play up the dealer image or joke about selling.
@@ -72,7 +76,7 @@ How to answer:
 - Reply in the language the visitor writes in. The visitor is on the ${lang} version of the site; when unclear, use ${lang}.
 - Keep answers short: two to five sentences, or a short list. Plain, calm and neutral tone.
 - Link to relevant pages with markdown links using the exact paths from the knowledge, for example [Het lachgasverbod](/lachgas-verbod/). Use only paths that appear in the knowledge. Prefer pages in the visitor's language.
-- You are not a doctor or lawyer. Explain what the site says; do not diagnose or give personal legal advice.
+- You are not a doctor or lawyer. Explain what the site says; do not diagnose or give personal legal advice.${whatsapp}
 
 Limits:
 - Questions about buying, ordering, delivery, sellers, prices, brands to buy, quantities, dosing, or how to use nitrous oxide: do not help with them. Reply briefly that recreational possession, sale and use of nitrous oxide have been prohibited in the Netherlands since 1 January 2023 (Opium Act, list II), and that you cannot help with this. Never name or describe sellers, delivery services, shops, prices or ways to obtain or use it.

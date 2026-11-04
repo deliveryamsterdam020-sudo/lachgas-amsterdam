@@ -1278,7 +1278,7 @@ export const nlPages: Page[] = [
       },
       {
         type: "p",
-        text: "Deze website heeft bewust geen contactformulier, e-mailadres of telefoonnummer. Correspondentie, bijvoorbeeld over je rechten onder de AVG, kan per post naar het adres hierboven.",
+        text: "Deze website heeft geen contactformulier of e-mailadres. Kom je er met de artikelen en de chatassistent niet uit, dan kun je ons een WhatsApp-bericht sturen via de groene knop die verschijnt als je de chat opent. Correspondentie, bijvoorbeeld over je rechten onder de AVG, kan per post naar het adres hierboven.",
       },
       { type: "h2", id: "werkwijze", text: "Werkwijze" },
       {
@@ -1387,6 +1387,11 @@ export const nlPages: Page[] = [
       {
         type: "p",
         text: "Het gesprek staat alleen in je browservenster en verdwijnt zodra je de pagina sluit of herlaadt. Er worden geen cookies of andere gegevens in je browser opgeslagen. Deel in de chat geen naam, adres, telefoonnummer of medische gegevens. De assistent kan fouten maken; de artikelen en hun bronnen zijn leidend. Bij nood bel je altijd 112.",
+      },
+      { type: "h2", id: "whatsapp", text: "WhatsApp" },
+      {
+        type: "p",
+        text: "Als je de chat opent, verschijnt een knop om ons een WhatsApp-bericht te sturen. Die knop is een gewone link: er wordt niets geladen of doorgegeven totdat je erop tikt. Stuur je ons een bericht, dan zien wij je telefoonnummer, je profielnaam en wat je schrijft. Wij gebruiken dat alleen om je vraag te beantwoorden en verwijderen het gesprek zodra je vraag is afgehandeld. WhatsApp is een dienst van WhatsApp Ireland Ltd. (Meta) en verwerkt je gegevens volgens zijn eigen privacybeleid. Wil je dat niet, gebruik dan de chatassistent of stuur een brief.",
       },
       { type: "h2", id: "geen-formulieren", text: "Geen accounts of nieuwsbrief" },
       { type: "p", text: "Er zijn geen accounts, contactformulieren of nieuwsbrieven. Wij vragen je dus nooit om persoonsgegevens." },

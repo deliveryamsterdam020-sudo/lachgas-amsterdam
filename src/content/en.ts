@@ -534,7 +534,7 @@ export const enPages: Page[] = [
       },
       {
         type: "p",
-        text: "This site deliberately has no contact form, email address or phone number. Correspondence — for example about your data protection rights — can be sent by post to the address above.",
+        text: "This site has no contact form or email address. If the articles and the chat assistant don’t answer your question, you can send us a WhatsApp message using the green button that appears when you open the chat. Correspondence — for example about your data protection rights — can be sent by post to the address above.",
       },
       { type: "h2", id: "editorial", text: "Editorial standards" },
       {
@@ -619,6 +619,11 @@ export const enPages: Page[] = [
       {
         type: "p",
         text: "The conversation exists only in your browser window and disappears when you close or reload the page. No cookies or other data are stored in your browser. Do not share your name, address, phone number or medical details in the chat. The assistant can make mistakes; the articles and their sources take precedence. In an emergency, always call 112.",
+      },
+      { type: "h2", id: "whatsapp", text: "WhatsApp" },
+      {
+        type: "p",
+        text: "When you open the chat, a button appears for sending us a WhatsApp message. That button is an ordinary link: nothing is loaded or shared until you tap it. If you message us, we see your phone number, profile name and what you write. We use this only to answer your question and delete the conversation once it has been dealt with. WhatsApp is a service of WhatsApp Ireland Ltd. (Meta) and processes your data under its own privacy policy. If you prefer not to use it, use the chat assistant or write to us by post.",
       },
       { type: "h2", id: "rights", text: "Your rights" },
       {

@@ -9,7 +9,14 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lachga
 
 export const SITE_NAME = "Lachgas Amsterdam";
 
-/** Publisher identification (legal notice). Postal address only: the site deliberately has no contact channel. */
+/**
+ * WhatsApp number for visitors who would rather talk to a person than to the chat
+ * assistant: digits only, international format without "+" or leading zeros
+ * (06 12345678 → "31612345678"). An empty string hides the WhatsApp button.
+ */
+export const WHATSAPP_NUMBER = "";
+
+/** Publisher identification (legal notice). */
 export const PUBLISHER = {
   name: "Lachgas info Amsterdam",
   street: "Sarphatipark 8",
