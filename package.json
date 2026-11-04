@@ -12,7 +12,8 @@
     "check": "npm run typecheck && npm run lint && npm run content:audit",
     "scene": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/build-scene.mts",
     "predev": "npm run -s scene",
-    "prebuild": "npm run -s scene"
+    "prebuild": "npm run -s scene",
+    "indexnow": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mts"
   },
   "dependencies": {
     "lenis": "1.3.27",

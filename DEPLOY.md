@@ -35,6 +35,9 @@ Zet bij je domeinregistrar de DNS-records die Vercel toont (A-record voor het ap
 
 ## 4. Na livegang
 - Google Search Console: domein verifiëren en `https://www.lachgasinfo.nl/sitemap.xml` indienen.
+- Bing Webmaster Tools: site importeren vanuit Search Console (één klik) en de sitemap controleren.
+- IndexNow (Bing, Yandex, Seznam, Naver): na elke deployment met nieuwe of gewijzigde pagina's `npm run indexnow` draaien. Het script meldt alle URL's uit de live sitemap aan. De sleutel staat in `public/<sleutel>.txt` en is bewust openbaar.
+- In Vercel → Settings → Domains de doorverwijzing van `lachgasinfo.com` en `www.lachgasinfo.com` op **308 Permanent** zetten (standaard 307).
 - PageSpeed Insights draaien op `/` en `/lachgas-verbod/`.
 - Controleren op een echte iPhone/Mac (Safari) en Android-telefoon.
 
