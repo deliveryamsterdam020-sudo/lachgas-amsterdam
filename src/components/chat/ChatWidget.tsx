@@ -6,7 +6,7 @@ import { ArrowUp, RotateCcw, X } from "lucide-react";
 import type { Locale } from "@/content/types";
 import { Mascot } from "./Mascot";
 
-// Chat assistant with "Incognito", a small detective who peeks in from the edge of the screen.
+// Chat assistant with "De Info Dealer", a small detective who peeks in from the edge of the screen.
 // The conversation lives only in component state: it disappears on reload, nothing is
 // written to cookies or browser storage.
 
@@ -21,17 +21,17 @@ const MAX_MESSAGES = 12;
 const labels = {
   nl: {
     open: "Stel een vraag aan de assistent",
-    title: "Incognito",
-    subtitle: "Antwoordt op basis van deze website",
+    title: "De Info Dealer",
+    subtitle: "Handelt alleen in informatie en hulp",
     close: "Chat sluiten",
     intro:
-      "Hoi! Ik ben Incognito. Ik beantwoord vragen over lachgas met de informatie op deze website: de regels, de gezondheidsrisico’s, cilinders en hulp.",
+      "Pssst… ik ben De Info Dealer. Ik handel alleen in informatie en hulp: stel me je vraag over lachgas, de regels, de gezondheidsrisico’s, cilinders of waar je hulp vindt.",
     placeholder: "Stel je vraag…",
     send: "Versturen",
     notice: "AI-assistent, kan fouten maken. Deel geen persoonsgegevens. Bij nood: bel 112.",
     privacy: "Privacy",
     privacyHref: "/privacy/#chat",
-    typing: "Incognito typt",
+    typing: "De Info Dealer typt",
     suggestions: ["Is lachgas verboden?", "Wat zijn de gezondheidsrisico’s?", "Wat doe ik met een gevonden cilinder?"],
     errors: {
       rate_limited: "Je hebt veel vragen gesteld. Probeer het over een paar minuten opnieuw.",
@@ -43,17 +43,17 @@ const labels = {
   },
   en: {
     open: "Ask the assistant a question",
-    title: "Incognito",
-    subtitle: "Answers from this website",
+    title: "The Info Dealer",
+    subtitle: "Deals only in information and help",
     close: "Close chat",
     intro:
-      "Hi! I’m Incognito. I answer questions about nitrous oxide using the information on this website: the rules, health risks, cylinders and where to find help.",
+      "Pssst… I’m The Info Dealer. I deal only in information and help: ask me about nitrous oxide, the rules, health risks, cylinders or where to find help.",
     placeholder: "Ask your question…",
     send: "Send",
     notice: "AI assistant, may make mistakes. Don’t share personal data. In an emergency: call 112.",
     privacy: "Privacy",
     privacyHref: "/en/privacy/#chat",
-    typing: "Incognito is typing",
+    typing: "The Info Dealer is typing",
     suggestions: ["Is laughing gas legal in Amsterdam?", "What are the health risks?", "I found a cylinder, what now?"],
     errors: {
       rate_limited: "You’ve asked a lot of questions. Please try again in a few minutes.",
@@ -229,7 +229,7 @@ export function ChatWidget({ locale }: { locale: Locale }) {
 
   return (
     <div className="chat-root" data-open={open ? "" : undefined}>
-      {/* Incognito, peeking in from the edge of the screen */}
+      {/* The Info Dealer, peeking in from the edge of the screen */}
       <button
         ref={buttonRef}
         type="button"

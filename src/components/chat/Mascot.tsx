@@ -1,4 +1,4 @@
-// "Incognito", the chat mascot: a flat one-colour detective silhouette (fedora, shades,
+// "De Info Dealer" (EN: "The Info Dealer"), the chat mascot: a flat one-colour detective silhouette (fedora, shades,
 // upturned collar) without a background that peeks in from the edge of the screen. Original
 // artwork in the site's navy. On hover or tap three attention marks pop out and he lifts
 // his hat a little.
