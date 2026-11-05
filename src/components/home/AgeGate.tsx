@@ -6,10 +6,10 @@ import type { Locale } from "@/content/types";
 
 // Age check on the homepage: a modal <dialog> with two answers. Either answer closes it and
 // the visitor continues on the site; there is no close button and Escape does nothing, so an
-// answer is required. sessionStorage remembers it until the tab is closed. The text is
-// server-rendered inside the dialog, so it is in the HTML. Nothing is sent anywhere.
+// answer is required. Nothing is remembered: it appears on every visit to the homepage, also
+// when the visitor comes back with the browser's back button (from the back/forward cache).
+// The text is server-rendered inside the dialog, so it is in the HTML. Nothing is stored or sent.
 
-const KEY = "age-confirmed";
 
 /**
  * A gas tank like the ones sold for balloons (tall cylinder, end caps, a light band under the
@@ -78,27 +78,36 @@ export function AgeGate({ locale }: { locale: Locale }) {
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog || typeof dialog.showModal !== "function") return;
-    try {
-      if (window.sessionStorage.getItem(KEY)) return;
-    } catch {
-      // Storage unavailable (private mode, blocked): just ask.
-    }
+    let id: number | undefined;
+    const open = (delay: number) => {
+      window.clearTimeout(id);
+      id = window.setTimeout(() => {
+        if (dialog.open) return;
+        dialog.removeAttribute("data-closing");
+        dialog.showModal();
+        // Focus the card, not the first button, so no focus ring shows on opening.
+        bodyRef.current?.focus({ preventScroll: true });
+        document.documentElement.classList.add("alarm-open");
+      }, delay);
+    };
     // A short pause so the hero is painted first.
-    const id = window.setTimeout(() => {
-      dialog.showModal();
-      // Focus the card, not the first button, so no focus ring shows on opening.
-      bodyRef.current?.focus({ preventScroll: true });
-      document.documentElement.classList.add("alarm-open");
-    }, 450);
-    return () => window.clearTimeout(id);
+    open(450);
+    // Coming back with the back button can restore the page from memory without reloading it;
+    // ask again in that case too.
+    const onShow = (e: PageTransitionEvent) => {
+      if (e.persisted) open(150);
+    };
+    window.addEventListener("pageshow", onShow);
+    return () => {
+      window.clearTimeout(id);
+      window.removeEventListener("pageshow", onShow);
+      document.documentElement.classList.remove("alarm-open");
+    };
   }, []);
 
   const confirm = () => {
     const dialog = ref.current;
     if (!dialog?.open) return;
-    try {
-      window.sessionStorage.setItem(KEY, "1");
-    } catch {}
     const finish = () => {
       dialog.close();
       dialog.removeAttribute("data-closing");

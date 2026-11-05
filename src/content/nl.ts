@@ -1372,7 +1372,7 @@ export const nlPages: Page[] = [
       { type: "h2", id: "cookies", text: "Cookies en tracking" },
       {
         type: "p",
-        text: "Deze website plaatst geen cookies en gebruikt geen advertentienetwerken of social-media-plug-ins. Daarom tonen wij ook geen cookiebanner. Alle lettertypen worden vanaf ons eigen domein geladen. Beantwoord je op de homepage de leeftijdsvraag, dan onthoudt je browser dat alleen tot je het tabblad sluit (via sessionStorage, geen cookie). Dat gegeven blijft op je eigen apparaat en wordt niet naar ons verstuurd.",
+        text: "Deze website plaatst geen cookies en gebruikt geen advertentienetwerken of social-media-plug-ins. Daarom tonen wij ook geen cookiebanner. Alle lettertypen worden vanaf ons eigen domein geladen.",
       },
       { type: "h2", id: "statistieken", text: "Bezoekersstatistieken" },
       {
