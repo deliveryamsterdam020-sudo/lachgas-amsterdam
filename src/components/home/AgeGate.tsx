@@ -170,5 +170,7 @@ export function AgeGate({ locale }: { locale: Locale }) {
     <X aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
     {t.no}
   </button>
-</div>
+      </div>
+    </dialog>
+  );
 }
