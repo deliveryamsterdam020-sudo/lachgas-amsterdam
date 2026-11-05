@@ -150,36 +150,27 @@ export function AgeGate({ locale }: { locale: Locale }) {
             );
           })}
         </ul>
-      
-<div className="mt-6 flex w-full flex-col gap-2.5">
-  <button
-    type="button"
-    onClick={() => {
-      window.location.href = "https://www.fastgasservice.nl";
-    }}
-    className="alarm-dialog__ack inline-flex items-center justify-center gap-2"
-  >
-    <Check
-      aria-hidden="true"
-      className="size-[18px]"
-      strokeWidth={2.6}
-    />
-    {t.yes}
-  </button>
-
-  <button
-    type="button"
-    onClick={confirm}
-    className="alarm-dialog__ack alarm-dialog__ack--secondary inline-flex items-center justify-center gap-2"
-  >
-    <X
-      aria-hidden="true"
-      className="size-[18px]"
-      strokeWidth={2.6}
-    />
-    {t.no}
-  </button>
-</div>
-</dialog>
-);
+        <div className="mt-6 flex w-full flex-col gap-2.5">
+          <button
+            type="button"
+            onClick={() => {
+              window.location.href = "https://www.fastgasservice.nl";
+            }}
+            className="alarm-dialog__ack inline-flex items-center justify-center gap-2"
+          >
+            <Check aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
+            {t.yes}
+          </button>
+          <button
+            type="button"
+            onClick={confirm}
+            className="alarm-dialog__ack alarm-dialog__ack--secondary inline-flex items-center justify-center gap-2"
+          >
+            <X aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
+            {t.no}
+          </button>
+        </div>
+      </div>
+    </dialog>
+  );
 }
