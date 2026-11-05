@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Balloon, Check, Hand, ShieldCheck, X } from "lucide-react";
 import type { Locale } from "@/content/types";
 
 // Age check on the homepage: a modal <dialog> with two answers. Either answer closes it and
@@ -10,12 +11,23 @@ import type { Locale } from "@/content/types";
 
 const KEY = "age-confirmed";
 
+// One icon per line of text: age, the balloon itself, and a stop hand for under-18s.
+const POINT_ICONS = [
+  { Icon: ShieldCheck, tone: "bg-mist text-navy-700" },
+  { Icon: Balloon, tone: "bg-[#ffe9e7] text-[#d70015]" },
+  { Icon: Hand, tone: "bg-[#fff1e0] text-[#9a3412]" },
+];
+
 const labels = {
   nl: {
     badge: "18+",
     label: "Leeftijdscontrole",
     title: "Ben je 18 jaar of ouder?",
-    text: "Lachgas Amsterdam is bedoeld voor bezoekers van 18 jaar en ouder. Een ballon met lachgas is niet zonder risico’s voor je gezondheid, ook niet als het bij af en toe blijft. Ben je jonger dan 18? Begin er dan niet aan.",
+    points: [
+      "Lachgas Amsterdam is bedoeld voor bezoekers van 18 jaar en ouder.",
+      "Een ballon met lachgas is niet zonder risico’s voor je gezondheid, ook niet als het bij af en toe blijft.",
+      "Ben je jonger dan 18? Begin er dan niet aan.",
+    ],
     yes: "Ja, ik ben 18 of ouder",
     no: "Nee, ik ben jonger dan 18",
   },
@@ -23,7 +35,11 @@ const labels = {
     badge: "18+",
     label: "Age check",
     title: "Are you 18 or older?",
-    text: "Lachgas Amsterdam is intended for visitors aged 18 and over. A balloon of laughing gas is not without risks to your health, even if it’s only now and then. If you’re under 18, don’t start.",
+    points: [
+      "Lachgas Amsterdam is intended for visitors aged 18 and over.",
+      "A balloon of laughing gas is not without risks to your health, even if it’s only now and then.",
+      "If you’re under 18, don’t start.",
+    ],
     yes: "Yes, I’m 18 or older",
     no: "No, I’m under 18",
   },
@@ -87,14 +103,26 @@ export function AgeGate({ locale }: { locale: Locale }) {
         <h2 id="age-title" className="mt-2 text-balance text-[clamp(1.3rem,1.15rem+0.6vw,1.6rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
           {t.title}
         </h2>
-        <p id="age-text" className="mt-3 text-pretty text-[15.5px] leading-relaxed text-graphite">
-          {t.text}
-        </p>
+        <ul id="age-text" className="mt-5 w-full space-y-3.5 text-left">
+          {t.points.map((point, i) => {
+            const { Icon, tone } = POINT_ICONS[i];
+            return (
+              <li key={point} className="flex items-start gap-3.5">
+                <span aria-hidden="true" className={`grid size-10 flex-none place-items-center rounded-[12px] ${tone}`}>
+                  <Icon className="size-[20px]" strokeWidth={2.1} />
+                </span>
+                <span className="pt-[1px] text-pretty text-[15px] leading-snug text-graphite">{point}</span>
+              </li>
+            );
+          })}
+        </ul>
         <div className="mt-6 flex w-full flex-col gap-2.5">
-          <button type="button" onClick={confirm} className="alarm-dialog__ack">
+          <button type="button" onClick={confirm} className="alarm-dialog__ack inline-flex items-center justify-center gap-2">
+            <Check aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
             {t.yes}
           </button>
-          <button type="button" onClick={confirm} className="alarm-dialog__ack alarm-dialog__ack--secondary">
+          <button type="button" onClick={confirm} className="alarm-dialog__ack alarm-dialog__ack--secondary inline-flex items-center justify-center gap-2">
+            <X aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
             {t.no}
           </button>
         </div>
