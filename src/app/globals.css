@@ -336,6 +336,49 @@ html.lenis body {
   .live-clock__dot::after { animation: none; opacity: 0; }
 }
 
+/* ── Alarm notice (iOS-notification style) ───────────────────────────── */
+.alarm-card {
+  border-radius: 28px;
+  background: var(--color-paper);
+  padding: 20px;
+  box-shadow:
+    0 0 0 1px rgb(16 28 50 / 0.06),
+    0 24px 60px -32px rgb(16 28 50 / 0.45);
+}
+@media (min-width: 640px) {
+  .alarm-card { padding: 28px; }
+}
+.alarm-card__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #ff3b30;
+  color: #fff;
+}
+@media (min-width: 640px) {
+  .alarm-card__icon { width: 44px; height: 44px; border-radius: 12px; }
+}
+/* A soft ring that keeps pulsing outwards, like an incoming alert */
+.alarm-card__icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #ff3b30;
+  animation: alarm-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes alarm-ring {
+  0% { opacity: 0.55; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .alarm-card__icon::after { animation: none; opacity: 0; }
+}
+
 /* ── Chat assistant ──────────────────────────────────────────────────────
    A small detective head peeks in from the right edge; on hover or tap he
    looks up (three attention marks) and the panel springs open from him.
