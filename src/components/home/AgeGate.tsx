@@ -1,44 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import type { Locale } from "@/content/types";
 
-// Age check on the homepage: a modal <dialog> with two choices. The visitor has to pick one;
-// there is no close button and Escape does nothing. "Yes" closes it, and sessionStorage
-// remembers that until the tab is closed. "No" explains the site is for adults and points to
-// DrugsInfo (Trimbos-instituut), where young people find reliable information and anonymous help.
-// The text is server-rendered inside the dialog, so it is in the HTML. Nothing is sent anywhere.
+// Age check on the homepage: a modal <dialog> with two answers. Either answer closes it and
+// the visitor continues on the site; there is no close button and Escape does nothing, so an
+// answer is required. sessionStorage remembers it until the tab is closed. The text is
+// server-rendered inside the dialog, so it is in the HTML. Nothing is sent anywhere.
 
 const KEY = "age-confirmed";
-const DRUGSINFO = "https://www.drugsinfo.nl/lachgas/wat-je-moet-weten-over-lachgas/";
 
 const labels = {
   nl: {
     badge: "18+",
     label: "Leeftijdscontrole",
     title: "Ben je 18 jaar of ouder?",
-    text: "Lachgas Amsterdam is bedoeld voor bezoekers van 18 jaar en ouder.",
+    text: "Lachgas Amsterdam is bedoeld voor bezoekers van 18 jaar en ouder. Let op: recreatief lachgas gebruiken is in Nederland voor iedereen verboden, ook vanaf 18. Ben je jonger dan 18? Begin er dan in geen geval aan.",
     yes: "Ja, ik ben 18 of ouder",
     no: "Nee, ik ben jonger dan 18",
-    minorTitle: "Deze site is voor 18+",
-    minorText:
-      "Heb je vragen over lachgas, of maak je je zorgen om jezelf of een vriend? Bij DrugsInfo van het Trimbos-instituut vind je betrouwbare informatie en kun je anoniem je vraag stellen. Bij nood: bel 112.",
-    drugsinfo: "Naar DrugsInfo",
-    back: "Terug",
   },
   en: {
     badge: "18+",
     label: "Age check",
     title: "Are you 18 or older?",
-    text: "Lachgas Amsterdam is intended for visitors aged 18 and over.",
+    text: "Lachgas Amsterdam is intended for visitors aged 18 and over. Please note: using laughing gas recreationally is illegal in the Netherlands for everyone, including people aged 18 and over. If you’re under 18, don’t even consider it.",
     yes: "Yes, I’m 18 or older",
     no: "No, I’m under 18",
-    minorTitle: "This site is for 18+",
-    minorText:
-      "Got questions about laughing gas, or worried about yourself or a friend? DrugsInfo, run by the Trimbos Institute, has reliable information (in Dutch) and lets you ask questions anonymously. In an emergency, call 112.",
-    drugsinfo: "Go to DrugsInfo",
-    back: "Back",
   },
 } as const;
 
@@ -46,7 +33,6 @@ export function AgeGate({ locale }: { locale: Locale }) {
   const t = labels[locale];
   const ref = useRef<HTMLDialogElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const [minor, setMinor] = useState(false);
 
   useEffect(() => {
     const dialog = ref.current;
@@ -82,10 +68,6 @@ export function AgeGate({ locale }: { locale: Locale }) {
     window.setTimeout(finish, 200);
   };
 
-  const show = (isMinor: boolean) => {
-    setMinor(isMinor);
-    bodyRef.current?.focus({ preventScroll: true });
-  };
 
   return (
     <dialog
@@ -103,31 +85,19 @@ export function AgeGate({ locale }: { locale: Locale }) {
         </span>
         <p className="mt-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#c4001a]">{t.label}</p>
         <h2 id="age-title" className="mt-2 text-balance text-[clamp(1.3rem,1.15rem+0.6vw,1.6rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
-          {minor ? t.minorTitle : t.title}
+          {t.title}
         </h2>
         <p id="age-text" className="mt-3 text-pretty text-[15.5px] leading-relaxed text-graphite">
-          {minor ? t.minorText : t.text}
+          {t.text}
         </p>
-        {minor ? (
-          <div className="mt-6 flex w-full flex-col gap-2.5">
-            <a href={DRUGSINFO} rel="noopener noreferrer" className="alarm-dialog__ack inline-flex items-center justify-center gap-1.5">
-              {t.drugsinfo}
-              <ArrowUpRight className="size-[18px]" aria-hidden="true" />
-            </a>
-            <button type="button" onClick={() => show(false)} className="alarm-dialog__ack alarm-dialog__ack--secondary">
-              {t.back}
-            </button>
-          </div>
-        ) : (
-          <div className="mt-6 flex w-full flex-col gap-2.5">
-            <button type="button" onClick={confirm} className="alarm-dialog__ack">
-              {t.yes}
-            </button>
-            <button type="button" onClick={() => show(true)} className="alarm-dialog__ack alarm-dialog__ack--secondary">
-              {t.no}
-            </button>
-          </div>
-        )}
+        <div className="mt-6 flex w-full flex-col gap-2.5">
+          <button type="button" onClick={confirm} className="alarm-dialog__ack">
+            {t.yes}
+          </button>
+          <button type="button" onClick={confirm} className="alarm-dialog__ack alarm-dialog__ack--secondary">
+            {t.no}
+          </button>
+        </div>
       </div>
     </dialog>
   );
