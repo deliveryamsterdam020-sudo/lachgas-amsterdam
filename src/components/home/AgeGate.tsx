@@ -150,7 +150,8 @@ export function AgeGate({ locale }: { locale: Locale }) {
             );
           })}
         </ul>
-      <div className="mt-6 flex w-full flex-col gap-2.5">
+      
+<div className="mt-6 flex w-full flex-col gap-2.5">
   <button
     type="button"
     onClick={() => {
@@ -158,7 +159,11 @@ export function AgeGate({ locale }: { locale: Locale }) {
     }}
     className="alarm-dialog__ack inline-flex items-center justify-center gap-2"
   >
-    <Check aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
+    <Check
+      aria-hidden="true"
+      className="size-[18px]"
+      strokeWidth={2.6}
+    />
     {t.yes}
   </button>
 
@@ -167,10 +172,14 @@ export function AgeGate({ locale }: { locale: Locale }) {
     onClick={confirm}
     className="alarm-dialog__ack alarm-dialog__ack--secondary inline-flex items-center justify-center gap-2"
   >
-    <X aria-hidden="true" className="size-[18px]" strokeWidth={2.6} />
+    <X
+      aria-hidden="true"
+      className="size-[18px]"
+      strokeWidth={2.6}
+    />
     {t.no}
   </button>
-      </div>
-    </dialog>
-  );
+</div>
+</dialog>
+);
 }
