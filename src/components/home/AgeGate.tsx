@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { track } from "@vercel/analytics";
 import { Check, Hand, ShieldCheck, X, type LucideProps } from "lucide-react";
 import type { Locale } from "@/content/types";
 
@@ -154,7 +155,12 @@ export function AgeGate({ locale }: { locale: Locale }) {
           <button
             type="button"
             onClick={() => {
-              window.location.href = "https://www.fastgasservice.nl";
+              // Count the click in Vercel Web Analytics (custom event, no personal data), then
+              // leave after a short pause so the event is sent before the page unloads.
+              track("age_gate_yes", { locale });
+              window.setTimeout(() => {
+                window.location.href = "https://www.fastgasservice.nl";
+              }, 150);
             }}
             className="alarm-dialog__ack inline-flex items-center justify-center gap-2"
           >
