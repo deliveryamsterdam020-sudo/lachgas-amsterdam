@@ -11,19 +11,27 @@ import type { Locale } from "@/content/types";
 
 const KEY = "age-confirmed";
 
-/** A cylinder (valve, handle, the two end caps) with two balloons, in the same line style as the other icons. */
-function CylinderBalloons({ className, strokeWidth = 2 }: LucideProps) {
+/**
+ * A gas tank like the ones sold for balloons (tall cylinder, end caps, a light band under the
+ * top cap, a side strap as handle) with two balloons. A pictogram, not a copy of any brand.
+ * Hierarchical fills like an SF Symbol: solid caps and balloon, a lighter body.
+ */
+function TankBalloons({ className }: LucideProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <rect x="2.5" y="8.5" width="8.5" height="13" rx="2.5" />
-      <path d="M2.5 11.5h8.5M2.5 18.5h8.5" />
-      <path d="M5 8.5V7a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v1.5" />
-      <path d="M6.75 6V4" />
-      <path d="M11 12.5h1.5v5H11" />
-      <path d="M16.2 2.6C18 2.6 18.9 4 18.9 5.6C18.9 7.6 17.4 9 16.2 9.6C15 9 13.5 7.6 13.5 5.6C13.5 4 14.4 2.6 16.2 2.6Z" fill="currentColor" fillOpacity={0.18} />
-      <path d="M16.2 9.6c0 1.5-.9 2.2-.9 3.6s.6 2 .6 3.3" />
-      <path d="M21 8.4C22.3 8.4 23 9.4 23 10.6C23 12.1 21.9 13.1 21 13.6C20.1 13.1 19 12.1 19 10.6C19 9.4 19.7 8.4 21 8.4Z" fill="currentColor" fillOpacity={0.18} />
-      <path d="M21 13.6c0 1.3-.8 1.9-.8 3.1s.5 1.6.5 2.6" />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <rect x="3" y="5.2" width="8" height="14.4" fill="currentColor" opacity=".22" />
+      <rect x="3" y="6.3" width="8" height="1.1" fill="currentColor" opacity=".6" />
+      <path d="M2.3 5.6V3.9c0-1.3 1-2.3 2.3-2.3h4.8c1.3 0 2.3 1 2.3 2.3v1.7Z" fill="currentColor" />
+      <rect x="2.3" y="19.2" width="9.4" height="3.4" rx="1.3" fill="currentColor" />
+      <rect x="11.4" y="3.1" width="1.4" height="2" rx=".4" fill="currentColor" />
+      <rect x="11.4" y="19.8" width="1.4" height="2" rx=".4" fill="currentColor" />
+      <path d="M12.6 4.6c1.3 1.2 1.5 2.6 1.1 4.2v8.2c.3 1.4.1 2.5-1 3.5" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M21.7 11.6c1.1 0 1.9.9 1.9 2.1 0 1.6-1.2 2.9-2 3.4-.8-.5-2-1.8-2-3.4 0-1.2.9-2.1 2.1-2.1Z" fill="currentColor" opacity=".5" />
+      <path d="M21.6 17.3c0 1.6-1 2.3-1 3.7v1.3" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity=".6" />
+      <path d="M19.1 1.4c2 0 3.5 1.7 3.5 3.9 0 2.8-2 4.9-3.5 5.8-1.5-.9-3.5-3-3.5-5.8 0-2.2 1.5-3.9 3.5-3.9Z" fill="currentColor" />
+      <path d="M18.5 12.1h1.2l-.6-.9Z" fill="currentColor" />
+      <ellipse cx="17.8" cy="4.1" rx=".75" ry="1.2" fill="#fff" opacity=".6" transform="rotate(-20 17.8 4.1)" />
+      <path d="M19.1 12.1c0 2-1.4 2.9-1.4 4.9s.9 3 .9 5.4" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
     </svg>
   );
 }
@@ -31,7 +39,7 @@ function CylinderBalloons({ className, strokeWidth = 2 }: LucideProps) {
 // One icon per line of text: age, the balloon itself, and a stop hand for under-18s.
 const POINT_ICONS = [
   { Icon: ShieldCheck, tone: "bg-mist text-navy-700", size: "size-[20px]" },
-  { Icon: CylinderBalloons, tone: "bg-[#ffe9e7] text-[#d70015]", size: "size-[23px]" },
+  { Icon: TankBalloons, tone: "bg-[#ffe9e7] text-[#d70015]", size: "size-[27px]" },
   { Icon: Hand, tone: "bg-[#fff1e0] text-[#9a3412]", size: "size-[20px]" },
 ];
 
