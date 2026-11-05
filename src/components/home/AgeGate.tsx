@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Balloon, Check, Hand, ShieldCheck, X } from "lucide-react";
+import { Check, Hand, ShieldCheck, X, type LucideProps } from "lucide-react";
 import type { Locale } from "@/content/types";
 
 // Age check on the homepage: a modal <dialog> with two answers. Either answer closes it and
@@ -11,11 +11,28 @@ import type { Locale } from "@/content/types";
 
 const KEY = "age-confirmed";
 
+/** A cylinder (valve, handle, the two end caps) with two balloons, in the same line style as the other icons. */
+function CylinderBalloons({ className, strokeWidth = 2 }: LucideProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="2.5" y="8.5" width="8.5" height="13" rx="2.5" />
+      <path d="M2.5 11.5h8.5M2.5 18.5h8.5" />
+      <path d="M5 8.5V7a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v1.5" />
+      <path d="M6.75 6V4" />
+      <path d="M11 12.5h1.5v5H11" />
+      <path d="M16.2 2.6C18 2.6 18.9 4 18.9 5.6C18.9 7.6 17.4 9 16.2 9.6C15 9 13.5 7.6 13.5 5.6C13.5 4 14.4 2.6 16.2 2.6Z" fill="currentColor" fillOpacity={0.18} />
+      <path d="M16.2 9.6c0 1.5-.9 2.2-.9 3.6s.6 2 .6 3.3" />
+      <path d="M21 8.4C22.3 8.4 23 9.4 23 10.6C23 12.1 21.9 13.1 21 13.6C20.1 13.1 19 12.1 19 10.6C19 9.4 19.7 8.4 21 8.4Z" fill="currentColor" fillOpacity={0.18} />
+      <path d="M21 13.6c0 1.3-.8 1.9-.8 3.1s.5 1.6.5 2.6" />
+    </svg>
+  );
+}
+
 // One icon per line of text: age, the balloon itself, and a stop hand for under-18s.
 const POINT_ICONS = [
-  { Icon: ShieldCheck, tone: "bg-mist text-navy-700" },
-  { Icon: Balloon, tone: "bg-[#ffe9e7] text-[#d70015]" },
-  { Icon: Hand, tone: "bg-[#fff1e0] text-[#9a3412]" },
+  { Icon: ShieldCheck, tone: "bg-mist text-navy-700", size: "size-[20px]" },
+  { Icon: CylinderBalloons, tone: "bg-[#ffe9e7] text-[#d70015]", size: "size-[23px]" },
+  { Icon: Hand, tone: "bg-[#fff1e0] text-[#9a3412]", size: "size-[20px]" },
 ];
 
 const labels = {
@@ -105,11 +122,11 @@ export function AgeGate({ locale }: { locale: Locale }) {
         </h2>
         <ul id="age-text" className="mt-5 w-full space-y-3.5 text-left">
           {t.points.map((point, i) => {
-            const { Icon, tone } = POINT_ICONS[i];
+            const { Icon, tone, size } = POINT_ICONS[i];
             return (
               <li key={point} className="flex items-start gap-3.5">
                 <span aria-hidden="true" className={`grid size-10 flex-none place-items-center rounded-[12px] ${tone}`}>
-                  <Icon className="size-[20px]" strokeWidth={2.1} />
+                  <Icon className={size} strokeWidth={2.1} />
                 </span>
                 <span className="pt-[1px] text-pretty text-[15px] leading-snug text-graphite">{point}</span>
               </li>
