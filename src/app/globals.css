@@ -380,20 +380,6 @@ html.alarm-open { overflow: hidden; }
 @media (min-width: 640px) {
   .alarm-dialog__body { padding: 40px 32px 28px; }
 }
-.alarm-dialog__close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  background: rgb(16 28 50 / 0.06);
-  color: var(--color-muted);
-  transition: background-color 150ms ease, color 150ms ease;
-}
-.alarm-dialog__close:hover { background: rgb(16 28 50 / 0.1); color: var(--color-ink); }
 .alarm-dialog__icon {
   position: relative;
   display: grid;
@@ -420,7 +406,7 @@ html.alarm-open { overflow: hidden; }
 .alarm-dialog__ack {
   width: 100%;
   min-height: 50px;
-  margin-top: 20px;
+  padding: 0 20px;
   border-radius: 999px;
   background: var(--color-ink);
   color: #fff;
@@ -430,6 +416,15 @@ html.alarm-open { overflow: hidden; }
 }
 .alarm-dialog__ack:hover { background: var(--color-navy-700); }
 .alarm-dialog__ack:active { transform: scale(0.98); }
+.alarm-dialog__ack--secondary { background: var(--color-mist); color: var(--color-ink); }
+.alarm-dialog__ack--secondary:hover { background: #dde8f5; }
+/* "18+" badge in place of an icon */
+.alarm-dialog__icon--badge {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
 @media (prefers-reduced-motion: reduce) {
   .alarm-dialog[open], .alarm-dialog::backdrop { animation: none; }
   .alarm-dialog__icon::after { animation: none; opacity: 0; }

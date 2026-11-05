@@ -605,7 +605,7 @@ export const enPages: Page[] = [
       { type: "h2", id: "controller", text: "Data controller" },
       { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam, the Netherlands. Questions or requests about your data can be sent by post to this address." },
       { type: "h2", id: "cookies", text: "Cookies and tracking" },
-      { type: "p", text: "This website sets no cookies and uses no ad networks or social media plug-ins, so there is no cookie banner. All fonts are served from our own domain. If you dismiss the warning on the homepage, your browser remembers that only until you close the tab (using sessionStorage, not a cookie). It stays on your own device and is never sent to us." },
+      { type: "p", text: "This website sets no cookies and uses no ad networks or social media plug-ins, so there is no cookie banner. All fonts are served from our own domain. If you confirm on the homepage that you are 18 or older, your browser remembers that only until you close the tab (using sessionStorage, not a cookie). It stays on your own device and is never sent to us." },
       { type: "h2", id: "statistics", text: "Visitor statistics" },
       {
         type: "p",

@@ -1,11 +1,11 @@
 import { pagesFor, specialRoutes } from "@/content";
 import { buildMetadata } from "@/lib/seo";
 import { LiveClock } from "@/components/home/LiveClock";
+import { AgeGate } from "@/components/home/AgeGate";
 import {
   AmsterdamSection,
   BanExplainer,
   CounterSection,
-  AlarmNotice,
   DirectAnswer,
   Hero,
   HubSection,
@@ -44,17 +44,7 @@ export default function Home() {
         clock={<LiveClock locale="nl" />}
       />
 
-      <AlarmNotice
-        label="Waarschuwing"
-        title="Lachgas bestellen of laten bezorgen is verboden"
-        text="Sinds 1 januari 2023 zijn bezit, verkoop en vervoer van lachgas voor recreatief gebruik verboden in heel Nederland (Opiumwet, lijst II). Dat geldt dus ook voor bestellen en laten bezorgen. Grote tanks zijn extra riskant: het ijskoude gas kan ernstige vrieswonden geven, en vaak gebruik kan leiden tot zenuwschade."
-        links={[
-          { href: "/lachgas-verbod/", label: "Het lachgasverbod" },
-          { href: "/gezondheid/", label: "Gezondheidsrisico’s" },
-        ]}
-        ack="Begrepen"
-        close="Sluiten"
-      />
+      <AgeGate locale="nl" />
 
       <DirectAnswer
         index="01"

@@ -1,13 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Ban, Check, ChevronRight, ExternalLink, Scale, TriangleAlert } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Ban, Check, ExternalLink, Scale } from "lucide-react";
 import { CanalRings } from "@/components/visual/CanalRings";
 import { GableSkyline } from "@/components/visual/GableSkyline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Inline } from "@/components/ui/Inline";
 import { BanCounter } from "./BanCounter";
 import { HubCard, type HubItem } from "./HubCard";
-import { AlarmPopup } from "./AlarmPopup";
 import type { Locale, Page } from "@/content/types";
 import { categoryLabel, formatDate, ui } from "@/lib/site";
 
@@ -115,49 +114,6 @@ export function Hero({
         </div>
       </div>
     </section>
-  );
-}
-
-// ── Alarm notice ───────────────────────────────────────────────────────────
-// The homepage warning, shown as a popup the visitor clicks away (see AlarmPopup).
-// The text is server-rendered inside the <dialog>, so it is in the HTML.
-
-export function AlarmNotice({
-  label,
-  title,
-  text,
-  links,
-  ack,
-  close,
-}: {
-  label: string;
-  title: string;
-  text: string;
-  links: { href: string; label: string }[];
-  ack: string;
-  close: string;
-}) {
-  return (
-    <AlarmPopup ack={ack} close={close}>
-      <span className="alarm-dialog__icon" aria-hidden="true">
-        <TriangleAlert className="size-[26px]" strokeWidth={2.4} />
-      </span>
-      <p className="mt-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#c4001a]">{label}</p>
-      <h2 id="alarm-title" className="mt-2 text-balance text-[clamp(1.3rem,1.15rem+0.6vw,1.6rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
-        {title}
-      </h2>
-      <p id="alarm-text" className="mt-3 text-pretty text-[15.5px] leading-relaxed text-graphite">
-        {text}
-      </p>
-      <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2">
-        {links.map((l) => (
-          <Link key={l.href} href={l.href} className="group inline-flex min-h-11 items-center gap-0.5 text-[15px] font-semibold text-navy-700 hover:text-ink">
-            {l.label}
-            <ChevronRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-          </Link>
-        ))}
-      </div>
-    </AlarmPopup>
   );
 }
 
