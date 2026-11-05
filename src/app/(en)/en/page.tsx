@@ -33,7 +33,6 @@ export default function EnglishHome() {
       />
 
       <AlarmNotice
-        app="Lachgas Amsterdam"
         label="Warning"
         title="Ordering or getting laughing gas delivered is illegal"
         text="Since 1 January 2023, possessing, selling and transporting nitrous oxide for recreational use has been illegal across the Netherlands (Opium Act, list II). That includes ordering it and having it delivered. Large tanks carry extra risk: the ice-cold gas can cause severe frostbite, and frequent use can lead to nerve damage."
@@ -41,6 +40,8 @@ export default function EnglishHome() {
           { href: "/en/is-laughing-gas-legal-in-amsterdam/", label: "Is it legal?" },
           { href: "/en/nitrous-oxide-health-risks/", label: "Health risks" },
         ]}
+        ack="Got it"
+        close="Close"
       />
 
       <DirectAnswer

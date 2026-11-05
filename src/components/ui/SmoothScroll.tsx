@@ -22,7 +22,7 @@ export function SmoothScroll() {
           lerp: 0.085,
           wheelMultiplier: 0.95,
           stopInertiaOnNavigate: true,
-          prevent: (node) => node.id === "mobile-menu" || node.id === "chat-log",
+          prevent: (node) => node.id === "mobile-menu" || node.id === "chat-log" || node.id === "alarm-dialog",
         });
       } else if (!wanted && lenis) {
         lenis.destroy();

@@ -336,34 +336,76 @@ html.lenis body {
   .live-clock__dot::after { animation: none; opacity: 0; }
 }
 
-/* ── Alarm notice (iOS-notification style) ───────────────────────────── */
-.alarm-card {
+/* ── Alarm popup (Apple-style alert) ──────────────────────────────────
+   A native <dialog>: centred card over a blurred page. Opens with a soft
+   spring, closes with a quick fade. Only transform and opacity animate. */
+html.alarm-open { overflow: hidden; }
+.alarm-dialog {
+  width: min(420px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
   border-radius: 28px;
   background: var(--color-paper);
-  padding: 20px;
-  box-shadow:
-    0 0 0 1px rgb(16 28 50 / 0.06),
-    0 24px 60px -32px rgb(16 28 50 / 0.45);
+  color: var(--color-ink);
+  box-shadow: 0 0 0 0.5px rgb(16 28 50 / 0.12), 0 40px 100px -30px rgb(7 14 28 / 0.6);
+  overflow: hidden;
+}
+.alarm-dialog[open] { animation: alarm-in 520ms cubic-bezier(0.32, 0.72, 0, 1); }
+.alarm-dialog[open][data-closing] { animation: alarm-out 200ms ease forwards; }
+.alarm-dialog::backdrop {
+  background: rgb(7 14 28 / 0.5);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  backdrop-filter: blur(10px) saturate(1.2);
+  animation: alarm-fade 300ms ease;
+}
+.alarm-dialog[data-closing]::backdrop { animation: alarm-fade-out 200ms ease forwards; }
+@keyframes alarm-in { from { opacity: 0; transform: translateY(12px) scale(0.92); } to { opacity: 1; transform: none; } }
+@keyframes alarm-out { to { opacity: 0; transform: scale(0.96); } }
+@keyframes alarm-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes alarm-fade-out { to { opacity: 0; } }
+.alarm-dialog__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: 32px 24px 24px;
+  text-align: center;
+  outline: none;
 }
 @media (min-width: 640px) {
-  .alarm-card { padding: 28px; }
+  .alarm-dialog__body { padding: 40px 32px 28px; }
 }
-.alarm-card__icon {
+.alarm-dialog__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgb(16 28 50 / 0.06);
+  color: var(--color-muted);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.alarm-dialog__close:hover { background: rgb(16 28 50 / 0.1); color: var(--color-ink); }
+.alarm-dialog__icon {
   position: relative;
   display: grid;
   place-items: center;
-  flex: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
   background: #ff3b30;
   color: #fff;
 }
-@media (min-width: 640px) {
-  .alarm-card__icon { width: 44px; height: 44px; border-radius: 12px; }
-}
 /* A soft ring that keeps pulsing outwards, like an incoming alert */
-.alarm-card__icon::after {
+.alarm-dialog__icon::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -375,8 +417,22 @@ html.lenis body {
   0% { opacity: 0.55; transform: scale(1); }
   100% { opacity: 0; transform: scale(1.6); }
 }
+.alarm-dialog__ack {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 20px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+.alarm-dialog__ack:hover { background: var(--color-navy-700); }
+.alarm-dialog__ack:active { transform: scale(0.98); }
 @media (prefers-reduced-motion: reduce) {
-  .alarm-card__icon::after { animation: none; opacity: 0; }
+  .alarm-dialog[open], .alarm-dialog::backdrop { animation: none; }
+  .alarm-dialog__icon::after { animation: none; opacity: 0; }
 }
 
 /* ── Chat assistant ──────────────────────────────────────────────────────

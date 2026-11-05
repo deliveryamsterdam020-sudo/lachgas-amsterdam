@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Inline } from "@/components/ui/Inline";
 import { BanCounter } from "./BanCounter";
 import { HubCard, type HubItem } from "./HubCard";
+import { AlarmPopup } from "./AlarmPopup";
 import type { Locale, Page } from "@/content/types";
 import { categoryLabel, formatDate, ui } from "@/lib/site";
 
@@ -118,62 +119,45 @@ export function Hero({
 }
 
 // ── Alarm notice ───────────────────────────────────────────────────────────
-// A warning styled like an iOS notification, directly below the hero. Server-rendered
-// text (readable without JavaScript); only the icon's soft ring animates.
+// The homepage warning, shown as a popup the visitor clicks away (see AlarmPopup).
+// The text is server-rendered inside the <dialog>, so it is in the HTML.
 
 export function AlarmNotice({
-  app,
   label,
   title,
   text,
   links,
+  ack,
+  close,
 }: {
-  app: string;
   label: string;
   title: string;
   text: string;
   links: { href: string; label: string }[];
+  ack: string;
+  close: string;
 }) {
   return (
-    <section aria-labelledby="alarm-title" className="bg-canvas pt-10 sm:pt-14">
-      <div className={container}>
-        <Reveal className="alarm-card mx-auto max-w-3xl">
-          {/* Phones: small icon in the header row, text full width below (like an iOS notification).
-              Larger screens: a large icon in its own column beside the text. */}
-          <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 sm:gap-x-5">
-            <span className="alarm-card__icon sm:row-span-4" aria-hidden="true">
-              <TriangleAlert className="size-[17px] sm:size-[22px]" strokeWidth={2.4} />
-            </span>
-            <p className="flex items-center gap-2 self-center whitespace-nowrap text-[11.5px] font-semibold uppercase tracking-[0.06em] text-muted sm:self-start sm:text-[12px]">
-              {/* The app name only where it fits on one line */}
-              <span className="hidden sm:inline">{app}</span>
-              <span aria-hidden="true" className="hidden sm:inline">·</span>
-              <span className="text-[#c4001a]">{label}</span>
-            </p>
-            <div className="col-span-2 sm:col-span-1 sm:col-start-2">
-              <h2 id="alarm-title" className="mt-3 text-balance text-[clamp(1.2rem,1.05rem+0.6vw,1.5rem)] font-semibold leading-snug tracking-[-0.02em] text-ink sm:mt-1.5">
-                {title}
-              </h2>
-              <p className="mt-2.5 text-pretty text-[16px] leading-relaxed text-graphite">{text}</p>
-              <div className="mt-5 flex flex-wrap gap-2.5">
-                {links.map((l, i) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className={`group inline-flex min-h-11 items-center gap-1 rounded-full px-5 text-[15px] font-semibold transition-colors ${
-                      i === 0 ? "bg-ink text-white hover:bg-navy-700" : "bg-mist text-ink hover:bg-[#dde8f5]"
-                    }`}
-                  >
-                    {l.label}
-                    <ChevronRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Reveal>
+    <AlarmPopup ack={ack} close={close}>
+      <span className="alarm-dialog__icon" aria-hidden="true">
+        <TriangleAlert className="size-[26px]" strokeWidth={2.4} />
+      </span>
+      <p className="mt-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#c4001a]">{label}</p>
+      <h2 id="alarm-title" className="mt-2 text-balance text-[clamp(1.3rem,1.15rem+0.6vw,1.6rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
+        {title}
+      </h2>
+      <p id="alarm-text" className="mt-3 text-pretty text-[15.5px] leading-relaxed text-graphite">
+        {text}
+      </p>
+      <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2">
+        {links.map((l) => (
+          <Link key={l.href} href={l.href} className="group inline-flex min-h-11 items-center gap-0.5 text-[15px] font-semibold text-navy-700 hover:text-ink">
+            {l.label}
+            <ChevronRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
+        ))}
       </div>
-    </section>
+    </AlarmPopup>
   );
 }
 
