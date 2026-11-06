@@ -26,7 +26,9 @@ scripts/build-scene.mts   schrijft de heroscène-SVG’s; draait vóór dev en b
 ```
 
 ## Rendering
-Alle pagina’s worden bij de build statisch gegenereerd (`generateStaticParams`). Enige client-JavaScript: header/menu, scroll-reveal, de verbodsteller en de chatassistent.
+Alle pagina’s worden bij de build statisch gegenereerd (`generateStaticParams`). Enige client-JavaScript: header/menu, scroll-reveal, de verbodsteller, de leeftijdscheck en de chatassistent.
+
+**Leeftijdscheck op de homepages (`/`, `/en/`).** `AgeGateSlot` beslist per verzoek op de server, aan de hand van de User-Agent (`src/lib/bots.ts`), of de bestaande `AgeGate` wordt gerenderd: wel voor bezoekers, niet voor herkenbare crawlers en andere geautomatiseerde clients. Alleen dat ene `<Suspense>`-blok is dynamisch. De rest van de pagina (inhoud, metadata, JSON-LD) blijft een vooraf gerenderde, gecachte shell die voor iedereen gelijk is (Partial Prerendering, `◐` in de build). User-Agent-detectie is niet waterdicht en is geen toegangscontrole; de JavaScript-code van de popup zit in een gedeelde, openbare bundle.
 
 ## Chatassistent
 `src/components/chat/ChatWidget.tsx` (knop en venster, NL/EN) post het gesprek naar `src/app/api/chat/route.ts`. Die route stuurt het met alle **gepubliceerde** pagina’s als context (`src/lib/chat/knowledge.ts`) naar de Claude API en streamt het antwoord terug als platte tekst.
