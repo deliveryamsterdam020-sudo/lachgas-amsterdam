@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { track } from "@vercel/analytics";
 import { Check, Hand, ShieldCheck, X, type LucideProps } from "lucide-react";
 import type { Locale } from "@/content/types";
+import "./AgeGate.css";
 
 // Age check on the homepage: a modal <dialog> with two answers. Either answer closes it and
 // the visitor continues on the site; there is no close button and Escape does nothing, so an
@@ -71,15 +72,12 @@ const labels = {
   },
 } as const;
 
-// `showForVisitor` is decided on the server (src/proxy.ts → AgeGateSlot): false for known AI
-// bots, which then get neither the dialog markup nor the code that opens it.
-export function AgeGate({ locale, showForVisitor = true }: { locale: Locale; showForVisitor?: boolean }) {
+export function AgeGate({ locale }: { locale: Locale }) {
   const t = labels[locale];
   const ref = useRef<HTMLDialogElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!showForVisitor) return;
     const dialog = ref.current;
     if (!dialog || typeof dialog.showModal !== "function") return;
     let id: number | undefined;
@@ -107,7 +105,7 @@ export function AgeGate({ locale, showForVisitor = true }: { locale: Locale; sho
       window.removeEventListener("pageshow", onShow);
       document.documentElement.classList.remove("alarm-open");
     };
-  }, [showForVisitor]);
+  }, []);
 
   const confirm = () => {
     const dialog = ref.current;
@@ -122,7 +120,6 @@ export function AgeGate({ locale, showForVisitor = true }: { locale: Locale; sho
     window.setTimeout(finish, 200);
   };
 
-  if (!showForVisitor) return null;
 
   return (
     <dialog
