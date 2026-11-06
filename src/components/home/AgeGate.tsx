@@ -71,12 +71,15 @@ const labels = {
   },
 } as const;
 
-export function AgeGate({ locale }: { locale: Locale }) {
+// `showForVisitor` is decided on the server (src/proxy.ts → AgeGateSlot): false for known AI
+// bots, which then get neither the dialog markup nor the code that opens it.
+export function AgeGate({ locale, showForVisitor = true }: { locale: Locale; showForVisitor?: boolean }) {
   const t = labels[locale];
   const ref = useRef<HTMLDialogElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!showForVisitor) return;
     const dialog = ref.current;
     if (!dialog || typeof dialog.showModal !== "function") return;
     let id: number | undefined;
@@ -104,7 +107,7 @@ export function AgeGate({ locale }: { locale: Locale }) {
       window.removeEventListener("pageshow", onShow);
       document.documentElement.classList.remove("alarm-open");
     };
-  }, []);
+  }, [showForVisitor]);
 
   const confirm = () => {
     const dialog = ref.current;
@@ -119,6 +122,7 @@ export function AgeGate({ locale }: { locale: Locale }) {
     window.setTimeout(finish, 200);
   };
 
+  if (!showForVisitor) return null;
 
   return (
     <dialog

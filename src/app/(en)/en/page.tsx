@@ -1,7 +1,7 @@
 import { pagesFor, specialRoutes } from "@/content";
 import { buildMetadata } from "@/lib/seo";
 import { LiveClock } from "@/components/home/LiveClock";
-import { AgeGate } from "@/components/home/AgeGate";
+import { AgeGateSlot } from "@/components/home/AgeGateSlot";
 import { AmsterdamSection, BanExplainer, CounterSection, DirectAnswer, Hero, HubSection, Independence, KnowledgeSection } from "@/components/home/Sections";
 
 const route = specialRoutes.find((r) => r.id === "en-home")!;
@@ -33,7 +33,7 @@ export default function EnglishHome() {
         clock={<LiveClock locale="en" />}
       />
 
-      <AgeGate locale="en" />
+      <AgeGateSlot locale="en" />
 
       <DirectAnswer
         index="01"
