@@ -134,10 +134,12 @@ const SCRIPT_CLIENTS = [
   "PostmanRuntime",
 ];
 
-// The pattern is used as a header condition in next.config.ts, where it is matched as
-// ^pattern$ without flags, also by Vercel's router. So it is written out case-insensitively with
-// character classes, without \b, \d or flags, and without capture groups (those would become
-// rewrite parameters).
+// The patterns are used as header conditions in next.config.ts. Next.js matches them as
+// ^pattern$ without flags; Vercel passes them on unchanged. So they are written out
+// case-insensitively with character classes, without \b, \d or flags, without capture groups (those
+// would become rewrite parameters), and so that they give the same result whether or not the
+// router anchors them. Vercel accepts at most 4096 characters per value, so the list is split over
+// several patterns; a client is automated when any of them matches.
 
 /** A literal, case-insensitive: "Bot" becomes "[bB][oO][tT]". */
 const ci = (s: string) =>
@@ -148,28 +150,53 @@ const anyOf = (items: string[]) => `(?:${items.map(ci).join("|")})`;
 
 /** Signs that may appear anywhere in the User-Agent. */
 const ANYWHERE = [
-  anyOf(KNOWN_AUTOMATED_CLIENTS),
+  ...KNOWN_AUTOMATED_CLIENTS.map(ci),
   // A crawler name with a version: "Examplebot/2.1", "Some-Crawler/1.0", "Foo Spider/3".
   // Deliberately no bare "bot": that would also match phones such as "CUBOT".
   `${anyOf(["bot", "crawler", "spider", "scraper"])}/[0-9]`,
   // A contact URL, as crawlers add them: "(compatible; Example/1.0; +https://example.com/bot)".
   `\\+${ci("http")}[sS]?://`,
-].join("|");
+];
 
 /** Signs that only count at the start of the User-Agent. */
 const AT_START = [
   // Link previews of WhatsApp: "WhatsApp/2.23.20.0 A". An in-app browser never starts like this.
   `${ci("WhatsApp")}/`,
   `${anyOf(SCRIPT_CLIENTS)}(?:[/ ;(]|$)`,
-].join("|");
+];
+
+/** Vercel's limit for a header condition value. */
+const MAX_PATTERN_LENGTH = 4096;
+/** Room left per pattern, so a few added names never break the deployment. */
+const TARGET_PATTERN_LENGTH = 2500;
+
+/** Packs alternatives into as few patterns as fit the target length. */
+function pack(alternatives: string[], wrap: (body: string) => string): string[] {
+  const groups: string[][] = [[]];
+  for (const alt of alternatives) {
+    const current = groups[groups.length - 1];
+    if (current.length && wrap([...current, alt].join("|")).length > TARGET_PATTERN_LENGTH) groups.push([alt]);
+    else current.push(alt);
+  }
+  return groups.map((g) => wrap(g.join("|")));
+}
 
 /**
- * Regular expression source that matches the complete User-Agent of a recognisable automated
- * client. Used by next.config.ts (as a `has` header value) and by isAutomatedClient().
+ * Regular expression sources that together match the complete User-Agent of a recognisable
+ * automated client. Used by next.config.ts (one `has` header rewrite per pattern) and by
+ * isAutomatedClient().
  */
-export const AUTOMATED_CLIENT_UA_PATTERN = `(?:(?:${AT_START}).*|.*(?:${ANYWHERE}).*)`;
+export const AUTOMATED_CLIENT_UA_PATTERNS = [
+  ...pack(AT_START, (body) => `^(?:${body}).*`),
+  ...pack(ANYWHERE, (body) => `.*(?:${body}).*`),
+];
 
-const AUTOMATED_RE = new RegExp(`^${AUTOMATED_CLIENT_UA_PATTERN}$`);
+// Fail the build here rather than the deployment on Vercel.
+for (const p of AUTOMATED_CLIENT_UA_PATTERNS) {
+  if (p.length > MAX_PATTERN_LENGTH) throw new Error(`Bot pattern of ${p.length} characters exceeds ${MAX_PATTERN_LENGTH}`);
+}
+
+const AUTOMATED_RES = AUTOMATED_CLIENT_UA_PATTERNS.map((p) => new RegExp(`^${p}$`));
 
 /**
  * True when the User-Agent belongs to a recognisable automated client: the same test the routing
@@ -177,5 +204,5 @@ const AUTOMATED_RE = new RegExp(`^${AUTOMATED_CLIENT_UA_PATTERN}$`);
  */
 export function isAutomatedClient(userAgent: string | null | undefined): boolean {
   if (userAgent == null) return true;
-  return AUTOMATED_RE.test(userAgent);
+  return AUTOMATED_RES.some((re) => re.test(userAgent));
 }

@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { AUTOMATED_CLIENT_UA_PATTERN } from "./src/lib/bots";
+import { AUTOMATED_CLIENT_UA_PATTERNS } from "./src/lib/bots";
 
 // The homepages carry the age check. For recognisable automated clients they are served from a
 // prerendered variant without it (see src/components/home/AgeGateSlot.tsx). Homepage → variant.
@@ -74,12 +74,13 @@ const nextConfig: NextConfig = {
   // because the homepages exist as files and later rewrites would never be reached.
   async rewrites() {
     return {
+      // One rule per pattern (Vercel limits the length of a condition); the first match wins.
       beforeFiles: AGE_GATE_FREE_VARIANTS.flatMap(({ home, variant }) => [
-        {
+        ...AUTOMATED_CLIENT_UA_PATTERNS.map((value) => ({
           source: home,
           destination: variant,
-          has: [{ type: "header" as const, key: "user-agent", value: AUTOMATED_CLIENT_UA_PATTERN }],
-        },
+          has: [{ type: "header" as const, key: "user-agent", value }],
+        })),
         // No User-Agent at all: never a browser.
         { source: home, destination: variant, missing: [{ type: "header" as const, key: "user-agent" }] },
       ]),
