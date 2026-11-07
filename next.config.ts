@@ -75,15 +75,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       // One rule per pattern (Vercel limits the length of a condition); the first match wins.
-      beforeFiles: AGE_GATE_FREE_VARIANTS.flatMap(({ home, variant }) => [
-        ...AUTOMATED_CLIENT_UA_PATTERNS.map((value) => ({
+      // A missing or empty User-Agent matches none of them, so it gets the age check.
+      beforeFiles: AGE_GATE_FREE_VARIANTS.flatMap(({ home, variant }) =>
+        AUTOMATED_CLIENT_UA_PATTERNS.map((value) => ({
           source: home,
           destination: variant,
           has: [{ type: "header" as const, key: "user-agent", value }],
         })),
-        // No User-Agent at all: never a browser.
-        { source: home, destination: variant, missing: [{ type: "header" as const, key: "user-agent" }] },
-      ]),
+      ),
       afterFiles: [],
       fallback: [],
     };

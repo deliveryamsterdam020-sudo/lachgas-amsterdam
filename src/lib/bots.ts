@@ -200,9 +200,10 @@ const AUTOMATED_RES = AUTOMATED_CLIENT_UA_PATTERNS.map((p) => new RegExp(`^${p}$
 
 /**
  * True when the User-Agent belongs to a recognisable automated client: the same test the routing
- * applies. A missing User-Agent also counts (next.config.ts has a rule for that as well).
+ * applies. A missing or empty User-Agent is not recognisable, so it is not treated as a bot: like
+ * any doubtful case, it gets the age check.
  */
 export function isAutomatedClient(userAgent: string | null | undefined): boolean {
-  if (userAgent == null) return true;
+  if (!userAgent) return false;
   return AUTOMATED_RES.some((re) => re.test(userAgent));
 }
