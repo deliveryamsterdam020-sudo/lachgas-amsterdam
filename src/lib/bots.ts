@@ -3,6 +3,11 @@
 // interstitial. It only decides whether the popup is rendered: the page content is the same for
 // every client.
 //
+// The decision is made in routing, before the cache: next.config.ts rewrites requests for the
+// homepages whose User-Agent matches AUTOMATED_CLIENT_UA_PATTERN to a prerendered variant without
+// the popup (see src/components/home/AgeGateSlot.tsx). Both variants are static and cached by the
+// CDN; no server function runs for the decision.
+//
 // User-Agent detection is best effort. Any client can send any User-Agent, so a bot that poses as
 // a browser still gets the popup, and this is no access control. The list is deliberately
 // conservative: a person wrongly treated as a bot would miss the age check, a bot wrongly treated
@@ -106,33 +111,71 @@ const KNOWN_AUTOMATED_CLIENTS = [
   // Browsers driven by scripts, never by a person
   "HeadlessChrome",
   "PhantomJS",
-] as const;
-
-const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-const KNOWN_RE = new RegExp(KNOWN_AUTOMATED_CLIENTS.map(escape).join("|"), "i");
-
-/**
- * Generic signs of a crawler that is not in the list above. Each is something a browser used by a
- * person never sends. Deliberately no bare "bot": that would also match phones such as "CUBOT".
- */
-const GENERIC_RES = [
-  // A crawler name with a version: "Examplebot/2.1", "Some-Crawler/1.0", "Foo Spider/3".
-  /[a-z0-9_-]*(?:bot|crawler|spider|scraper)\/\d/i,
-  // A contact URL, as crawlers add them: "(compatible; Example/1.0; +https://example.com/bot)".
-  /\+https?:\/\//i,
-  // Link previews of WhatsApp: "WhatsApp/2.23.20.0 A". Anchored, so an in-app browser never matches.
-  /^WhatsApp\//i,
-  // Scripts and HTTP libraries. Anchored at the start: every browser starts with "Mozilla/".
-  /^(?:curl|wget|python-requests|python-urllib|python-httpx|aiohttp|go-http-client|node-fetch|axios|undici|okhttp|java|apache-httpclient|libwww-perl|scrapy|httpie|postmanruntime)\b/i,
 ];
 
+/** Scripts and HTTP libraries. Only at the very start: every browser starts with "Mozilla/". */
+const SCRIPT_CLIENTS = [
+  "curl",
+  "wget",
+  "python-requests",
+  "python-urllib",
+  "python-httpx",
+  "aiohttp",
+  "Go-http-client",
+  "node-fetch",
+  "axios",
+  "undici",
+  "okhttp",
+  "Java",
+  "Apache-HttpClient",
+  "libwww-perl",
+  "Scrapy",
+  "HTTPie",
+  "PostmanRuntime",
+];
+
+// The pattern is used as a header condition in next.config.ts, where it is matched as
+// ^pattern$ without flags, also by Vercel's router. So it is written out case-insensitively with
+// character classes, without \b, \d or flags, and without capture groups (those would become
+// rewrite parameters).
+
+/** A literal, case-insensitive: "Bot" becomes "[bB][oO][tT]". */
+const ci = (s: string) =>
+  s
+    .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    .replace(/[a-z]/gi, (c) => `[${c.toLowerCase()}${c.toUpperCase()}]`);
+const anyOf = (items: string[]) => `(?:${items.map(ci).join("|")})`;
+
+/** Signs that may appear anywhere in the User-Agent. */
+const ANYWHERE = [
+  anyOf(KNOWN_AUTOMATED_CLIENTS),
+  // A crawler name with a version: "Examplebot/2.1", "Some-Crawler/1.0", "Foo Spider/3".
+  // Deliberately no bare "bot": that would also match phones such as "CUBOT".
+  `${anyOf(["bot", "crawler", "spider", "scraper"])}/[0-9]`,
+  // A contact URL, as crawlers add them: "(compatible; Example/1.0; +https://example.com/bot)".
+  `\\+${ci("http")}[sS]?://`,
+].join("|");
+
+/** Signs that only count at the start of the User-Agent. */
+const AT_START = [
+  // Link previews of WhatsApp: "WhatsApp/2.23.20.0 A". An in-app browser never starts like this.
+  `${ci("WhatsApp")}/`,
+  `${anyOf(SCRIPT_CLIENTS)}(?:[/ ;(]|$)`,
+].join("|");
+
 /**
- * True when the User-Agent belongs to a recognisable automated client. A missing or empty
- * User-Agent also counts: no browser sends a request without one.
+ * Regular expression source that matches the complete User-Agent of a recognisable automated
+ * client. Used by next.config.ts (as a `has` header value) and by isAutomatedClient().
+ */
+export const AUTOMATED_CLIENT_UA_PATTERN = `(?:(?:${AT_START}).*|.*(?:${ANYWHERE}).*)`;
+
+const AUTOMATED_RE = new RegExp(`^${AUTOMATED_CLIENT_UA_PATTERN}$`);
+
+/**
+ * True when the User-Agent belongs to a recognisable automated client: the same test the routing
+ * applies. A missing User-Agent also counts (next.config.ts has a rule for that as well).
  */
 export function isAutomatedClient(userAgent: string | null | undefined): boolean {
-  const ua = userAgent?.trim();
-  if (!ua) return true;
-  return KNOWN_RE.test(ua) || GENERIC_RES.some((re) => re.test(ua));
+  if (userAgent == null) return true;
+  return AUTOMATED_RE.test(userAgent);
 }

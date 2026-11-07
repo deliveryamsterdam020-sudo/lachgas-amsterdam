@@ -1,28 +1,26 @@
-import { Suspense } from "react";
-import { headers } from "next/headers";
+import { cache } from "react";
 import type { Locale } from "@/content/types";
-import { isAutomatedClient } from "@/lib/bots";
 import { AgeGate } from "./AgeGate";
 
-// Server-side decision whether to render the age check: people get the existing AgeGate, and
-// recognisable crawlers and other automated clients get nothing, so the popup is not in the HTML
-// they receive. The rest of the page is identical for everyone.
+// Where the age check sits on the homepages. Each homepage is prerendered twice, both fully static
+// and cached by the CDN:
 //
-// Reading the User-Agent is request-time data. Inside this <Suspense> boundary it only affects
-// this slot: with Cache Components the page around it stays a prerendered, cached static shell,
-// and only this small part is rendered per request. No variant is cached, so a decision for one
-// client can never be served to another.
+// - the normal route (/ and /en/), with the existing AgeGate, for visitors;
+// - a variant without it (zonder-leeftijdscheck/, en/without-age-check/), which renders the same
+//   page component with the same metadata, only without the popup.
+//
+// next.config.ts decides per request, in routing and before the cache, which of the two is served:
+// requests from recognisable automated clients (src/lib/bots.ts) to / and /en/ are rewritten to the
+// variant. The URL stays the same, and the variant URLs themselves redirect to the homepages.
 
-async function AgeGateForVisitor({ locale }: { locale: Locale }) {
-  const userAgent = (await headers()).get("user-agent");
-  if (isAutomatedClient(userAgent)) return null;
-  return <AgeGate locale={locale} />;
+// Per render (React's cache() is scoped to one server render), so the two variants never share it.
+const ageGate = cache(() => ({ render: true }));
+
+/** Called by a variant page before it renders the homepage component: leave the age check out. */
+export function renderWithoutAgeGate() {
+  ageGate().render = false;
 }
 
 export function AgeGateSlot({ locale }: { locale: Locale }) {
-  return (
-    <Suspense fallback={null}>
-      <AgeGateForVisitor locale={locale} />
-    </Suspense>
-  );
+  return ageGate().render ? <AgeGate locale={locale} /> : null;
 }

@@ -1,4 +1,12 @@
 import type { NextConfig } from "next";
+import { AUTOMATED_CLIENT_UA_PATTERN } from "./src/lib/bots";
+
+// The homepages carry the age check. For recognisable automated clients they are served from a
+// prerendered variant without it (see src/components/home/AgeGateSlot.tsx). Homepage → variant.
+const AGE_GATE_FREE_VARIANTS = [
+  { home: "/", variant: "/zonder-leeftijdscheck/" },
+  { home: "/en/", variant: "/en/without-age-check/" },
+];
 
 // Security headers. The site loads no third-party scripts, fonts or trackers,
 // so the policy can stay strict. 'unsafe-inline' for scripts is needed for the
@@ -50,12 +58,34 @@ const nextConfig: NextConfig = {
   // both .com variants redirect permanently to https://www.lachgasinfo.nl. The www host
   // itself must never redirect, or it loops with Vercel's own domain redirect.
   async redirects() {
-    return ["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
-      source: "/:path*",
-      has: [{ type: "host" as const, value: host }],
-      destination: "https://www.lachgasinfo.nl/:path*",
-      permanent: true,
-    }));
+    return [
+      ...["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
+        source: "/:path*",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://www.lachgasinfo.nl/:path*",
+        permanent: true,
+      })),
+      // The variants are internal: opened directly, they lead to the homepage. Redirects only see
+      // the requested URL, so the rewrites below still reach the variants.
+      ...AGE_GATE_FREE_VARIANTS.map(({ home, variant }) => ({ source: variant, destination: home, permanent: true })),
+    ];
+  },
+  // Decided in routing, before the CDN cache, so both variants stay static and cached. beforeFiles,
+  // because the homepages exist as files and later rewrites would never be reached.
+  async rewrites() {
+    return {
+      beforeFiles: AGE_GATE_FREE_VARIANTS.flatMap(({ home, variant }) => [
+        {
+          source: home,
+          destination: variant,
+          has: [{ type: "header" as const, key: "user-agent", value: AUTOMATED_CLIENT_UA_PATTERN }],
+        },
+        // No User-Agent at all: never a browser.
+        { source: home, destination: variant, missing: [{ type: "header" as const, key: "user-agent" }] },
+      ]),
+      afterFiles: [],
+      fallback: [],
+    };
   },
   async headers() {
     // The dev server needs eval for fast refresh and runs over plain HTTP, so CSP
