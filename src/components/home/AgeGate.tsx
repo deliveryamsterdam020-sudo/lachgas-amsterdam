@@ -10,6 +10,8 @@ import type { Locale } from "@/content/types";
 // answer is required. Nothing is remembered: it appears on every visit to the homepage, also
 // when the visitor comes back with the browser's back button (from the back/forward cache).
 // The text is server-rendered inside the dialog, so it is in the HTML. Nothing is stored or sent.
+// Pages render it through AgeGateSlot, which leaves it out for recognisable crawlers and other
+// automated clients (see src/lib/bots.ts); the rest of the page is the same for everyone.
 
 
 /**

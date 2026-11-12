@@ -1,7 +1,7 @@
 import { pagesFor, specialRoutes } from "@/content";
 import { buildMetadata } from "@/lib/seo";
 import { LiveClock } from "@/components/home/LiveClock";
-import { AgeGate } from "@/components/home/AgeGate";
+import { AgeGateSlot } from "@/components/home/AgeGateSlot";
 import {
   AmsterdamSection,
   BanExplainer,
@@ -44,7 +44,7 @@ export default function Home() {
         clock={<LiveClock locale="nl" />}
       />
 
-      <AgeGate locale="nl" />
+      <AgeGateSlot locale="nl" />
 
       <DirectAnswer
         index="01"

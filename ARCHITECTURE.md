@@ -26,7 +26,9 @@ scripts/build-scene.mts   schrijft de heroscène-SVG’s; draait vóór dev en b
 ```
 
 ## Rendering
-Alle pagina’s worden bij de build statisch gegenereerd (`generateStaticParams`). Enige client-JavaScript: header/menu, scroll-reveal, de verbodsteller en de chatassistent.
+Alle pagina’s worden bij de build statisch gegenereerd (`generateStaticParams`). Enige client-JavaScript: header/menu, scroll-reveal, de verbodsteller, de leeftijdscheck en de chatassistent.
+
+**Leeftijdscheck op de homepages (`/`, `/en/`).** Iedere homepage bestaat in twee volledig statische varianten: met de bestaande `AgeGate` (voor bezoekers) en zonder (`/zonder-leeftijdscheck/`, `/en/without-age-check/`, zelfde component en metadata). Een `beforeFiles`-rewrite in `next.config.ts` met een `user-agent`-voorwaarde (`src/lib/bots.ts`) stuurt herkenbare crawlers en andere geautomatiseerde clients naar de variant zonder popup; de URL blijft gelijk. Die beslissing valt in de routering, vóór de CDN-cache: beide varianten worden gecachet en er draait geen serverfunctie voor. Direct opgevraagd verwijzen de varianten door naar de homepage. User-Agent-detectie is niet waterdicht en is geen toegangscontrole; de popupcode zit in de openbare JavaScript-chunk van de homepage, die ook de variant laadt.
 
 ## Chatassistent
 `src/components/chat/ChatWidget.tsx` (knop en venster, NL/EN) post het gesprek naar `src/app/api/chat/route.ts`. Die route stuurt het met alle **gepubliceerde** pagina’s als context (`src/lib/chat/knowledge.ts`) naar de Claude API en streamt het antwoord terug als platte tekst.
