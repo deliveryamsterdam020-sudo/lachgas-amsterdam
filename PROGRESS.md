@@ -10,7 +10,7 @@ De site is **inhoudelijk en technisch klaar voor livegang**. Alle 35 pagina’s 
 
 | Onderdeel | Wat |
 |---|---|
-| Uitgever | Lachgas info Amsterdam, Sarphatipark 8, Amsterdam — op Over ons, privacy (NL/EN) en in de Organization-structured data. |
+| Uitgever | Lachgas info Amsterdam (J.R. Evelaine), Jacob Catsstraat 115, 2515 GD ’s-Gravenhage — op Over ons, privacy (NL/EN) en in de Organization-structured data. |
 | Domein | `https://www.lachgasinfo.nl` als canoniek domein (primair in Vercel); lachgasinfo.nl en beide .com-varianten → doorverwijzing naar www. DNS bij TransIP: A 216.198.79.1, www CNAME naar Vercel. |
 | Hosting | Klaar voor Vercel (DEPLOY.md); privacyverklaring noemt Vercel. |
 | Publicatie | Pagina’s gecontroleerd en vrijgegeven door de uitgever (31-10-2026). Strafmaat: “wordt door het OM bepaald”, met de OM-uitleg erbij. |

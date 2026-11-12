@@ -19,8 +19,10 @@ export const WHATSAPP_NUMBER = "447441484380";
 /** Publisher identification (legal notice). */
 export const PUBLISHER = {
   name: "Lachgas info Amsterdam",
-  street: "Sarphatipark 8",
-  city: "Amsterdam",
+  person: "J.R. Evelaine",
+  street: "Jacob Catsstraat 115",
+  postalCode: "2515 GD",
+  city: "’s-Gravenhage",
   country: "NL",
 };
 

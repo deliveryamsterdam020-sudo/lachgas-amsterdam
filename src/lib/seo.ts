@@ -71,6 +71,7 @@ export function organizationLd() {
     address: {
       "@type": "PostalAddress",
       streetAddress: PUBLISHER.street,
+      postalCode: PUBLISHER.postalCode,
       addressLocality: PUBLISHER.city,
       addressCountry: PUBLISHER.country,
     },

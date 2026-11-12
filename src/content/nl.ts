@@ -1272,7 +1272,8 @@ export const nlPages: Page[] = [
         type: "facts",
         items: [
           { label: "Uitgever", value: "Lachgas info Amsterdam" },
-          { label: "Postadres", value: "Sarphatipark 8, Amsterdam" },
+          { label: "Verantwoordelijke", value: "J.R. Evelaine" },
+          { label: "Postadres", value: "Jacob Catsstraat 115, 2515 GD ’s-Gravenhage" },
           { label: "Website", value: "lachgasinfo.nl" },
         ],
       },
@@ -1291,7 +1292,7 @@ export const nlPages: Page[] = [
     translationOf: "en-about",
     status: "published",
     published: D,
-    reviewed: D,
+    reviewed: "2026-11-12",
     nextReview: "2027-04-30",
     unlisted: true,
   },
@@ -1368,7 +1369,7 @@ export const nlPages: Page[] = [
       "Wij verzamelen zo min mogelijk gegevens. Deze website gebruikt geen cookies en laadt geen externe scripts of lettertypen. Voor anonieme bezoekersstatistieken gebruiken wij Vercel Web Analytics, zonder cookies. De hostingprovider Vercel verwerkt technisch noodzakelijke serverlogs. Als je de chatassistent gebruikt, wordt je vraag naar Anthropic gestuurd om een antwoord te maken; wij bewaren je gesprek niet.",
     body: [
       { type: "h2", id: "verantwoordelijke", text: "Verwerkingsverantwoordelijke" },
-      { type: "p", text: "Lachgas info Amsterdam, Sarphatipark 8, Amsterdam. Vragen of verzoeken over je gegevens kun je per post naar dit adres sturen." },
+      { type: "p", text: "Lachgas info Amsterdam (verantwoordelijke: J.R. Evelaine), Jacob Catsstraat 115, 2515 GD ’s-Gravenhage. Vragen of verzoeken over je gegevens kun je per post naar dit adres sturen." },
       { type: "h2", id: "cookies", text: "Cookies en tracking" },
       {
         type: "p",
@@ -1411,7 +1412,7 @@ export const nlPages: Page[] = [
     translationOf: "en-privacy",
     status: "published",
     published: D,
-    reviewed: "2026-11-04",
+    reviewed: "2026-11-12",
     nextReview: "2027-04-30",
     unlisted: true,
   },

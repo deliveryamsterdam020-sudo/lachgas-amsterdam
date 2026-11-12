@@ -58,17 +58,18 @@ const nextConfig: NextConfig = {
   // both .com variants redirect permanently to https://www.lachgasinfo.nl. The www host
   // itself must never redirect, or it loops with Vercel's own domain redirect.
   async redirects() {
-    return [
-      ...["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
-        source: "/:path*",
-        has: [{ type: "host" as const, value: host }],
-        destination: "https://www.lachgasinfo.nl/:path*",
-        permanent: true,
-      })),
-      // The variants are internal: opened directly, they lead to the homepage. Redirects only see
-      // the requested URL, so the rewrites below still reach the variants.
-      ...AGE_GATE_FREE_VARIANTS.map(({ home, variant }) => ({ source: variant, destination: home, permanent: true })),
-    ];
+    const hosts = ["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://www.lachgasinfo.nl/:path*",
+      permanent: true,
+    }));
+    // Old or guessed URLs without a page of their own: send them to the homepage.
+    const paths = [{ source: "/lachgas", destination: "/", permanent: true }];
+    // The age-check variants are internal: opened directly, they lead to the homepage. Redirects
+    // only see the requested URL, so the rewrites below still reach the variants.
+    const variants = AGE_GATE_FREE_VARIANTS.map(({ home, variant }) => ({ source: variant, destination: home, permanent: true }));
+    return [...hosts, ...paths, ...variants];
   },
   // Decided in routing, before the CDN cache, so both variants stay static and cached. beforeFiles,
   // because the homepages exist as files and later rewrites would never be reached.
