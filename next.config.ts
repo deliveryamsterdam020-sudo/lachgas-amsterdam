@@ -50,12 +50,15 @@ const nextConfig: NextConfig = {
   // both .com variants redirect permanently to https://www.lachgasinfo.nl. The www host
   // itself must never redirect, or it loops with Vercel's own domain redirect.
   async redirects() {
-    return ["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
+    const hosts = ["lachgasinfo.nl", "lachgasinfo.com", "www.lachgasinfo.com"].map((host) => ({
       source: "/:path*",
       has: [{ type: "host" as const, value: host }],
       destination: "https://www.lachgasinfo.nl/:path*",
       permanent: true,
     }));
+    // Old or guessed URLs without a page of their own: send them to the homepage.
+    const paths = [{ source: "/lachgas", destination: "/", permanent: true }];
+    return [...hosts, ...paths];
   },
   async headers() {
     // The dev server needs eval for fast refresh and runs over plain HTTP, so CSP
